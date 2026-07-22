@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dbbiqdjlwgqvh"]
+
+[ext_resource type="PackedScene" uid="uid://bagx30o5yj4v2" path="res://src/player/player.tscn" id="1_w561s"]
+[ext_resource type="PackedScene" uid="uid://dkofn6jl3jb55" path="res://assets/city/suburban/building-type-c.glb" id="2_p8qt8"]
+[ext_resource type="PackedScene" uid="uid://4s84e81h7um6" path="res://assets/bikes/bmx.glb" id="3_1l6e7"]
+[ext_resource type="PackedScene" uid="uid://p4buds0a0sve" path="res://assets/bikes/mountain_bike.glb" id="4_c0n45"]
+[ext_resource type="PackedScene" uid="uid://b4q0mnqcfpn8b" path="res://assets/bikes/unicycle.glb" id="5_u88ox"]
+
+[sub_resource type="Environment" id="Environment_p8qt8"]
+background_mode = 1
+background_color = Color(0.95651656, 0.85045266, 0.51767874, 1)
+ambient_light_color = Color(0.6955032, 0.6955031, 0.6955031, 1)
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8qt8"]
+albedo_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+
+[node name="World" type="Node3D" unique_id=1917692229]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1969175222]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1037798768]
+environment = SubResource("Environment_p8qt8")
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=782734167]
+use_collision = true
+size = Vector3(50, 0.2, 50)
+material = SubResource("StandardMaterial3D_p8qt8")
+
+[node name="Building" parent="." unique_id=714074719 instance=ExtResource("2_p8qt8")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -1.6471667, 0.10559225, -11.112507)
+
+[node name="CharacterBody3D" parent="." unique_id=1212996814 instance=ExtResource("1_w561s")]
+transform = Transform3D(0.70710677, -1.0536712e-08, 0.70710677, 2.9802322e-08, 1.0000001, 0, -0.70710677, 3.1610135e-08, 0.70710677, 9.536743e-07, 2.034729, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=660617789]
+transform = Transform3D(1.0000001, 2.9802322e-08, 2.9802322e-08, -2.9802322e-08, 0.70710677, 0.7071067, 0, -0.7071068, 0.7071068, 0.113569714, 5.842803, 5.624824)
+projection = 1
+current = true
+size = 15.0
+
+[node name="bmx" parent="." unique_id=1136754064 instance=ExtResource("3_1l6e7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.998129, 0.10559082, -8.097417)
+
+[node name="mountain_bike" parent="." unique_id=364604433 instance=ExtResource("4_c0n45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.460756, 0.10559082, -11.324036)
+
+[node name="unicycle" parent="." unique_id=144032613 instance=ExtResource("5_u88ox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.212263, 0.10559082, -8.35637)

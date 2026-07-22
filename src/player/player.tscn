@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bagx30o5yj4v2"]
+
+[ext_resource type="Script" uid="uid://bb7n38txtahgg" path="res://src/player/player.gd" id="1_fynmd"]
+[ext_resource type="PackedScene" uid="uid://4s84e81h7um6" path="res://assets/bikes/bmx.glb" id="2_d6n0t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3agn1"]
+size = Vector3(0.31079102, 1, 3.2873535)
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1212996814]
+script = ExtResource("1_fynmd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1821141066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49482203, -0.064834535)
+shape = SubResource("BoxShape3D_3agn1")
+
+[node name="Model" parent="." unique_id=1136754064 instance=ExtResource("2_d6n0t")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
