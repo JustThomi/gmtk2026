@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var model: Node3D = $Model
+@export var model_rotation_offset := deg_to_rad(-45.0)
 
 const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
@@ -24,11 +25,12 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		
+		var target_rotation := atan2(-direction.x, -direction.z)
+		target_rotation += model_rotation_offset
+		model.rotation.y = lerp_angle(model.rotation.y, target_rotation, delta * 10)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
-	var rotation_direction = Vector2(velocity.x, velocity.z).angle()
-	model.rotation.y = lerp_angle(model.rotation.y, rotation_direction, delta * 10)
 
 	move_and_slide()

@@ -14,4 +14,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49482203, -0.064834535)
 shape = SubResource("BoxShape3D_3agn1")
 
 [node name="Model" parent="." unique_id=1136754064 instance=ExtResource("2_d6n0t")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
