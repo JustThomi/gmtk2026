@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://b63r6xyargp1h"]
+
+[ext_resource type="Script" uid="uid://b125iay4qyyis" path="res://src/ui/hud.gd" id="1_4rn03"]
+[ext_resource type="Texture2D" uid="uid://c1shj0s3h4vl0" path="res://assets/ui/phone_border.png" id="1_eqvli"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3agn1"]
+size = Vector2(232.5, 248)
+
+[node name="HUD" type="Control" unique_id=198605114]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_4rn03")
+
+[node name="Phone" type="MarginContainer" parent="." unique_id=1872206591]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -148.0
+offset_right = 306.0
+offset_bottom = 108.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="Phone" unique_id=1416959346]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phone/Area2D" unique_id=1126370472]
+position = Vector2(131.75, 131)
+shape = SubResource("RectangleShape2D_3agn1")
+
+[node name="PhoneWallpaper" type="MarginContainer" parent="Phone" unique_id=228828725]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+
+[node name="ColorRect" type="ColorRect" parent="Phone/PhoneWallpaper" unique_id=1533142537]
+layout_mode = 2
+
+[node name="PhoneBorder" type="TextureRect" parent="Phone" unique_id=1475240221]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_eqvli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Phone" unique_id=1915270468]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="MenuContainer" type="VBoxContainer" parent="Phone/MarginContainer" unique_id=337715491]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Phone/MarginContainer/MenuContainer" unique_id=1526215691]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Order"
+
+[node name="Button2" type="Button" parent="Phone/MarginContainer/MenuContainer" unique_id=773857952]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Order"
+
+[node name="Button3" type="Button" parent="Phone/MarginContainer/MenuContainer" unique_id=1557016430]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Order"
+
+[connection signal="mouse_entered" from="Phone/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Phone/Area2D" to="." method="_on_area_2d_mouse_exited"]
