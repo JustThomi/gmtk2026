@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b125iay4qyyis" path="res://src/ui/hud.gd" id="1_4rn03"]
 [ext_resource type="Texture2D" uid="uid://c1shj0s3h4vl0" path="res://assets/ui/phone_border.png" id="1_eqvli"]
+[ext_resource type="Texture2D" uid="uid://ds4wxvyjd83g2" path="res://assets/ui/mickeychickey.png" id="3_snmo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3agn1"]
 size = Vector2(232.5, 248)
@@ -48,30 +49,78 @@ texture_filter = 1
 layout_mode = 2
 texture = ExtResource("1_eqvli")
 
-[node name="MarginContainer" type="MarginContainer" parent="Phone" unique_id=1915270468]
+[node name="OrdersPage" type="MarginContainer" parent="Phone" unique_id=1915270468]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 10
 
-[node name="MenuContainer" type="VBoxContainer" parent="Phone/MarginContainer" unique_id=337715491]
+[node name="MenuContainer" type="VBoxContainer" parent="Phone/OrdersPage" unique_id=337715491]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Phone/MarginContainer/MenuContainer" unique_id=1526215691]
+[node name="Button" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=1526215691]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_colors/font_hover_color = Color(0.6017273, 0.70538116, 1.069, 1)
 text = "Order"
+icon = ExtResource("3_snmo6")
+flat = true
 
-[node name="Button2" type="Button" parent="Phone/MarginContainer/MenuContainer" unique_id=773857952]
+[node name="Button2" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=1930460567]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_colors/font_hover_color = Color(0.6017273, 0.70538116, 1.069, 1)
 text = "Order"
+icon = ExtResource("3_snmo6")
+flat = true
 
-[node name="Button3" type="Button" parent="Phone/MarginContainer/MenuContainer" unique_id=1557016430]
+[node name="Button3" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=845313003]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_colors/font_hover_color = Color(0.6017273, 0.70538116, 1.069, 1)
 text = "Order"
+icon = ExtResource("3_snmo6")
+flat = true
+
+[node name="ActiveOrderPage" type="MarginContainer" parent="Phone" unique_id=94629585]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="MenuContainer" type="VBoxContainer" parent="Phone/ActiveOrderPage" unique_id=1131907956]
+layout_mode = 2
+
+[node name="Distance" type="Label" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=656801225]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+text = "Distance"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DistanceValue" type="Label" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=1250320406]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_font_sizes/font_size = 32
+text = "20 km"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=1446562818]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_snmo6")
+stretch_mode = 5
 
 [connection signal="mouse_entered" from="Phone/Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Phone/Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/Button2" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/Button3" to="." method="_on_button_pressed"]
