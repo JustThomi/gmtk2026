@@ -17,6 +17,15 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_4rn03")
 
+[node name="OrdersMap" type="Window" parent="." unique_id=100749499]
+oversampling_override = 1.0
+title = "Available Orders"
+initial_position = 1
+size = Vector2i(600, 400)
+
+[node name="Camera3D" type="Camera3D" parent="OrdersMap" unique_id=296804481]
+transform = Transform3D(0.70710677, -0.35355353, 0.61237246, 7.1054274e-15, 0.86602527, 0.50000006, -0.70710665, -0.35355344, 0.6123724, 20, 30, 20)
+
 [node name="Phone" type="MarginContainer" parent="." unique_id=1872206591]
 layout_mode = 1
 anchors_preset = 2
@@ -121,6 +130,7 @@ size_flags_vertical = 3
 texture = ExtResource("3_snmo6")
 stretch_mode = 5
 
+[connection signal="close_requested" from="OrdersMap" to="." method="_on_orders_map_close_requested"]
 [connection signal="mouse_entered" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
 [connection signal="mouse_exited" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]
 [connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton" to="." method="_on_order_button_pressed"]

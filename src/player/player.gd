@@ -2,7 +2,9 @@ extends CharacterBody3D
 
 @onready var model: Node3D = $Model
 @onready var arrow: Node3D = $Arrrow
+
 @export var model_rotation_offset := deg_to_rad(-45.0)
+@export var hud: Control
 
 const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
@@ -20,6 +22,9 @@ func _process(_delta):
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
+	if Input.is_action_just_pressed("orders"):
+		hud.order_map.visible = not hud.order_map.visible
 
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY

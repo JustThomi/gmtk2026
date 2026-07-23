@@ -31,8 +31,9 @@ use_collision = true
 size = Vector3(50, 0.2, 50)
 material = SubResource("StandardMaterial3D_p8qt8")
 
-[node name="CharacterBody3D" parent="." unique_id=1212996814 instance=ExtResource("1_w561s")]
+[node name="CharacterBody3D" parent="." unique_id=1212996814 node_paths=PackedStringArray("hud") instance=ExtResource("1_w561s")]
 transform = Transform3D(0.70710677, -1.0536712e-08, 0.70710677, 2.9802322e-08, 1.0000001, 0, -0.70710677, 3.1610135e-08, 0.70710677, 9.536743e-07, 2.034729, 0)
+hud = NodePath("../HUD")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=660617789]
 transform = Transform3D(1.0000001, 2.9802322e-08, 2.9802322e-08, -2.9802322e-08, 0.70710677, 0.7071067, 0, -0.7071068, 0.7071068, 0.113569714, 5.842803, 5.624824)
