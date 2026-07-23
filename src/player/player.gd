@@ -8,7 +8,7 @@ const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 
 func _ready():
-	print("aia zic coaie")
+	pass
 
 func _process(_delta):
 	if position.y < -20:

@@ -23,7 +23,6 @@ func generate_order():
 	restaurant.show()
 	
 	current_target = restaurant
-	print(current_target)
 
 func order_picked_up():
 	current_target = destination
@@ -34,10 +33,8 @@ func order_picked_up():
 func order_finished():
 	destination.hide()
 	player.arrow.hide()
-	
 	# TODO: Reward player here
 
 func _process(_delta: float) -> void:
 	if current_target != null:
 		distance = player.global_position.distance_to(current_target.global_position)
-		print(distance)
