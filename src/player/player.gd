@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var model_rotation_offset := deg_to_rad(-45.0)
 @export var hud: Control
 
-const SPEED = 10.0
+const SPEED = 20.0
 const JUMP_VELOCITY = 4.5
 
 func _ready():
