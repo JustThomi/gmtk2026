@@ -4,9 +4,18 @@ extends Control
 @onready var orders_page: MarginContainer = $Phone/OrdersPage
 @onready var active_order_page: MarginContainer = $Phone/ActiveOrderPage
 
+@onready var distance_value: Label = $Phone/ActiveOrderPage/MenuContainer/DistanceValue
+
 func _ready() -> void:
-	orders_page.show()
-	active_order_page.hide()
+	#orders_page.show()
+	#active_order_page.hide()
+	
+	orders_page.hide()
+	active_order_page.show()
+
+func _process(_delta: float) -> void:
+	if OrderManager.current_target != null:
+		distance_value.text = str(int(OrderManager.distance))
 
 func _on_mouse_detector_mouse_entered() -> void:
 	phone.position.y = 392.0

@@ -20,18 +20,18 @@ func generate_order():
 	restaurant = all_restaurants[randi_range(0, len(all_restaurants) - 1)]
 	destination = all_destinations[randi_range(0, len(all_destinations) - 1)]
 	
-	restaurant.show()
+	restaurant.enable()
 	
 	current_target = restaurant
 
 func order_picked_up():
 	current_target = destination
 	
-	restaurant.hide()
-	destination.show()
+	restaurant.disable()
+	destination.enable()
 
 func order_finished():
-	destination.hide()
+	destination.disable()
 	player.arrow.hide()
 	# TODO: Reward player here
 

@@ -30,6 +30,8 @@ grow_vertical = 0
 mouse_filter = 2
 
 [node name="MouseDetector" type="Area2D" parent="Phone" unique_id=1416959346]
+collision_layer = 524288
+collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Phone/MouseDetector" unique_id=1126370472]
 position = Vector2(131.75, 131)
