@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://dbbiqdjlwgqvh"]
 
+[ext_resource type="Script" uid="uid://chr73qux254lo" path="res://src/scenes/world.gd" id="1_tvkxc"]
 [ext_resource type="PackedScene" uid="uid://bagx30o5yj4v2" path="res://src/player/player.tscn" id="1_w561s"]
-[ext_resource type="PackedScene" uid="uid://dkofn6jl3jb55" path="res://assets/city/suburban/building-type-c.glb" id="2_p8qt8"]
-[ext_resource type="PackedScene" uid="uid://4s84e81h7um6" path="res://assets/bikes/bmx.glb" id="3_1l6e7"]
-[ext_resource type="PackedScene" uid="uid://p4buds0a0sve" path="res://assets/bikes/mountain_bike.glb" id="4_c0n45"]
-[ext_resource type="PackedScene" uid="uid://b4q0mnqcfpn8b" path="res://assets/bikes/unicycle.glb" id="5_u88ox"]
+[ext_resource type="PackedScene" uid="uid://cq0cgu2le4da4" path="res://src/targets/target.tscn" id="6_c0n45"]
 
 [sub_resource type="Environment" id="Environment_p8qt8"]
 background_mode = 1
@@ -16,6 +14,7 @@ glow_enabled = true
 albedo_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 
 [node name="World" type="Node3D" unique_id=1917692229]
+script = ExtResource("1_tvkxc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1969175222]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -29,9 +28,6 @@ use_collision = true
 size = Vector3(50, 0.2, 50)
 material = SubResource("StandardMaterial3D_p8qt8")
 
-[node name="Building" parent="." unique_id=714074719 instance=ExtResource("2_p8qt8")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -1.6471667, 0.10559225, -11.112507)
-
 [node name="CharacterBody3D" parent="." unique_id=1212996814 instance=ExtResource("1_w561s")]
 transform = Transform3D(0.70710677, -1.0536712e-08, 0.70710677, 2.9802322e-08, 1.0000001, 0, -0.70710677, 3.1610135e-08, 0.70710677, 9.536743e-07, 2.034729, 0)
 
@@ -41,11 +37,33 @@ projection = 1
 current = true
 size = 15.0
 
-[node name="bmx" parent="." unique_id=1136754064 instance=ExtResource("3_1l6e7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.998129, 0.10559082, -8.097417)
+[node name="Restaurants" type="Node3D" parent="." unique_id=144947212]
 
-[node name="mountain_bike" parent="." unique_id=364604433 instance=ExtResource("4_c0n45")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.460756, 0.10559082, -11.324036)
+[node name="Target" parent="Restaurants" unique_id=1112194499 instance=ExtResource("6_c0n45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.260124, 0, 10.882533)
+visible = false
 
-[node name="unicycle" parent="." unique_id=144032613 instance=ExtResource("5_u88ox")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.212263, 0.10559082, -8.35637)
+[node name="Target2" parent="Restaurants" unique_id=2050326264 instance=ExtResource("6_c0n45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.147575, 0, -1.8385348)
+visible = false
+
+[node name="Target3" parent="Restaurants" unique_id=543516008 instance=ExtResource("6_c0n45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.597349, 0, -15.334622)
+visible = false
+
+[node name="Homes" type="Node3D" parent="." unique_id=1225066196]
+
+[node name="Target" parent="Homes" unique_id=2033228995 instance=ExtResource("6_c0n45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.358265, -1.9073486e-06, 16.779661)
+visible = false
+type = 1
+
+[node name="Target2" parent="Homes" unique_id=1348135823 instance=ExtResource("6_c0n45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.470814, -1.9073486e-06, 4.0585933)
+visible = false
+type = 1
+
+[node name="Target3" parent="Homes" unique_id=675705010 instance=ExtResource("6_c0n45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.02104, -1.9073486e-06, -9.437494)
+visible = false
+type = 1

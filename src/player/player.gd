@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var model: Node3D = $Model
+@onready var arrow: Node3D = $Arrrow
 @export var model_rotation_offset := deg_to_rad(-45.0)
 
 const SPEED = 10.0
@@ -12,6 +13,9 @@ func _ready():
 func _process(_delta):
 	if position.y < -20:
 		get_tree().reload_current_scene()
+	
+	if OrderManager.current_target != null:
+		arrow.look_at(OrderManager.current_target.global_position)
 
 func _physics_process(delta):
 	if not is_on_floor():
