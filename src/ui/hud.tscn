@@ -29,9 +29,9 @@ offset_bottom = 108.0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Area2D" type="Area2D" parent="Phone" unique_id=1416959346]
+[node name="MouseDetector" type="Area2D" parent="Phone" unique_id=1416959346]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Phone/Area2D" unique_id=1126370472]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phone/MouseDetector" unique_id=1126370472]
 position = Vector2(131.75, 131)
 shape = SubResource("RectangleShape2D_3agn1")
 
@@ -59,7 +59,7 @@ theme_override_constants/margin_bottom = 10
 [node name="MenuContainer" type="VBoxContainer" parent="Phone/OrdersPage" unique_id=337715491]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=1526215691]
+[node name="OrderButton" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=1526215691]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
@@ -68,7 +68,7 @@ text = "Order"
 icon = ExtResource("3_snmo6")
 flat = true
 
-[node name="Button2" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=1930460567]
+[node name="OrderButton2" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=1799753123]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
@@ -77,7 +77,7 @@ text = "Order"
 icon = ExtResource("3_snmo6")
 flat = true
 
-[node name="Button3" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=845313003]
+[node name="OrderButton3" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=162682717]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
@@ -119,8 +119,8 @@ size_flags_vertical = 3
 texture = ExtResource("3_snmo6")
 stretch_mode = 5
 
-[connection signal="mouse_entered" from="Phone/Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Phone/Area2D" to="." method="_on_area_2d_mouse_exited"]
-[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/Button2" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/Button3" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
+[connection signal="mouse_exited" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]
+[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton" to="." method="_on_order_button_pressed"]
+[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton2" to="." method="_on_order_button_pressed"]
+[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton3" to="." method="_on_order_button_pressed"]

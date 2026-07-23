@@ -8,13 +8,13 @@ func _ready() -> void:
 	orders_page.show()
 	active_order_page.hide()
 
-func _on_area_2d_mouse_entered():
+func _on_mouse_detector_mouse_entered() -> void:
 	phone.position.y = 392.0
 
-func _on_area_2d_mouse_exited():
+func _on_mouse_detector_mouse_exited() -> void:
 	phone.position.y = 500.0
 
-func _on_button_pressed() -> void:
+func _on_order_button_pressed() -> void:
 	# TODO: trigger orders here
 	orders_page.hide()
 	active_order_page.show()
