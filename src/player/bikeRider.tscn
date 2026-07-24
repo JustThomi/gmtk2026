@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bx6dfsa28k2kk"]
+
+[ext_resource type="PackedScene" uid="uid://cn6esq1x0qfxq" path="res://assets/characters/Model/characterMedium.fbx" id="1_lva4y"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=138704450]
+
+[node name="characterMedium" parent="." unique_id=1680807898 instance=ExtResource("1_lva4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35613084, 0.015654564, 0.5945797)
