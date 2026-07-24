@@ -38,8 +38,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
 	
-	if Input.is_action_just_pressed("orders"):
-		hud.order_map.visible = not hud.order_map.visible
+	#if Input.is_action_just_pressed("orders"):
+		#hud.order_map.visible = not hud.order_map.visible
 
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
