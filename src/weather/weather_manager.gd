@@ -8,8 +8,6 @@ var multipliers = { Weather.CLEAR: 1.0, Weather.RAIN: 1.25, Weather.STORM: 2.0, 
 
 var current_weather: Weather = Weather.CLEAR
 
-var weather_label: Label = null
-
 @export var min_change_time := 20
 @export var max_change_time := 60
 
@@ -30,14 +28,6 @@ func change_random_weather():
 	
 	current_weather = possible_weathers.pick_random()
 	weather_changed.emit(current_weather)
-	
-	update_weather_label()
 
 func get_payment_multiplier() -> float:
 	return multipliers[current_weather]
-
-func set_weather_label(label: Label) -> void:
-	weather_label = label
-
-func update_weather_label() -> void:
-	weather_label.text = "Current Weather: " + WeatherManager.Weather.keys()[current_weather]

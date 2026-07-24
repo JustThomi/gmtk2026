@@ -4,7 +4,7 @@ extends Window
 @onready var unicycle_model: Node3D = $MarginContainer/VBoxContainer/Bike2/SubViewportContainer/SubViewport/unicycle
 
 
-func _process(delta):
+func _process(_delta):
 	spin_bikes()
 	
 	if Input.is_action_just_pressed("orders"):
@@ -20,10 +20,10 @@ func _on_close_requested():
 
 func _on_mountain_bike_button_pressed():
 	# TODO: change player model here
-	$MarginContainer/VBoxContainer/Bike/Button.disabled
+	$MarginContainer/VBoxContainer/Bike/Button.disabled = true
 	hide()
 
 func _on_unicycle_button_pressed():
 	# TODO: change player model here
-	$MarginContainer/VBoxContainer/Bike2/Button.disabled
+	$MarginContainer/VBoxContainer/Bike2/Button.disabled = true
 	hide()
