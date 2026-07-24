@@ -170,3 +170,5 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6
 
 [node name="building-type-u2" parent="Buildings" unique_id=1109034498 instance=ExtResource("25_fwuda")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.227809, 0.011166692, -5.84197)
+
+[node name="WeatherManager" type="Node" parent="." unique_id=143000129]
