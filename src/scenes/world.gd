@@ -8,5 +8,6 @@ func _ready() -> void:
 	
 	OrderManager.player = $CharacterBody3D
 	OrderManager.set_timer_label(timer_label)
+	OrderManager.start_timer()
 	OrderManager.load_targets(r, h)
 	OrderManager.generate_order()
