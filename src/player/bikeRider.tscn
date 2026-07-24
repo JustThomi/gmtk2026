@@ -136,7 +136,7 @@ bones/56/scale = Vector3(1.0000001, 1.0000002, 0.9999999)
 
 [node name="FABRIK3D" type="FABRIK3D" parent="characterMedium/Root/Skeleton3D" index="1" unique_id=835181245]
 transform = Transform3D(1.0000005, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, 0.018045615, 0.032393184, 0.020321913)
-setting_count = 8
+setting_count = 9
 settings/0/target_node = NodePath("../../Marker3D2LeftArmMiddle")
 settings/1/target_node = NodePath("../../Marker3DLeftArmEnd")
 settings/2/target_node = NodePath("../../Marker3DRightArmMiddle")
@@ -145,6 +145,7 @@ settings/4/target_node = NodePath("../../Marker3D2LeftLegMiddle")
 settings/5/target_node = NodePath("../../Marker3DLeftLegEnd")
 settings/6/target_node = NodePath("../../Marker3DRightLegMiddle")
 settings/7/target_node = NodePath("../../Marker3DRightLegEnd")
+settings/8/target_node = NodePath("../../Marker3DHead")
 settings/0/root_bone_name = "LeftArm"
 settings/0/root_bone = 27
 settings/0/end_bone_name = "LeftForeArm"
@@ -193,6 +194,12 @@ settings/7/end_bone_name = "RightFoot"
 settings/7/end_bone = 55
 settings/7/extend_end_bone = false
 settings/7/joint_count = 2
+settings/8/root_bone_name = "Head"
+settings/8/root_bone = 24
+settings/8/end_bone_name = "Head_end"
+settings/8/end_bone = 25
+settings/8/extend_end_bone = false
+settings/8/joint_count = 2
 settings/0/joints/0/rotation_axis = 3
 settings/0/joints/0/limitation = null
 settings/0/joints/1/rotation_axis = 3
@@ -225,29 +232,36 @@ settings/7/joints/0/rotation_axis = 3
 settings/7/joints/0/limitation = null
 settings/7/joints/1/rotation_axis = 3
 settings/7/joints/1/limitation = null
+settings/8/joints/0/rotation_axis = 3
+settings/8/joints/0/limitation = null
+settings/8/joints/1/rotation_axis = 3
+settings/8/joints/1/limitation = null
 
-[node name="Marker3D2LeftArmMiddle" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="1" unique_id=648895829]
+[node name="Marker3DHead" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="1" unique_id=1299854182]
+transform = Transform3D(1.0000005, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, -0.00048392787, 0.00027174794, 0.031423587)
+
+[node name="Marker3D2LeftArmMiddle" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="2" unique_id=648895829]
 transform = Transform3D(1.0000005, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, 0.02061603, -0.012360584, 0.024204109)
 
-[node name="Marker3DLeftArmEnd" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="2" unique_id=1434363918]
+[node name="Marker3DLeftArmEnd" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="3" unique_id=1434363918]
 transform = Transform3D(1.0000007, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, 0.009040115, -0.026251, 0.024204103)
 
-[node name="Marker3DRightArmMiddle" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="3" unique_id=1957787391]
+[node name="Marker3DRightArmMiddle" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="4" unique_id=1957787391]
 transform = Transform3D(1.0000005, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, -0.008270726, -0.00063111604, 0.02420412)
 
-[node name="Marker3DRightArmEnd" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="4" unique_id=138868809]
+[node name="Marker3DRightArmEnd" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="5" unique_id=138868809]
 transform = Transform3D(1.0000007, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, -0.01621463, -0.00075068936, 0.024204114)
 
-[node name="Marker3D2LeftLegMiddle" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="5" unique_id=1293223053]
+[node name="Marker3D2LeftLegMiddle" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="6" unique_id=1293223053]
 transform = Transform3D(1.0000005, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, 0.0022929527, -0.00037481895, 0.008223211)
 
-[node name="Marker3DLeftLegEnd" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="6" unique_id=1850651821]
+[node name="Marker3DLeftLegEnd" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="7" unique_id=1850651821]
 transform = Transform3D(1.0000007, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, 0.0032286316, -0.001070631, 0.0006696981)
 
-[node name="Marker3DRightLegMiddle" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="7" unique_id=1182715082]
+[node name="Marker3DRightLegMiddle" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="8" unique_id=1182715082]
 transform = Transform3D(1.0000005, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, -0.003069312, -5.885252e-05, 0.0062279827)
 
-[node name="Marker3DRightLegEnd" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="8" unique_id=285274214]
+[node name="Marker3DRightLegEnd" type="Marker3D" parent="characterMedium/Root" parent_id_path=PackedInt32Array(1680807898, 802639974) index="9" unique_id=285274214]
 transform = Transform3D(1.0000005, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, -0.0034759806, -0.0012456699, 0.0015868593)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="characterMedium" unique_id=1507973845]
