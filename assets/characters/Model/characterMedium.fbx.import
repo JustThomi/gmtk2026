@@ -38,8 +38,27 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 materials/extract=0
 materials/extract_format=0
-materials/extract_path=""
-_subresources={}
+materials/extract_path="res://assets/characters/Skins/Source"
+_subresources={
+"materials": {
+"skin": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://mats/character_generic.tres",
+"use_external/path": "uid://bhf4kornxtxka"
+}
+},
+"meshes": {
+"characterMedium": {
+"generate/lightmap_uv": 1,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "",
+"save_to_file/path": ""
+}
+}
+}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
