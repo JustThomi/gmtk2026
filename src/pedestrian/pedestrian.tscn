@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://t2l4761w7fd7"]
+
+[ext_resource type="PackedScene" uid="uid://cf7t6uml1fe34" path="res://assets/chars/character-female-b.glb" id="1_1wlp3"]
+[ext_resource type="Script" uid="uid://dp8nbdud3r3nh" path="res://src/pedestrian/pedestrian.gd" id="1_kxcfg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nwhj6"]
+radius = 0.5649414
+height = 2.0322266
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nwhj6"]
+radius = 2.187264
+
+[node name="Pedestrian" type="CharacterBody3D" unique_id=1733494223]
+collision_layer = 2
+script = ExtResource("1_kxcfg")
+
+[node name="character-female-b2" parent="." unique_id=912086348 instance=ExtResource("1_1wlp3")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="Skeleton3D" parent="character-female-b2/character-female-b" parent_id_path=PackedInt32Array(912086348, 1609896919) index="0" unique_id=355138160]
+bones/4/rotation = Quaternion(0, 0, -0.3826835, 0.92387956)
+bones/5/rotation = Quaternion(0, 0, 0.3826835, 0.92387956)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=325850022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1061153, 0)
+shape = SubResource("CapsuleShape3D_nwhj6")
+
+[node name="BumpDetector" type="Area3D" parent="." unique_id=1975147973]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BumpDetector" unique_id=1368631201]
+shape = SubResource("SphereShape3D_nwhj6")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=943002965]
+debug_enabled = true
+
+[connection signal="body_entered" from="BumpDetector" to="." method="_on_bump_detector_body_entered"]
+
+[editable path="character-female-b2"]
