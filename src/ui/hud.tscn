@@ -209,7 +209,7 @@ offset_top = 51.0
 offset_right = 159.0
 offset_bottom = 96.0
 theme_override_font_sizes/font_size = 32
-text = "Money: 00"
+text = "Money: 100.0"
 
 [connection signal="close_requested" from="OrdersMap" to="." method="_on_orders_map_close_requested"]
 [connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton" to="." method="_on_order_button_pressed"]

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cwwbycbcn3086"]
+
+[ext_resource type="PackedScene" uid="uid://hw7bjbcpswup" path="res://assets/chars/character-female-f.glb" id="1_4gla1"]
+
+[node name="character-female-f2" unique_id=1117901552 instance=ExtResource("1_4gla1")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="Skeleton3D" parent="character-female-f" parent_id_path=PackedInt32Array(1350139443) index="0" unique_id=1559645524]
+bones/4/rotation = Quaternion(0, 0, -0.38268346, 0.9238795)
+bones/5/rotation = Quaternion(0, 0, 0.3826835, 0.92387956)

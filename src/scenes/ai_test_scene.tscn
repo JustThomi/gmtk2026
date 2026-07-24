@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6ecq0t5d3tek"]
 
 [ext_resource type="PackedScene" uid="uid://bagx30o5yj4v2" path="res://src/player/player.tscn" id="1_ufwqp"]
+[ext_resource type="Script" uid="uid://8ya06smpoiu7" path="res://src/scenes/ai_test_scene.gd" id="1_v2pyy"]
 [ext_resource type="PackedScene" uid="uid://bxc1pgl00ikau" path="res://assets/city/commercial/building-a.glb" id="2_ockdx"]
 [ext_resource type="PackedScene" uid="uid://b8hmvyil04vqm" path="res://assets/city/commercial/building-b.glb" id="3_taxeo"]
 [ext_resource type="PackedScene" uid="uid://6hovxy5i2uuj" path="res://assets/city/commercial/building-c.glb" id="4_qm7fo"]
@@ -10,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://c8psfl3wtuw2e" path="res://assets/city/commercial/building-g.glb" id="8_wvwal"]
 [ext_resource type="PackedScene" uid="uid://btcaygrt1aauk" path="res://assets/city/commercial/building-h.glb" id="9_woyxl"]
 [ext_resource type="PackedScene" uid="uid://t2l4761w7fd7" path="res://src/pedestrian/pedestrian.tscn" id="11_qm7fo"]
+[ext_resource type="PackedScene" uid="uid://b63r6xyargp1h" path="res://src/ui/hud.tscn" id="12_m8qkx"]
+[ext_resource type="PackedScene" uid="uid://cq0cgu2le4da4" path="res://src/targets/target.tscn" id="13_c6vro"]
 [ext_resource type="PackedScene" uid="uid://dexr3du5uw1me" path="res://src/policeOfficer/police_officer_ai.tscn" id="15_wvwal"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_nwhj6"]
@@ -50,6 +53,7 @@ ambient_light_color = Color(0.6955032, 0.6955031, 0.6955031, 1)
 glow_enabled = true
 
 [node name="AItestScene" type="Node3D" unique_id=111783133]
+script = ExtResource("1_v2pyy")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2003074444]
 navigation_mesh = SubResource("NavigationMesh_nwhj6")
@@ -501,14 +505,15 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2140619537]
 environment = SubResource("Environment_ufwqp")
 
-[node name="CharacterBody3D" parent="." unique_id=1212996814 groups=["Player"] instance=ExtResource("1_ufwqp")]
+[node name="CharacterBody3D" parent="." unique_id=1212996814 node_paths=PackedStringArray("hud") groups=["Player"] instance=ExtResource("1_ufwqp")]
 transform = Transform3D(0.70710677, -1.0536712e-08, 0.70710677, 2.9802322e-08, 1.0000001, 0, -0.70710677, 3.1610135e-08, 0.70710677, -16.34827, 2.034729, 20.832417)
+hud = NodePath("../HUD")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=1503324432]
 transform = Transform3D(1.0000001, 2.9802322e-08, 2.9802322e-08, -2.9802319e-08, 0.7071067, 0.70710677, 0, -0.7071068, 0.7071068, -0.0498209, 25.499487, 24.924107)
 projection = 1
 current = true
-size = 15.0
+size = 25.614
 near = 0.001
 
 [node name="PoliceOfficerAI2" parent="." unique_id=389302048 instance=ExtResource("15_wvwal")]
@@ -525,3 +530,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4827995, 0, 13.139948)
 
 [node name="Pedestrian4" parent="." unique_id=1819196352 instance=ExtResource("11_qm7fo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4827995, 0, 25.46094)
+
+[node name="HUD" parent="." unique_id=198605114 instance=ExtResource("12_m8qkx")]
+
+[node name="WeatherManager" type="Node" parent="." unique_id=881117032]
+
+[node name="Restaurants" type="Node3D" parent="." unique_id=1480710226]
+
+[node name="Target" parent="Restaurants" unique_id=1112194499 instance=ExtResource("13_c6vro")]
+transform = Transform3D(-0.032218527, 0, 0.99948084, 0, 1, 0, -0.99948084, 0, -0.032218527, -1.4957829, 0, 61.14555)
+visible = false
+
+[node name="Target2" parent="Restaurants" unique_id=253639378 instance=ExtResource("13_c6vro")]
+transform = Transform3D(-0.019069871, 0, 0.99981815, 0, 1, 0, -0.99981815, 0, -0.019069871, -48.93965, 0, -46.87689)
+visible = false
+
+[node name="Homes" type="Node3D" parent="." unique_id=1042966323]
+
+[node name="Target" parent="Homes" unique_id=1745717126 instance=ExtResource("13_c6vro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.745075, -1.9073486e-06, -67.36004)
+visible = false
+type = 1
+
+[node name="Target2" parent="Homes" unique_id=356365761 instance=ExtResource("13_c6vro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.95473, -1.9073486e-06, 19.200642)
+visible = false
+type = 1
+
+[node name="Target3" parent="Homes" unique_id=1477961306 instance=ExtResource("13_c6vro")]
+transform = Transform3D(0.026742207, 0, 0.9996424, 0, 1, 0, -0.9996424, 0, 0.026742207, -13.211685, -1.9073486e-06, -41.34651)
+visible = false
+type = 1

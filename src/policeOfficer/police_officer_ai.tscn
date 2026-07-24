@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dtrqv1cog8llb" path="res://assets/sprites/AlertSign.png" id="3_1di2c"]
 [ext_resource type="Script" uid="uid://f07dn1wb0oti" path="res://src/policeOfficer/StateMachine.gd" id="3_y1ppn"]
 [ext_resource type="Script" uid="uid://bux8lwark3f6r" path="res://src/policeOfficer/PatrolState.gd" id="4_jstqh"]
+[ext_resource type="Texture2D" uid="uid://bc25pge1sj46f" path="res://assets/sprites/PoliceFine.png" id="4_rixff"]
 [ext_resource type="Script" uid="uid://d3w8l1xbr3a70" path="res://src/policeOfficer/ChaseState.gd" id="5_4pbmo"]
+[ext_resource type="Script" uid="uid://c8tgoag415jry" path="res://src/policeOfficer/FineState.gd" id="7_4ugx6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nwhj6"]
 radius = 0.66308594
@@ -13,7 +15,8 @@ height = 2.3539734
 
 [node name="PoliceOfficerAI" type="CharacterBody3D" unique_id=389302048]
 script = ExtResource("1_sm8dp")
-run_speed = 6.5
+patrol_speed = 2.0
+run_speed = 7.0
 
 [node name="character-male-c2" parent="." unique_id=1962117121 instance=ExtResource("2_mnvcl")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.5070211, 0)
@@ -36,6 +39,13 @@ billboard = 2
 texture_filter = 0
 texture = ExtResource("3_1di2c")
 
+[node name="FineSprite" type="Sprite3D" parent="." unique_id=2053442852]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 3, 0)
+visible = false
+billboard = 2
+texture_filter = 0
+texture = ExtResource("4_rixff")
+
 [node name="StateMachine" type="Node" parent="." unique_id=465940555 node_paths=PackedStringArray("default_state")]
 script = ExtResource("3_y1ppn")
 default_state = NodePath("Patrol")
@@ -47,6 +57,10 @@ controller_path = NodePath("../..")
 [node name="Chase" type="Node" parent="StateMachine" unique_id=1783368052]
 script = ExtResource("5_4pbmo")
 stop_range = 2.0
+controller_path = NodePath("../..")
+
+[node name="Fine" type="Node" parent="StateMachine" unique_id=1951754624]
+script = ExtResource("7_4ugx6")
 controller_path = NodePath("../..")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="StateMachine" method="_on_navigation_agent_3d_target_reached"]
