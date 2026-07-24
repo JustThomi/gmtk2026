@@ -59,11 +59,9 @@ func order_picked_up():
 func order_finished():
 	timer_running = false
 	destination.disable()
-	
 	time_remaining += 10
 
 	timer_running = true
-	generate_order()
 	# TODO: Reward player here
 	
 	order_completed.emit()

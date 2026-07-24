@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var arrow: Node3D = $Arrrow
 @onready var visual_root: Node3D = $VisualRoot
 @onready var anim = $VisualRoot/RiderMount/Rider/AnimationPlayer
+@onready var backpack: Node3D = $VisualRoot/Backpack
 
 @export var wheelie_angle: float = 30.0
 @export var wheelie_speed: float = 8.0
@@ -17,6 +18,9 @@ var default_pivot_y: float
 
 func _ready():
 	default_pivot_y = visual_root.position.y
+	OrderManager.order_picked.connect(_on_order_picked_up)
+	OrderManager.order_completed.connect(_on_order_completed)
+	set_backpack_active(false)
 
 func _process(_delta):
 	if position.y < -20:
@@ -65,3 +69,12 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()	
+
+func set_backpack_active(active: bool) -> void:
+	backpack.visible = active
+
+func _on_order_picked_up():
+	set_backpack_active(true)
+
+func _on_order_completed():
+	set_backpack_active(false)
