@@ -1,7 +1,16 @@
 [gd_scene format=3 uid="uid://t2l4761w7fd7"]
 
-[ext_resource type="PackedScene" uid="uid://cf7t6uml1fe34" path="res://assets/chars/character-female-b.glb" id="1_1wlp3"]
 [ext_resource type="Script" uid="uid://dp8nbdud3r3nh" path="res://src/pedestrian/pedestrian.gd" id="1_kxcfg"]
+[ext_resource type="PackedScene" uid="uid://cl7bkpsg7klok" path="res://src/pedestrian/variations/female_model_1.tscn" id="2_4gqv7"]
+[ext_resource type="PackedScene" uid="uid://0e177mbhxm4l" path="res://src/pedestrian/variations/female_model_2.tscn" id="3_wgve6"]
+[ext_resource type="PackedScene" uid="uid://boqisbsbafw0s" path="res://src/pedestrian/variations/female_model_3.tscn" id="4_sypx1"]
+[ext_resource type="PackedScene" uid="uid://kx5p18hbuydc" path="res://src/pedestrian/variations/female_model_4.tscn" id="5_r418h"]
+[ext_resource type="PackedScene" uid="uid://cwwbycbcn3086" path="res://src/pedestrian/variations/female_model_5.tscn" id="6_tfk1b"]
+[ext_resource type="PackedScene" uid="uid://xgrh0nv5sx52" path="res://src/pedestrian/variations/male_model_1.tscn" id="7_8mmwu"]
+[ext_resource type="PackedScene" uid="uid://bxb6ys4h8jgqk" path="res://src/pedestrian/variations/male_model_2.tscn" id="8_dfvua"]
+[ext_resource type="PackedScene" uid="uid://cgp0h3f01t6sb" path="res://src/pedestrian/variations/male_model_3.tscn" id="9_7t5va"]
+[ext_resource type="PackedScene" uid="uid://kl4fhjtbihg8" path="res://src/pedestrian/variations/male_model_4.tscn" id="10_2jvpv"]
+[ext_resource type="PackedScene" uid="uid://c3y12k6xi4jan" path="res://src/pedestrian/variations/male_model_5.tscn" id="11_da4q8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nwhj6"]
 radius = 0.5649414
@@ -13,13 +22,7 @@ radius = 2.187264
 [node name="Pedestrian" type="CharacterBody3D" unique_id=1733494223]
 collision_layer = 2
 script = ExtResource("1_kxcfg")
-
-[node name="character-female-b2" parent="." unique_id=912086348 instance=ExtResource("1_1wlp3")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-
-[node name="Skeleton3D" parent="character-female-b2/character-female-b" parent_id_path=PackedInt32Array(912086348, 1609896919) index="0" unique_id=355138160]
-bones/4/rotation = Quaternion(0, 0, -0.3826835, 0.92387956)
-bones/5/rotation = Quaternion(0, 0, 0.3826835, 0.92387956)
+possible_models = Array[PackedScene]([ExtResource("2_4gqv7"), ExtResource("3_wgve6"), ExtResource("4_sypx1"), ExtResource("5_r418h"), ExtResource("6_tfk1b"), ExtResource("7_8mmwu"), ExtResource("8_dfvua"), ExtResource("9_7t5va"), ExtResource("10_2jvpv"), ExtResource("11_da4q8")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=325850022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1061153, 0)
@@ -34,5 +37,3 @@ shape = SubResource("SphereShape3D_nwhj6")
 debug_enabled = true
 
 [connection signal="body_entered" from="BumpDetector" to="." method="_on_bump_detector_body_entered"]
-
-[editable path="character-female-b2"]

@@ -101,6 +101,14 @@ func _process(delta: float) -> void:
 
 		update_timer_label()
 
+func apply_fine(amount: float) -> void:
+	money -= amount
+	
+	if money < 0:
+		money = 0.0
+	
+	update_money_label()
+
 func update_timer_label() -> void:
 	var total_seconds := ceili(time_remaining)
 	var minutes := total_seconds / 60
