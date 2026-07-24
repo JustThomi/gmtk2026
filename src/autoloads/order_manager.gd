@@ -25,8 +25,10 @@ func generate_order():
 	destination = all_destinations[randi_range(0, len(all_destinations) - 1)]
 	
 	restaurant.enable()
-	
 	current_target = restaurant
+	
+	order_started.emit()
+	player.arrow.show()
 
 func order_picked_up():
 	current_target = destination
@@ -42,6 +44,8 @@ func order_finished():
 	# TODO: Reward player here
 	
 	order_completed.emit()
+	await get_tree().create_timer(1.0).timeout
+	generate_order()
 
 func _process(_delta: float) -> void:
 	if current_target != null:
