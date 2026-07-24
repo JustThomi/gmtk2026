@@ -11,12 +11,15 @@ extends CharacterBody3D
 @export var wheelie_lift_height = 0.75
 @export var model_rotation_offset := deg_to_rad(-45.0)
 @export var hud: Control
+@export var spin_speed: float = 10.0
 
 const SPEED = 20.0
-const JUMP_VELOCITY = 8
+const JUMP_VELOCITY = 15
 var default_pivot_y: float
 var wheelie_direction := Vector3.ZERO
 var is_wheelie := false
+var last_wall_collision : int = 0
+var cooldown_ms : int = 2000   
 
 func _ready():
 	default_pivot_y = visual_root.position.y
@@ -32,9 +35,21 @@ func _process(_delta):
 		arrow.look_at(OrderManager.current_target.global_position)
 
 func _physics_process(delta):
+	var input_dir := Input.get_vector("left", "right", "forward", "back")
+	var spin_input = Input.get_axis("spinLeft", "spinRight")
+	var is_spinning = not is_on_floor() and spin_input != 0
+	
+	if is_spinning:
+		input_dir = Vector2.ZERO
+		
+	var input_direction := transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 2
-	
+		
+		if is_spinning:
+			visual_root.rotate_y(-spin_input * spin_speed * delta)
+		
 	if Input.is_action_just_pressed("orders"):
 		hud.order_map.visible = not hud.order_map.visible
 
@@ -49,9 +64,6 @@ func _physics_process(delta):
 
 	visual_root.rotation.x = lerp(visual_root.rotation.x, target_pitch, wheelie_speed * delta)
 	visual_root.position.y = lerp(visual_root.position.y, target_y, wheelie_speed * delta)
-	
-	var input_dir := Input.get_vector("left", "right", "forward", "back")
-	var input_direction := transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
 
 	if input_direction.length_squared() > 0.0:
 		input_direction = input_direction.normalized()
@@ -76,23 +88,39 @@ func _physics_process(delta):
 		var current_speed := SPEED
 
 		if is_wheelie:
+			anim.play("wheelie")
 			current_speed *= 1.5
-
+		else:
+			anim.play("ride_pose")
+		
 		velocity.x = movement_direction.x * current_speed
 		velocity.z = movement_direction.z * current_speed
 
-		anim.play("ride_pose")
+		
 
 		var target_rotation := atan2(-movement_direction.x, -movement_direction.z)
 		target_rotation += model_rotation_offset
 
-		visual_root.rotation.y = lerp_angle(visual_root.rotation.y, target_rotation, delta * 10.0)
+		if not is_spinning:
+			visual_root.rotation.y = lerp_angle(visual_root.rotation.y, target_rotation, delta * 10.0)
 	else:
 		anim.stop()
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		
+		if is_on_floor():
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	move_and_slide()	
+	move_and_slide()
+	
+	if is_on_wall() and OrderManager.is_order_picked:		
+		var current_time = Time.get_ticks_msec()
+		
+		if current_time - last_wall_collision < cooldown_ms:
+			return
+		
+		last_wall_collision = current_time
+		print("The bike hit a wall" + str(current_time))
+		OrderManager.damage_package()	
 
 func set_backpack_active(active: bool) -> void:
 	backpack.visible = active
