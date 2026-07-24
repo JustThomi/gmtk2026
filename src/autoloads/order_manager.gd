@@ -1,7 +1,7 @@
 extends Node
 
 @export var order_time := 30
-@export var payment := 5.5
+@export var base_payment := 5.5
 
 var time_remaining := 0.0
 var timer_running := false
@@ -65,6 +65,7 @@ func order_finished():
 	destination.disable()
 
 	timer_running = true
+	var payment := base_payment * WeatherManager.get_payment_multiplier()
 	money += payment
 	update_money_label()
 	

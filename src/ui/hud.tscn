@@ -166,6 +166,13 @@ offset_right = 103.0
 offset_bottom = 60.0
 text = "Money: 00"
 
+[node name="WeatherLabel" type="Label" parent="." unique_id=924402592]
+layout_mode = 0
+offset_top = 92.0
+offset_right = 103.0
+offset_bottom = 115.0
+text = "Current Weather: CLEAR"
+
 [connection signal="close_requested" from="OrdersMap" to="." method="_on_orders_map_close_requested"]
 [connection signal="mouse_entered" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
 [connection signal="mouse_exited" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]
