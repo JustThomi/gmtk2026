@@ -15,6 +15,8 @@ extends CharacterBody3D
 const SPEED = 20.0
 const JUMP_VELOCITY = 8
 var default_pivot_y: float
+var wheelie_direction := Vector3.ZERO
+var is_wheelie := false
 
 func _ready():
 	default_pivot_y = visual_root.position.y
@@ -48,25 +50,49 @@ func _physics_process(delta):
 	visual_root.rotation.x = lerp(visual_root.rotation.x, target_pitch, wheelie_speed * delta)
 	visual_root.position.y = lerp(visual_root.position.y, target_y, wheelie_speed * delta)
 	
-	var input_dir = Input.get_vector("left", "right", "forward", "back")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y))
-	if direction:
-		if Input.is_action_pressed("wheelie"):
-			velocity.x = direction.x * SPEED * 1.5
-			velocity.z = direction.z * SPEED * 1.5
-		else:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED	
-		
+	var input_dir := Input.get_vector("left", "right", "forward", "back")
+	var input_direction := transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
+
+	if input_direction.length_squared() > 0.0:
+		input_direction = input_direction.normalized()
+
+	if Input.is_action_just_pressed("wheelie"):
+		is_wheelie = true
+
+		var current_movement := Vector3(velocity.x, 0.0, velocity.z)
+
+		if current_movement.length_squared() > 0.0:
+			wheelie_direction = current_movement.normalized()
+		elif input_direction.length_squared() > 0.0:
+			wheelie_direction = input_direction
+
+	if Input.is_action_just_released("wheelie"):
+		is_wheelie = false
+
+	var movement_direction := input_direction
+
+	if is_wheelie:
+		movement_direction = wheelie_direction
+
+	if movement_direction.length_squared() > 0.0:
+		var current_speed := SPEED
+
+		if is_wheelie:
+			current_speed *= 1.5
+
+		velocity.x = movement_direction.x * current_speed
+		velocity.z = movement_direction.z * current_speed
+
 		anim.play("ride_pose")
-		var target_rotation := atan2(-direction.x, -direction.z)
+
+		var target_rotation := atan2(-movement_direction.x, -movement_direction.z)
 		target_rotation += model_rotation_offset
-		# model.rotation.y = lerp_angle(model.rotation.y, target_rotation, delta * 10)
-		visual_root.rotation.y = lerp_angle(visual_root.rotation.y, target_rotation, delta * 10)
+
+		visual_root.rotation.y = lerp_angle(visual_root.rotation.y, target_rotation, delta * 10.0)
 	else:
 		anim.stop()
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0.0, SPEED * delta)
+		velocity.z = move_toward(velocity.z, 0.0, SPEED * delta)
 
 	move_and_slide()	
 

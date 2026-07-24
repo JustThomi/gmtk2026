@@ -37,8 +37,6 @@ func generate_order():
 	order_started.emit()
 	player.arrow.show()
 	
-	start_timer()
-	
 func set_timer_label(label: Label) -> void:
 	timer_label = label
 	update_timer_label()
