@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://4s84e81h7um6" path="res://assets/bikes/bmx.glb" id="3_1l6e7"]
 [ext_resource type="PackedScene" uid="uid://p4buds0a0sve" path="res://assets/bikes/mountain_bike.glb" id="4_c0n45"]
 [ext_resource type="PackedScene" uid="uid://b4q0mnqcfpn8b" path="res://assets/bikes/unicycle.glb" id="5_u88ox"]
+[ext_resource type="PackedScene" uid="uid://ceg6c3jsrr8ft" path="res://assets/policeCar/police.glb" id="6_c0n45"]
 
 [sub_resource type="Environment" id="Environment_p8qt8"]
 background_mode = 1
@@ -49,3 +50,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.460756, 0.10559082, -11.32
 
 [node name="unicycle" parent="." unique_id=144032613 instance=ExtResource("5_u88ox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.212263, 0.10559082, -8.35637)
+
+[node name="policeCar" parent="." unique_id=904102850 instance=ExtResource("6_c0n45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.382843, 0.10000038, -2.0567064)
