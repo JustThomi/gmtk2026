@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bqulitan2eqev" path="res://src/game_logic/timer_label.gd" id="4_i4jpw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3agn1"]
-size = Vector2(232.5, 248)
+size = Vector2(232.5, 497)
 
 [node name="HUD" type="Control" unique_id=198605114]
 layout_mode = 3
@@ -17,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_4rn03")
+phone_offset = 350.0
 
 [node name="OrdersMap" type="Window" parent="." unique_id=100749499]
 oversampling_override = 1.0
@@ -35,7 +36,7 @@ anchor_bottom = 1.0
 offset_left = 50.0
 offset_top = -148.0
 offset_right = 306.0
-offset_bottom = 108.0
+offset_bottom = 364.0
 grow_vertical = 0
 mouse_filter = 2
 
@@ -44,7 +45,7 @@ collision_layer = 524288
 collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Phone/MouseDetector" unique_id=1126370472]
-position = Vector2(131.75, 131)
+position = Vector2(131.75, 255.5)
 shape = SubResource("RectangleShape2D_3agn1")
 
 [node name="PhoneWallpaper" type="MarginContainer" parent="Phone" unique_id=228828725]
@@ -52,6 +53,7 @@ layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 24
 
 [node name="ColorRect" type="ColorRect" parent="Phone/PhoneWallpaper" unique_id=1533142537]
 layout_mode = 2
@@ -62,6 +64,7 @@ layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 24
 
 [node name="ColorRect" type="ColorRect" parent="Phone/OrderComplete" unique_id=1054339464]
 layout_mode = 2
@@ -69,6 +72,9 @@ color = Color(0.61960787, 1, 0.40784314, 1)
 
 [node name="Label" type="Label" parent="Phone/OrderComplete" unique_id=741649434]
 layout_mode = 2
+size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 50)
 theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 theme_override_font_sizes/font_size = 32
 text = "Order
@@ -115,12 +121,11 @@ icon = ExtResource("3_snmo6")
 flat = true
 
 [node name="ActiveOrderPage" type="MarginContainer" parent="Phone" unique_id=94629585]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 42
 
 [node name="MenuContainer" type="VBoxContainer" parent="Phone/ActiveOrderPage" unique_id=1131907956]
 layout_mode = 2
@@ -146,6 +151,22 @@ layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_snmo6")
 stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=344709118]
+layout_mode = 2
+alignment = 1
+
+[node name="Completed" type="Label" parent="Phone/ActiveOrderPage/MenuContainer/HBoxContainer" unique_id=1913644467]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_font_sizes/font_size = 17
+text = "Completed: "
+
+[node name="CompletedCount" type="Label" parent="Phone/ActiveOrderPage/MenuContainer/HBoxContainer" unique_id=1005580039]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_font_sizes/font_size = 17
+text = "0"
 
 [node name="PhoneBorder" type="TextureRect" parent="Phone" unique_id=1475240221]
 texture_filter = 1
