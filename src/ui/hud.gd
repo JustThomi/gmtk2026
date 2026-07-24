@@ -11,6 +11,9 @@ extends Control
 @onready var order_completed_page: MarginContainer = $Phone/OrderComplete
 
 @onready var distance_value: Label = $Phone/ActiveOrderPage/MenuContainer/DistanceValue
+@onready var order_count: Label = $Phone/ActiveOrderPage/MenuContainer/HBoxContainer/CompletedCount
+
+@export var phone_offset:float = 200.0
 
 var restaurant_image: Texture = preload("res://assets/ui/mickeychickey.png")
 var house_image: Texture = preload("res://assets/ui/house.png")
@@ -20,7 +23,6 @@ func _ready() -> void:
 	OrderManager.order_completed.connect(_on_order_completed)
 	OrderManager.order_started.connect(_on_order_started)
 	OrderManager.order_picked.connect(_on_order_picked)
-
 	
 	orders_page.hide()
 	active_order_page.show()
@@ -42,12 +44,13 @@ func _on_order_picked():
 func _on_order_completed():
 	order_completed_page.show()
 	active_order_page.hide()
+	order_count.text = str(OrderManager.order_count)
 
 func _on_mouse_detector_mouse_entered() -> void:
-	phone.position.y -= 108.0
+	phone.position.y -= phone_offset
 
 func _on_mouse_detector_mouse_exited() -> void:
-	phone.position.y += 108.0
+	phone.position.y += phone_offset
 
 func _on_order_button_pressed() -> void:
 	# TODO: trigger orders here

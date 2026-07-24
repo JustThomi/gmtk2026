@@ -6,6 +6,7 @@ extends Node
 var time_remaining := 0.0
 var timer_running := false
 var distance: float
+var order_count: int = 0
 var money := 0.0
 
 var restaurant: Node3D
@@ -61,6 +62,8 @@ func order_picked_up():
 	order_picked.emit()
 
 func order_finished():
+	order_count += 1
+	
 	timer_running = false
 	destination.disable()
 
