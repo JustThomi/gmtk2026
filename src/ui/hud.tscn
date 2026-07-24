@@ -177,21 +177,24 @@ texture = ExtResource("1_eqvli")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
 text = "Time left: 99"
 script = ExtResource("4_i4jpw")
 
 [node name="MoneyLabel" type="Label" parent="." unique_id=1803152225]
 layout_mode = 0
-offset_top = 37.0
-offset_right = 103.0
-offset_bottom = 60.0
+offset_top = 51.0
+offset_right = 159.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 32
 text = "Money: 00"
 
 [node name="WeatherLabel" type="Label" parent="." unique_id=924402592]
 layout_mode = 0
-offset_top = 92.0
-offset_right = 103.0
-offset_bottom = 115.0
+offset_top = 132.0
+offset_right = 375.0
+offset_bottom = 177.0
+theme_override_font_sizes/font_size = 32
 text = "Current Weather: CLEAR"
 
 [connection signal="close_requested" from="OrdersMap" to="." method="_on_orders_map_close_requested"]
