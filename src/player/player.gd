@@ -58,9 +58,7 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("wheelie"):
 		is_wheelie = true
-
 		var current_movement := Vector3(velocity.x, 0.0, velocity.z)
-
 		if current_movement.length_squared() > 0.0:
 			wheelie_direction = current_movement.normalized()
 		elif input_direction.length_squared() > 0.0:
@@ -91,8 +89,8 @@ func _physics_process(delta):
 		visual_root.rotation.y = lerp_angle(visual_root.rotation.y, target_rotation, delta * 10.0)
 	else:
 		anim.stop()
-		velocity.x = move_toward(velocity.x, 0.0, SPEED * delta)
-		velocity.z = move_toward(velocity.z, 0.0, SPEED * delta)
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()	
 
