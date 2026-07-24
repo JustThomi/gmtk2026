@@ -108,7 +108,7 @@ func update_timer_label() -> void:
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
 
 func update_money_label() -> void:
-	money_label.text = "%.2f" % [money]
+	money_label.text = "Money: " + "%.2f" % [money]
 	
 func damage_package() -> void:
 	package_health =- 10
