@@ -7,14 +7,20 @@ extends Control
 @onready var orders_page: MarginContainer = $Phone/OrdersPage
 
 @onready var active_order_page: MarginContainer = $Phone/ActiveOrderPage
+@onready var active_order_image: TextureRect = $Phone/ActiveOrderPage/MenuContainer/TextureRect
 @onready var order_completed_page: MarginContainer = $Phone/OrderComplete
 
 @onready var distance_value: Label = $Phone/ActiveOrderPage/MenuContainer/DistanceValue
+
+var restaurant_image: Texture = preload("res://assets/ui/mickeychickey.png")
+var house_image: Texture = preload("res://assets/ui/house.png")
 
 
 func _ready() -> void:
 	OrderManager.order_completed.connect(_on_order_completed)
 	OrderManager.order_started.connect(_on_order_started)
+	OrderManager.order_picked.connect(_on_order_picked)
+
 	
 	orders_page.hide()
 	active_order_page.show()
@@ -28,6 +34,10 @@ func _process(_delta: float) -> void:
 func _on_order_started():
 	active_order_page.show()
 	order_completed_page.hide()
+	active_order_image.texture = restaurant_image
+
+func _on_order_picked():
+	active_order_image.texture = house_image
 
 func _on_order_completed():
 	order_completed_page.show()
