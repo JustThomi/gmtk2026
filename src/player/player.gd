@@ -34,6 +34,9 @@ func _process(_delta):
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 2
+		
+	if Input.is_action_just_pressed("escape"):
+		get_tree().quit()
 	
 	if Input.is_action_just_pressed("orders"):
 		hud.order_map.visible = not hud.order_map.visible
