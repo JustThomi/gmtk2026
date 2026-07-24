@@ -17,6 +17,8 @@ const JUMP_VELOCITY = 8
 var default_pivot_y: float
 var wheelie_direction := Vector3.ZERO
 var is_wheelie := false
+var last_wall_collision : int = 0
+var cooldown_ms : int = 2000   
 
 func _ready():
 	default_pivot_y = visual_root.position.y
@@ -92,7 +94,17 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	move_and_slide()	
+	move_and_slide()
+	
+	if is_on_wall() and OrderManager.is_order_picked:		
+		var current_time = Time.get_ticks_msec()
+		
+		if current_time - last_wall_collision < cooldown_ms:
+			return
+		
+		last_wall_collision = current_time
+		print("The bike hit a wall" + str(current_time))
+		OrderManager.damage_package()
 
 func set_backpack_active(active: bool) -> void:
 	backpack.visible = active

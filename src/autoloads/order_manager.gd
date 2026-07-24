@@ -7,7 +7,9 @@ var time_remaining := 0.0
 var timer_running := false
 var distance: float
 var order_count: int = 0
-var money := 0.0
+var money := 100.0
+var package_health : float = 100.0
+var is_order_picked : bool = false
 
 var restaurant: Node3D
 var destination: Node3D
@@ -23,6 +25,8 @@ signal order_started
 var timer_label: Label = null
 var money_label: Label = null
 
+var package_dict = {}
+
 @onready var player: CharacterBody3D
 
 func load_targets(restaurants, destinations):
@@ -36,7 +40,10 @@ func generate_order():
 	
 	restaurant.enable(player)
 	
+	# package_dict = {"current_target" : restaurant, "package_health" : 100}
+	
 	current_target = restaurant
+	package_health = 100.0
 	start_timer()
 	order_started.emit()
 	player.arrow.show()
@@ -59,6 +66,7 @@ func order_picked_up():
 	restaurant.disable()
 	destination.enable(player)
 	
+	is_order_picked = true;
 	order_picked.emit()
 
 func order_finished():
@@ -67,6 +75,7 @@ func order_finished():
 	timer_running = false
 	destination.disable()
 
+	is_order_picked = false
 	timer_running = true
 	money += payment
 	update_money_label()
@@ -100,3 +109,7 @@ func update_timer_label() -> void:
 
 func update_money_label() -> void:
 	money_label.text = "%.2f" % [money]
+	
+func damage_package() -> void:
+	package_health =- 10
+	
