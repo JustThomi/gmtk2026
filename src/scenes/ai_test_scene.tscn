@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dp6b62x3qkxu" path="res://assets/city/commercial/building-f.glb" id="7_v2pyy"]
 [ext_resource type="PackedScene" uid="uid://c8psfl3wtuw2e" path="res://assets/city/commercial/building-g.glb" id="8_wvwal"]
 [ext_resource type="PackedScene" uid="uid://btcaygrt1aauk" path="res://assets/city/commercial/building-h.glb" id="9_woyxl"]
+[ext_resource type="PackedScene" uid="uid://t2l4761w7fd7" path="res://src/pedestrian/pedestrian.tscn" id="11_qm7fo"]
 [ext_resource type="PackedScene" uid="uid://dexr3du5uw1me" path="res://src/policeOfficer/police_officer_ai.tscn" id="15_wvwal"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_nwhj6"]
@@ -501,7 +502,7 @@ shadow_enabled = true
 environment = SubResource("Environment_ufwqp")
 
 [node name="CharacterBody3D" parent="." unique_id=1212996814 groups=["Player"] instance=ExtResource("1_ufwqp")]
-transform = Transform3D(0.70710677, -1.0536712e-08, 0.70710677, 2.9802322e-08, 1.0000001, 0, -0.70710677, 3.1610135e-08, 0.70710677, 9.536743e-07, 2.034729, 14.990524)
+transform = Transform3D(0.70710677, -1.0536712e-08, 0.70710677, 2.9802322e-08, 1.0000001, 0, -0.70710677, 3.1610135e-08, 0.70710677, -16.34827, 2.034729, 20.832417)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=1503324432]
 transform = Transform3D(1.0000001, 2.9802322e-08, 2.9802322e-08, -2.9802319e-08, 0.7071067, 0.70710677, 0, -0.7071068, 0.7071068, -0.0498209, 25.499487, 24.924107)
@@ -511,4 +512,16 @@ size = 15.0
 near = 0.001
 
 [node name="PoliceOfficerAI2" parent="." unique_id=389302048 instance=ExtResource("15_wvwal")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.90981, 0.6070208, 14.383816)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1242676, 0.6070208, 17.377998)
+
+[node name="Pedestrian" parent="." unique_id=1733494223 instance=ExtResource("11_qm7fo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.673874, 0, 22.653997)
+
+[node name="Pedestrian2" parent="." unique_id=307147194 instance=ExtResource("11_qm7fo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.673874, 0, 13.139948)
+
+[node name="Pedestrian3" parent="." unique_id=1051321771 instance=ExtResource("11_qm7fo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4827995, 0, 13.139948)
+
+[node name="Pedestrian4" parent="." unique_id=1819196352 instance=ExtResource("11_qm7fo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4827995, 0, 25.46094)

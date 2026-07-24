@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bc5toka5uqqdp" path="res://src/policeOfficer/AIController.gd" id="1_sm8dp"]
 [ext_resource type="PackedScene" uid="uid://gppuuodf43n" path="res://assets/chars/character-male-c.glb" id="2_mnvcl"]
+[ext_resource type="Texture2D" uid="uid://dtrqv1cog8llb" path="res://assets/sprites/AlertSign.png" id="3_1di2c"]
 [ext_resource type="Script" uid="uid://f07dn1wb0oti" path="res://src/policeOfficer/StateMachine.gd" id="3_y1ppn"]
 [ext_resource type="Script" uid="uid://bux8lwark3f6r" path="res://src/policeOfficer/PatrolState.gd" id="4_jstqh"]
 [ext_resource type="Script" uid="uid://d3w8l1xbr3a70" path="res://src/policeOfficer/ChaseState.gd" id="5_4pbmo"]
@@ -9,9 +10,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nwhj6"]
 radius = 0.66308594
 height = 2.3539734
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jp4c4"]
-load_path = "res://.godot/imported/AlertSign.png-598eda0357ff955ebfb981a59b4707a6.s3tc.ctex"
 
 [node name="PoliceOfficerAI" type="CharacterBody3D" unique_id=389302048]
 script = ExtResource("1_sm8dp")
@@ -36,7 +34,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 3, 0)
 visible = false
 billboard = 2
 texture_filter = 0
-texture = SubResource("CompressedTexture2D_jp4c4")
+texture = ExtResource("3_1di2c")
 
 [node name="StateMachine" type="Node" parent="." unique_id=465940555 node_paths=PackedStringArray("default_state")]
 script = ExtResource("3_y1ppn")
