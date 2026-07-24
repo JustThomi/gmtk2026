@@ -1,10 +1,12 @@
 extends Node
 
 @export var order_time := 30
+@export var payment := 5.5
 
 var time_remaining := 0.0
 var timer_running := false
 var distance: float
+var money := 0.0
 
 var restaurant: Node3D
 var destination: Node3D
@@ -18,6 +20,7 @@ signal order_picked
 signal order_started
 
 var timer_label: Label = null
+var money_label: Label = null
 
 @onready var player: CharacterBody3D
 
@@ -33,13 +36,16 @@ func generate_order():
 	restaurant.enable(player)
 	
 	current_target = restaurant
-
+	start_timer()
 	order_started.emit()
 	player.arrow.show()
 	
 func set_timer_label(label: Label) -> void:
 	timer_label = label
 	update_timer_label()
+	
+func set_money_label(label: Label) -> void:
+	money_label = label
 
 func start_timer() -> void:
 	time_remaining = order_time
@@ -57,10 +63,10 @@ func order_picked_up():
 func order_finished():
 	timer_running = false
 	destination.disable()
-	time_remaining += 10
 
 	timer_running = true
-	# TODO: Reward player here
+	money += payment
+	update_money_label()
 	
 	order_completed.emit()
 	await get_tree().create_timer(1.0).timeout
@@ -88,3 +94,6 @@ func update_timer_label() -> void:
 	var seconds := total_seconds % 60
 
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
+
+func update_money_label() -> void:
+	money_label.text = "%.2f" % [money]

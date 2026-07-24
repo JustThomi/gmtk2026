@@ -159,6 +159,13 @@ offset_bottom = 23.0
 text = "Time left: 99"
 script = ExtResource("4_i4jpw")
 
+[node name="MoneyLabel" type="Label" parent="." unique_id=1803152225]
+layout_mode = 0
+offset_top = 37.0
+offset_right = 103.0
+offset_bottom = 60.0
+text = "Money: 00"
+
 [connection signal="close_requested" from="OrdersMap" to="." method="_on_orders_map_close_requested"]
 [connection signal="mouse_entered" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
 [connection signal="mouse_exited" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]
