@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://b63r6xyargp1h"]
+
+[ext_resource type="Script" uid="uid://b125iay4qyyis" path="res://src/ui/hud.gd" id="1_4rn03"]
+[ext_resource type="Texture2D" uid="uid://c1shj0s3h4vl0" path="res://assets/ui/phone_border.png" id="1_eqvli"]
+[ext_resource type="Texture2D" uid="uid://ds4wxvyjd83g2" path="res://assets/ui/mickeychickey.png" id="3_snmo6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3agn1"]
+size = Vector2(232.5, 248)
+
+[node name="HUD" type="Control" unique_id=198605114]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_4rn03")
+
+[node name="OrdersMap" type="Window" parent="." unique_id=100749499]
+oversampling_override = 1.0
+title = "Available Orders"
+initial_position = 1
+size = Vector2i(600, 400)
+
+[node name="Camera3D" type="Camera3D" parent="OrdersMap" unique_id=296804481]
+transform = Transform3D(0.70710677, -0.35355353, 0.61237246, 7.1054274e-15, 0.86602527, 0.50000006, -0.70710665, -0.35355344, 0.6123724, 20, 30, 20)
+
+[node name="Phone" type="MarginContainer" parent="." unique_id=1872206591]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -148.0
+offset_right = 306.0
+offset_bottom = 108.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="MouseDetector" type="Area2D" parent="Phone" unique_id=1416959346]
+collision_layer = 524288
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phone/MouseDetector" unique_id=1126370472]
+position = Vector2(131.75, 131)
+shape = SubResource("RectangleShape2D_3agn1")
+
+[node name="PhoneWallpaper" type="MarginContainer" parent="Phone" unique_id=228828725]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+
+[node name="ColorRect" type="ColorRect" parent="Phone/PhoneWallpaper" unique_id=1533142537]
+layout_mode = 2
+
+[node name="PhoneBorder" type="TextureRect" parent="Phone" unique_id=1475240221]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_eqvli")
+
+[node name="OrdersPage" type="MarginContainer" parent="Phone" unique_id=1915270468]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="MenuContainer" type="VBoxContainer" parent="Phone/OrdersPage" unique_id=337715491]
+layout_mode = 2
+
+[node name="OrderButton" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=1526215691]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_colors/font_hover_color = Color(0.6017273, 0.70538116, 1.069, 1)
+text = "Order"
+icon = ExtResource("3_snmo6")
+flat = true
+
+[node name="OrderButton2" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=1799753123]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_colors/font_hover_color = Color(0.6017273, 0.70538116, 1.069, 1)
+text = "Order"
+icon = ExtResource("3_snmo6")
+flat = true
+
+[node name="OrderButton3" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=162682717]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_colors/font_hover_color = Color(0.6017273, 0.70538116, 1.069, 1)
+text = "Order"
+icon = ExtResource("3_snmo6")
+flat = true
+
+[node name="ActiveOrderPage" type="MarginContainer" parent="Phone" unique_id=94629585]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="MenuContainer" type="VBoxContainer" parent="Phone/ActiveOrderPage" unique_id=1131907956]
+layout_mode = 2
+
+[node name="Distance" type="Label" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=656801225]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+text = "Distance"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DistanceValue" type="Label" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=1250320406]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_font_sizes/font_size = 32
+text = "20 km"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=1446562818]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_snmo6")
+stretch_mode = 5
+
+[connection signal="close_requested" from="OrdersMap" to="." method="_on_orders_map_close_requested"]
+[connection signal="mouse_entered" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
+[connection signal="mouse_exited" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]
+[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton" to="." method="_on_order_button_pressed"]
+[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton2" to="." method="_on_order_button_pressed"]
+[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton3" to="." method="_on_order_button_pressed"]
