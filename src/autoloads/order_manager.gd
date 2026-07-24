@@ -74,10 +74,11 @@ func order_finished():
 	
 	timer_running = false
 	destination.disable()
-
+	
+	player.arrow.hide()
 	is_order_picked = false
 	timer_running = true
-	var payment := base_payment * WeatherManager.get_payment_multiplier()
+	var payment :float = base_payment * WeatherManager.get_payment_multiplier()
 	money += payment
 	update_money_label()
 	
