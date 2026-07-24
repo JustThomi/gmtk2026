@@ -23,10 +23,10 @@ func _process(_delta: float) -> void:
 		distance_value.text = str(int(OrderManager.distance))
 
 func _on_mouse_detector_mouse_entered() -> void:
-	phone.position.y = 392.0
+	phone.position.y -= 108.0
 
 func _on_mouse_detector_mouse_exited() -> void:
-	phone.position.y = 500.0
+	phone.position.y += 108.0
 
 func _on_order_button_pressed() -> void:
 	# TODO: trigger orders here
