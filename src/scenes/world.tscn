@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b63r6xyargp1h" path="res://src/ui/hud.tscn" id="1_c0n45"]
 [ext_resource type="Script" uid="uid://chr73qux254lo" path="res://src/scenes/world.gd" id="1_tvkxc"]
 [ext_resource type="PackedScene" uid="uid://bagx30o5yj4v2" path="res://src/player/player.tscn" id="1_w561s"]
+[ext_resource type="PackedScene" uid="uid://4h6rrogafkjc" path="res://assets/chars/character-female-c.glb" id="4_mxnng"]
 [ext_resource type="PackedScene" uid="uid://bqh5mm4cknv4k" path="res://assets/city/suburban/building-type-a.glb" id="5_1fyld"]
 [ext_resource type="PackedScene" uid="uid://cq0cgu2le4da4" path="res://src/targets/target.tscn" id="6_c0n45"]
 [ext_resource type="PackedScene" uid="uid://bxkrw7owsjbya" path="res://assets/city/suburban/building-type-b.glb" id="6_mxnng"]
@@ -62,6 +63,9 @@ projection = 1
 current = true
 size = 30.0
 near = 0.001
+
+[node name="character-female-c2" parent="." unique_id=1504930835 instance=ExtResource("4_mxnng")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2.9316504, 2.4811473)
 
 [node name="Restaurants" type="Node3D" parent="." unique_id=144947212]
 

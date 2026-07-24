@@ -32,7 +32,7 @@ func order_picked_up():
 
 func order_finished():
 	destination.disable()
-	player.arrow.hide()
+	generate_order()
 	# TODO: Reward player here
 
 func _process(_delta: float) -> void:
