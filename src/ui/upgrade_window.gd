@@ -7,8 +7,8 @@ extends Window
 func _process(_delta):
 	spin_bikes()
 	
-	if Input.is_action_just_pressed("orders"):
-		visible = not visible
+	#if Input.is_action_just_pressed("orders"):
+		#visible = not visible
 
 func spin_bikes():
 	mountain_bike_model.rotation_degrees.y += 1

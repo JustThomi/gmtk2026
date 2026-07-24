@@ -47,6 +47,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if OrderManager.current_target != null:
 		distance_value.text = str(int(OrderManager.distance))
+	
+	if Input.is_action_just_pressed("tab"):
+		phone.position.y -= phone_offset
+	
+	if Input.is_action_just_released("tab"):
+		phone.position.y += phone_offset
 
 func _on_weather_changed(_is_bad):
 	weather_icon.texture = weather_icons[WeatherManager.current_weather]
@@ -64,12 +70,6 @@ func _on_order_completed():
 	order_completed_page.show()
 	active_order_page.hide()
 	order_count.text = str(OrderManager.order_count)
-
-func _on_mouse_detector_mouse_entered() -> void:
-	phone.position.y -= phone_offset
-
-func _on_mouse_detector_mouse_exited() -> void:
-	phone.position.y += phone_offset
 
 func _on_order_button_pressed() -> void:
 	# TODO: trigger orders here

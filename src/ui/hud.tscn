@@ -7,9 +7,6 @@
 [ext_resource type="Script" uid="uid://bqulitan2eqev" path="res://src/game_logic/timer_label.gd" id="4_i4jpw"]
 [ext_resource type="Texture2D" uid="uid://bjjblsopnn38b" path="res://assets/ui/weather/clear.png" id="5_vbpn1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3agn1"]
-size = Vector2(232.5, 497)
-
 [node name="HUD" type="Control" unique_id=198605114]
 layout_mode = 3
 anchors_preset = 15
@@ -45,14 +42,6 @@ offset_right = 306.0
 offset_bottom = 364.0
 grow_vertical = 0
 mouse_filter = 2
-
-[node name="MouseDetector" type="Area2D" parent="Phone" unique_id=1416959346]
-collision_layer = 524288
-collision_mask = 524288
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Phone/MouseDetector" unique_id=1126370472]
-position = Vector2(131.75, 255.5)
-shape = SubResource("RectangleShape2D_3agn1")
 
 [node name="PhoneWallpaper" type="MarginContainer" parent="Phone" unique_id=228828725]
 layout_mode = 2
@@ -223,8 +212,6 @@ theme_override_font_sizes/font_size = 32
 text = "Money: 00"
 
 [connection signal="close_requested" from="OrdersMap" to="." method="_on_orders_map_close_requested"]
-[connection signal="mouse_entered" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
-[connection signal="mouse_exited" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]
 [connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton" to="." method="_on_order_button_pressed"]
 [connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton2" to="." method="_on_order_button_pressed"]
 [connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton3" to="." method="_on_order_button_pressed"]
