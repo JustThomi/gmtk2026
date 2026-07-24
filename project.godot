@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 OrderManager="*uid://jxqepfedds8y"
+WeatherManager="*uid://55ll4kunhxvc"
 
 [display]
 
