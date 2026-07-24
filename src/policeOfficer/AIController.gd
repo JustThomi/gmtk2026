@@ -16,6 +16,7 @@ var target_y_rot : float
 @onready var player = get_tree().get_nodes_in_group("Player")[0]
 @onready var anim_player : AnimationPlayer = $"character-male-c2/AnimationPlayer"
 @onready var alert_sprite : Sprite3D = $"AlertSprite"
+@onready var fine_sprite : Sprite3D = $"FineSprite"
 
 var player_distance : float
 
@@ -58,6 +59,10 @@ func _physics_process(delta):
 func set_alert_visible(is_visible : bool):
 	if alert_sprite != null:
 		alert_sprite.visible = is_visible
+
+func set_fine_visible(is_visible : bool):
+	if fine_sprite != null:
+		fine_sprite.visible = is_visible
 
 func update_animations():
 	if anim_player == null or is_playing_emote:

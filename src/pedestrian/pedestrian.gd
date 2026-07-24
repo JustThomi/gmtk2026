@@ -1,19 +1,34 @@
 extends  CharacterBody3D
 
+@export var possible_models : Array[PackedScene]
 @export var walk_speed : float = 2
 @export var max_wander_range : float = 20.0
 @export var min_wait : float = 1.0
 @export var max_wait : float = 5.0
 
 @onready var agent : NavigationAgent3D = $"NavigationAgent3D"
-@onready var anim_player : AnimationPlayer = $"character-female-b2/AnimationPlayer"
 @onready var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var current_model : Node3D
+var anim_player : AnimationPlayer
 var is_waiting : bool = false
 var is_knocked_down : bool = false
 
 func _ready():
 	rotation.y = randf_range(0, TAU)
+	
+	if possible_models.size() > 0:
+		var random_scene = possible_models.pick_random()
+		
+		if random_scene:
+			current_model = random_scene.instantiate()
+			add_child(current_model)
+			
+			anim_player = current_model.get_node("AnimationPlayer")
+	
+	else:
+		push_error("No models assigned")
+	
 	_pick_new_destination()
 
 func _physics_process(delta):

@@ -38,7 +38,8 @@ func update(delta):
 		controller.move_to_position(controller.player.position, false)
 	
 	if controller.player_distance < stop_range:
-		controller.is_stopped = true
+		state_machine.change_state("Fine")
+		return
 	
 	if controller.player_distance > lose_interest_range:
 		state_machine.change_state("Patrol")
