@@ -144,6 +144,9 @@ _data = {
 height = 1.0
 radius = 1.671875
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf2ua"]
+albedo_color = Color(0.9999319, 0.5103122, 0.4439352, 1)
+
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=1212996814]
 script = ExtResource("1_fynmd")
 
@@ -173,34 +176,34 @@ transform = Transform3D(-0.75, 1.0524813e-08, 1.10227326e-07, -1.5039808e-08, 0.
 [node name="characterMedium" parent="VisualRoot/RiderMount/Rider" index="0" unique_id=1680807898]
 transform = Transform3D(1, 2.0283208e-09, -2.3540064e-11, -2.0283206e-09, 0.99973094, -0.023201363, -2.3526075e-11, 0.023201363, 0.99973094, -2.903267e-08, 0.17888427, -0.33209467)
 
-[node name="Skeleton3D" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 667200679) index="0" unique_id=595387413]
+[node name="Skeleton3D" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 1674440751) index="0" unique_id=1786102139]
 transform = Transform3D(1.0000001, 1.8621904e-09, 1.2519873e-08, -7.814833e-10, 0.9963147, -0.085772485, -1.26334605e-08, 0.085772485, 0.9963147, 0, 0, 0)
 
-[node name="Marker3DHead" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 667200679) index="1" unique_id=1299854182]
+[node name="Marker3DHead" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 1674440751) index="1" unique_id=1299854182]
 transform = Transform3D(1.000001, 1.4210855e-14, -7.1054274e-15, 2.842171e-14, 1.0000007, 5.9604645e-08, 7.1054274e-15, -5.9604645e-08, 1.0000007, -0.00048392772, -0.0011948044, 0.03180533)
 
-[node name="Marker3D2LeftArmMiddle" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 667200679) index="2" unique_id=648895829]
+[node name="Marker3D2LeftArmMiddle" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 1674440751) index="2" unique_id=648895829]
 transform = Transform3D(1.0000008, 4.2632564e-14, -1.0658141e-14, 2.842171e-14, 1.0000007, 5.9604645e-08, 0, -5.9604645e-08, 1.0000007, 0.01694417, -0.015004046, 0.021407377)
 
-[node name="Marker3DLeftArmEnd" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 667200679) index="3" unique_id=1434363918]
+[node name="Marker3DLeftArmEnd" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 1674440751) index="3" unique_id=1434363918]
 transform = Transform3D(1.000001, 8.526513e-14, -1.0658141e-14, 2.842171e-14, 1.0000007, 5.9604645e-08, 7.1054274e-15, -5.9604645e-08, 1.0000007, 0.008940124, -0.03688657, 0.028533729)
 
-[node name="Marker3DRightArmMiddle" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 667200679) index="4" unique_id=1957787391]
+[node name="Marker3DRightArmMiddle" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 1674440751) index="4" unique_id=1957787391]
 transform = Transform3D(1.000001, 8.526513e-14, -1.0658141e-14, 2.842171e-14, 1.0000007, 5.9604645e-08, 7.1054274e-15, -5.9604645e-08, 1.0000007, -0.011169722, -0.011052643, 0.019948129)
 
-[node name="Marker3DRightArmEnd" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 667200679) index="5" unique_id=138868809]
+[node name="Marker3DRightArmEnd" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 1674440751) index="5" unique_id=138868809]
 transform = Transform3D(1.000001, 9.947598e-14, -1.0658141e-14, 2.842171e-14, 1.0000007, 5.9604645e-08, 7.1054274e-15, -5.9604645e-08, 1.0000007, -0.009341476, -0.02414551, 0.027556883)
 
-[node name="Marker3D2LeftLegMiddle" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 667200679) index="6" unique_id=1293223053]
+[node name="Marker3D2LeftLegMiddle" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 1674440751) index="6" unique_id=1293223053]
 transform = Transform3D(1.000001, 9.947598e-14, -1.0658141e-14, 2.842171e-14, 1.0000007, 5.9604645e-08, 7.1054274e-15, -5.9604645e-08, 1.0000007, 0.0036416997, -0.009873986, 0.0106958)
 
-[node name="Marker3DLeftLegEnd" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 667200679) index="7" unique_id=1850651821]
+[node name="Marker3DLeftLegEnd" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 1674440751) index="7" unique_id=1850651821]
 transform = Transform3D(1.0000007, 2.842171e-14, -7.1054274e-15, 2.842171e-14, 1.0000007, 4.4703484e-08, -3.5527137e-15, -4.4703484e-08, 1.0000007, 0.0026501112, -0.002777529, 0.0011139964)
 
-[node name="Marker3DRightLegMiddle" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 667200679) index="8" unique_id=1182715082]
+[node name="Marker3DRightLegMiddle" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 1674440751) index="8" unique_id=1182715082]
 transform = Transform3D(1.000001, 1.4210855e-14, -7.1054274e-15, 2.842171e-14, 1.0000007, 5.9604645e-08, 7.1054274e-15, -5.9604645e-08, 1.0000007, -0.0030693118, -0.004363487, 0.0073484583)
 
-[node name="Marker3DRightLegEnd" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 667200679) index="9" unique_id=285274214]
+[node name="Marker3DRightLegEnd" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 1674440751) index="9" unique_id=285274214]
 transform = Transform3D(1.0000006, 1.4210855e-14, -3.5527137e-15, 1.4210855e-14, 1.0000007, 1.4901161e-08, 0, -1.4901161e-08, 1.0000007, -0.0034759808, -0.0028278334, 0.0019986895)
 
 [node name="MeshInstance3D" parent="VisualRoot/RiderMount/Rider/characterMedium" index="1" unique_id=1507973845]
@@ -220,13 +223,19 @@ shape = SubResource("CylinderShape3D_n32u6")
 [node name="Arrrow" type="Node3D" parent="." unique_id=521030242]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3179574, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Arrrow" unique_id=1781240940]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5411239, -0.13161796)
-size = Vector3(0.4099121, 0.37194824, 2.1416016)
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Arrrow" unique_id=1127076623]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, -1, 0, 1, 2.9802322e-08, 0, 3.5, -1.6)
+polygon = PackedVector2Array(0, 0.4, 0, 1, 0.4, 1)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 8
+material = SubResource("StandardMaterial3D_mf2ua")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Arrrow" unique_id=1337187010]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3.5411239, -0.5787913)
-size = Vector3(0.4099121, 0.37194824, 1.1806641)
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Arrrow" unique_id=353072847]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 3.5, 0)
+radius = 0.203125
+height = 1.5759277
+material = SubResource("StandardMaterial3D_mf2ua")
 
 [editable path="VisualRoot/RiderMount/Rider"]
 [editable path="VisualRoot/RiderMount/Rider/characterMedium"]
