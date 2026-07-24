@@ -257,6 +257,30 @@ tracks/19/keys = {
 "update": 0,
 "values": [Vector3(0.023203446, -2.3546397e-11, -2.0288669e-09)]
 }
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../../Backpack:position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.034801126, 0, 0)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("../../Backpack:rotation")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.28192416, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_mf2ua"]
 resource_name = "ride_pose"
@@ -371,6 +395,30 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(-0.00048392772, -0.0011042459, 0.031781755), Vector3(-0.0004839277, -0.0016538566, 0.031924818), Vector3(-0.00048392755, -0.0028137937, 0.03222675), Vector3(-0.00048392778, -0.0017824648, 0.0319583)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../Backpack:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.034801126, 0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../../Backpack:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.011063114, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_5f2sf"]
@@ -616,6 +664,30 @@ tracks/19/keys = {
 "update": 0,
 "values": [Vector3(-0.14180538, 8.582613e-10, 2.2168681e-08), Vector3(0.023203446, -2.3546397e-11, -2.0288669e-09)]
 }
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../../Backpack:position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.034801126, 0, 0)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("../../Backpack:rotation")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.28192416, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_244u8"]
 _data = {
@@ -643,8 +715,7 @@ shape = SubResource("BoxShape3D_3agn1")
 transform = Transform3D(1, 0, 0, 0, 0.9999, -0.01414373, 0, 0.01414373, 0.9999, 0, 0, 0)
 
 [node name="Backpack" type="Node3D" parent="VisualRoot" unique_id=936077307]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034801126, 0, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 0.9605219, -0.27820432, 0, 0.27820432, 0.9605219, -0.034801126, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VisualRoot/Backpack" unique_id=69610383]
 transform = Transform3D(1.0000005, 0, 0, 0, 0.88312405, 0.20295252, 0, -0.22550121, 0.7948168, 0.058499336, 2.2644389, 0.9232431)
