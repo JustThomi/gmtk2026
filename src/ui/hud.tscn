@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b125iay4qyyis" path="res://src/ui/hud.gd" id="1_4rn03"]
 [ext_resource type="Texture2D" uid="uid://c1shj0s3h4vl0" path="res://assets/ui/phone_border.png" id="1_eqvli"]
 [ext_resource type="Texture2D" uid="uid://ds4wxvyjd83g2" path="res://assets/ui/mickeychickey.png" id="3_snmo6"]
+[ext_resource type="Script" uid="uid://bqulitan2eqev" path="res://src/game_logic/timer_label.gd" id="4_i4jpw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3agn1"]
 size = Vector2(232.5, 248)
@@ -129,6 +130,13 @@ layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_snmo6")
 stretch_mode = 5
+
+[node name="TimerLabel" type="Label" parent="." unique_id=202779492]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Time left: 99"
+script = ExtResource("4_i4jpw")
 
 [connection signal="close_requested" from="OrdersMap" to="." method="_on_orders_map_close_requested"]
 [connection signal="mouse_entered" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
