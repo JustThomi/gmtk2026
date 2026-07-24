@@ -2,9 +2,73 @@
 
 [ext_resource type="Script" uid="uid://bb7n38txtahgg" path="res://src/player/player.gd" id="1_fynmd"]
 [ext_resource type="PackedScene" uid="uid://4s84e81h7um6" path="res://assets/bikes/bmx.glb" id="2_d6n0t"]
+[ext_resource type="PackedScene" uid="uid://bx6dfsa28k2kk" path="res://src/player/bikeRider.tscn" id="3_mf2ua"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3agn1"]
 size = Vector3(0.31079102, 1, 3.2873535)
+
+[sub_resource type="Skin" id="Skin_1jhxy"]
+
+[sub_resource type="Animation" id="Animation_244u8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("characterMedium/Root/Skeleton3D:motion_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("characterMedium/Root/Skeleton3D:show_rest_only")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mf2ua"]
+resource_name = "ride_pose"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("characterMedium/Root/Skeleton3D:motion_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.26),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("characterMedium/Root/Skeleton3D:show_rest_only")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_244u8"]
+_data = {
+&"RESET": SubResource("Animation_244u8"),
+&"ride_pose": SubResource("Animation_mf2ua")
+}
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_n32u6"]
 height = 1.0
@@ -17,7 +81,38 @@ script = ExtResource("1_fynmd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49482203, -0.064834535)
 shape = SubResource("BoxShape3D_3agn1")
 
-[node name="Model" parent="." unique_id=1136754064 instance=ExtResource("2_d6n0t")]
+[node name="VisualRoot" type="Node3D" parent="." unique_id=230782845]
+
+[node name="Model" parent="VisualRoot" unique_id=1136754064 instance=ExtResource("2_d6n0t")]
+
+[node name="RiderMount" type="Node3D" parent="VisualRoot" unique_id=219167433]
+
+[node name="Rider" parent="VisualRoot/RiderMount" unique_id=1990391790 instance=ExtResource("3_mf2ua")]
+transform = Transform3D(-0.75, 1.0524813e-08, 1.10227326e-07, -1.5039808e-08, 0.73000264, -0.17203535, -1.0970251e-07, -0.17203535, -0.73000264, 0, 0.50131357, 0.6526959)
+
+[node name="characterMedium" parent="VisualRoot/RiderMount/Rider" index="0" unique_id=1680807898]
+transform = Transform3D(1, 2.0283153e-09, -2.3561597e-11, -2.0283206e-09, 0.99973094, -0.023201361, -2.352607e-11, 0.023201361, 0.99973094, -2.903267e-08, 0.17888427, -0.33209467)
+
+[node name="Skeleton3D" parent="VisualRoot/RiderMount/Rider/characterMedium/Root" parent_id_path=PackedInt32Array(1990391790, 1680807898, 908514097) index="0" unique_id=607510963]
+transform = Transform3D(1.0000001, 1.8621904e-09, 1.2519873e-08, -7.814833e-10, 0.9963147, -0.085772485, -1.26334605e-08, 0.085772485, 0.9963147, 0, 0, 0)
+bones/27/rotation = Quaternion(0.78889, 1.100813, -0.203689, 0.695664)
+bones/28/rotation = Quaternion(0.056762, -0.457427, 0.065446, 1.093812)
+bones/29/rotation = Quaternion(0.298453, 0.72474, -0.021308, 0.688181)
+bones/38/rotation = Quaternion(-0.575936, -1.460124, 0.506098, -0.486282)
+bones/39/rotation = Quaternion(0.430734, 0.705233, 0.247072, 0.92888)
+bones/40/rotation = Quaternion(-1.081796, 0.000333, -0.148037, 16.22442)
+bones/48/rotation = Quaternion(0.926703, 0.181061, 0.162528, 0.78067)
+bones/49/rotation = Quaternion(0.181574, 0.022444, 0.057854, 0.197983)
+bones/53/rotation = Quaternion(1.506588, -0.001359, 0.054885, 0.710484)
+bones/54/rotation = Quaternion(0.338948, 0.01151, -0.059173, 0.988463)
+
+[node name="MeshInstance3D" parent="VisualRoot/RiderMount/Rider/characterMedium" index="1" unique_id=1507973845]
+skin = SubResource("Skin_1jhxy")
+skeleton = NodePath("../Root/Skeleton3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VisualRoot/RiderMount/Rider" unique_id=1983382722]
+libraries/ = SubResource("AnimationLibrary_244u8")
+autoplay = &"ride_pose"
 
 [node name="Area3D" type="Area3D" parent="." unique_id=2124699034]
 
@@ -34,3 +129,6 @@ size = Vector3(0.4099121, 0.37194824, 2.1416016)
 [node name="CSGBox3D2" type="CSGBox3D" parent="Arrrow" unique_id=1337187010]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3.5411239, -0.5787913)
 size = Vector3(0.4099121, 0.37194824, 1.1806641)
+
+[editable path="VisualRoot/RiderMount/Rider"]
+[editable path="VisualRoot/RiderMount/Rider/characterMedium"]

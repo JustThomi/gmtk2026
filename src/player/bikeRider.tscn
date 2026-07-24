@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://bx6dfsa28k2kk"]
 
 [ext_resource type="PackedScene" uid="uid://cn6esq1x0qfxq" path="res://assets/characters/Model/characterMedium.fbx" id="1_lva4y"]
+[ext_resource type="Texture2D" uid="uid://cr313xsfxb5cx" path="res://assets/characters/Skins/skaterFemaleA.png" id="2_7ydyw"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=138704450]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf2ua"]
+albedo_texture = ExtResource("2_7ydyw")
+
+[node name="Rider" type="Node3D" unique_id=1990391790]
 
 [node name="characterMedium" parent="." unique_id=1680807898 instance=ExtResource("1_lva4y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35613084, 0.015654564, 0.5945797)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="characterMedium" unique_id=1507973845]
+material_override = SubResource("StandardMaterial3D_mf2ua")
+
+[editable path="characterMedium"]

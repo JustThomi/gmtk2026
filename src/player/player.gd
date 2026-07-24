@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
-@onready var model: Node3D = $Model
+# @onready var model: Node3D = $Model
 @onready var arrow: Node3D = $Arrrow
+@onready var visual_root: Node3D = $VisualRoot
 
 @export var model_rotation_offset := deg_to_rad(-45.0)
 @export var hud: Control
@@ -37,7 +38,8 @@ func _physics_process(delta):
 		
 		var target_rotation := atan2(-direction.x, -direction.z)
 		target_rotation += model_rotation_offset
-		model.rotation.y = lerp_angle(model.rotation.y, target_rotation, delta * 10)
+		# model.rotation.y = lerp_angle(model.rotation.y, target_rotation, delta * 10)
+		visual_root.rotation.y = lerp_angle(visual_root.rotation.y, target_rotation, delta * 10)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
