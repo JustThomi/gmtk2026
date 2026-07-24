@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bhf4kornxtxka"]
+
+[ext_resource type="Texture2D" uid="uid://bwt332igyrrgm" path="res://assets/characters/Skins/criminalMaleA.png" id="1_25co4"]
+
+[resource]
+albedo_texture = ExtResource("1_25co4")
