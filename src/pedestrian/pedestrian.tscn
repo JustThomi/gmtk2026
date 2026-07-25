@@ -34,6 +34,5 @@ shape = SubResource("CapsuleShape3D_nwhj6")
 shape = SubResource("SphereShape3D_nwhj6")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=943002965]
-debug_enabled = true
 
 [connection signal="body_entered" from="BumpDetector" to="." method="_on_bump_detector_body_entered"]

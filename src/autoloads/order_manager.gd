@@ -112,7 +112,7 @@ func _process(delta: float) -> void:
 			time_remaining = 0.0
 			timer_running = false
 			update_timer_label()
-			money -= failed_order_deduction
+			money += failed_order_deduction
 			update_money_label()
 			generate_order()
 			return

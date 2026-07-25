@@ -121,6 +121,17 @@ offset_bottom = 83.0
 theme_override_font_sizes/font_size = 48
 text = "Cost: 150"
 
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=111934995]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 1
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Back"
+flat = true
+
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Bike/Button" to="." method="_on_mountain_bike_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Bike2/Button" to="." method="_on_unicycle_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
