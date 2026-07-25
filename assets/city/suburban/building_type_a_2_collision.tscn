@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cjiry3pyycrcv"]
+
+[ext_resource type="PackedScene" uid="uid://bqh5mm4cknv4k" path="res://assets/city/suburban/building-type-a.glb" id="1_hrsva"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awwja"]
+size = Vector3(1.2328186, 0.6567688, 1)
+
+[node name="building-type-a2" unique_id=2003381465 instance=ExtResource("1_hrsva")]
+transform = Transform3D(2.76, 0, 0, 0, 2.76, 0, 0, 0, 2.76, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="building-type-a" parent_id_path=PackedInt32Array(1634848628) index="0" unique_id=567920676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0031280525, 0.30592346, 0)
+shape = SubResource("BoxShape3D_awwja")
