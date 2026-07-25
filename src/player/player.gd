@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var backpack: Node3D = $VisualRoot/Backpack
 @onready var bikes : Array[Node3D] = [$VisualRoot/RedBike, $VisualRoot/MountainBike, $VisualRoot/Unicycle]
 @onready var colliders: Array[CollisionShape3D] = [$RedBikeCollider, $MountainBikeCollider, $UnicycleCollider]
+@export var bike_speed_multipliers : Array[float] = [1.0, 1.0,  1.3 ]
 @onready var rider_mount: Node3D = $VisualRoot/RiderMount
 @onready var upgrade_window = $"../HUD/UpgradeWindow"
 
@@ -124,7 +125,7 @@ func _physics_process(delta):
 		movement_direction = wheelie_direction
 
 	if movement_direction.length_squared() > 0.0:
-		var current_speed := SPEED
+		var current_speed := SPEED * bike_speed_multipliers[current_bike]
 
 		if is_wheelie:
 			anim_tree.set("parameters/Transition/transition_request", "wheelie")
