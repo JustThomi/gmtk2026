@@ -14,14 +14,16 @@ size = Vector3(0.43678284, 0.66619873, 0.9276123)
 [node name="building-type-q2" unique_id=507472143 instance=ExtResource("1_flfyc")]
 transform = Transform3D(2.76, 0, 0, 0, 2.76, 0, 0, 0, 2.76, 0, 0, 0)
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="building-type-q" parent_id_path=PackedInt32Array(239340321) index="0" unique_id=2028544025]
+[node name="StaticBody3D" type="StaticBody3D" parent="building-type-q" parent_id_path=PackedInt32Array(957701300) index="0" unique_id=1437941561]
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="building-type-q/StaticBody3D" index="0" unique_id=2028544025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017181396, 0.3385977, 0.21166992)
 shape = SubResource("BoxShape3D_hpu63")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="building-type-q" parent_id_path=PackedInt32Array(239340321) index="1" unique_id=1742985632]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="building-type-q/StaticBody3D" index="1" unique_id=1742985632]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0029296875, 0.26345825, -0.019042969)
 shape = SubResource("BoxShape3D_awwja")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="building-type-q" parent_id_path=PackedInt32Array(239340321) index="2" unique_id=1608899739]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="building-type-q/StaticBody3D" index="2" unique_id=1608899739]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40380096, 0.4836828, -0.036193848)
 shape = SubResource("BoxShape3D_3c16j")
