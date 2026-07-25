@@ -7,6 +7,11 @@
 [ext_resource type="Script" uid="uid://bqulitan2eqev" path="res://src/game_logic/timer_label.gd" id="4_i4jpw"]
 [ext_resource type="Texture2D" uid="uid://bjjblsopnn38b" path="res://assets/ui/weather/clear.png" id="5_vbpn1"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3agn1"]
+color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+grow_begin = 4.0
+thickness = 75
+
 [node name="HUD" type="Control" unique_id=198605114]
 layout_mode = 3
 anchors_preset = 15
@@ -16,7 +21,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_4rn03")
-phone_offset = 350.0
 
 [node name="UpgradeWindow" parent="." unique_id=931631803 instance=ExtResource("2_r2cn7")]
 visible = false
@@ -47,7 +51,7 @@ mouse_filter = 2
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
+theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 24
 
 [node name="ColorRect" type="ColorRect" parent="Phone/PhoneWallpaper" unique_id=1533142537]
@@ -127,11 +131,12 @@ layout_mode = 2
 
 [node name="TopBar" type="HBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=1732577549]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 15
 alignment = 1
 
 [node name="HBoxContainer" type="VBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer/TopBar" unique_id=1765403340]
 layout_mode = 2
+alignment = 1
 
 [node name="Distance" type="Label" parent="Phone/ActiveOrderPage/MenuContainer/TopBar/HBoxContainer" unique_id=656801225]
 layout_mode = 2
@@ -147,8 +152,13 @@ text = "20 km"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="VSeparator" type="VSeparator" parent="Phone/ActiveOrderPage/MenuContainer/TopBar" unique_id=248235709]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_3agn1")
+
 [node name="Weather" type="HBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer/TopBar" unique_id=1024299166]
 layout_mode = 2
+alignment = 1
 
 [node name="HBoxContainer" type="VBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer/TopBar/Weather" unique_id=413204348]
 layout_mode = 2
@@ -166,6 +176,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("5_vbpn1")
+stretch_mode = 5
 
 [node name="TextureRect" type="TextureRect" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=1446562818]
 texture_filter = 1
