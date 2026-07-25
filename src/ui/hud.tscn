@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b125iay4qyyis" path="res://src/ui/hud.gd" id="1_4rn03"]
 [ext_resource type="Texture2D" uid="uid://c1shj0s3h4vl0" path="res://assets/ui/phone_border.png" id="1_eqvli"]
+[ext_resource type="PackedScene" uid="uid://djftjtwcj8x1" path="res://src/ui/upgrade_window.tscn" id="2_r2cn7"]
 [ext_resource type="Texture2D" uid="uid://ds4wxvyjd83g2" path="res://assets/ui/mickeychickey.png" id="3_snmo6"]
 [ext_resource type="Script" uid="uid://bqulitan2eqev" path="res://src/game_logic/timer_label.gd" id="4_i4jpw"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3agn1"]
-size = Vector2(232.5, 497)
+[ext_resource type="Texture2D" uid="uid://bjjblsopnn38b" path="res://assets/ui/weather/clear.png" id="5_vbpn1"]
 
 [node name="HUD" type="Control" unique_id=198605114]
 layout_mode = 3
@@ -19,11 +18,15 @@ mouse_filter = 2
 script = ExtResource("1_4rn03")
 phone_offset = 350.0
 
+[node name="UpgradeWindow" parent="." unique_id=931631803 instance=ExtResource("2_r2cn7")]
+visible = false
+
 [node name="OrdersMap" type="Window" parent="." unique_id=100749499]
 oversampling_override = 1.0
 title = "Available Orders"
 initial_position = 1
 size = Vector2i(600, 400)
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="OrdersMap" unique_id=296804481]
 transform = Transform3D(0.70710677, -0.35355353, 0.61237246, 7.1054274e-15, 0.86602527, 0.50000006, -0.70710665, -0.35355344, 0.6123724, 20, 30, 20)
@@ -39,14 +42,6 @@ offset_right = 306.0
 offset_bottom = 364.0
 grow_vertical = 0
 mouse_filter = 2
-
-[node name="MouseDetector" type="Area2D" parent="Phone" unique_id=1416959346]
-collision_layer = 524288
-collision_mask = 524288
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Phone/MouseDetector" unique_id=1126370472]
-position = Vector2(131.75, 255.5)
-shape = SubResource("RectangleShape2D_3agn1")
 
 [node name="PhoneWallpaper" type="MarginContainer" parent="Phone" unique_id=228828725]
 layout_mode = 2
@@ -130,20 +125,47 @@ theme_override_constants/margin_bottom = 42
 [node name="MenuContainer" type="VBoxContainer" parent="Phone/ActiveOrderPage" unique_id=1131907956]
 layout_mode = 2
 
-[node name="Distance" type="Label" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=656801225]
+[node name="TopBar" type="HBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=1732577549]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer/TopBar" unique_id=1765403340]
+layout_mode = 2
+
+[node name="Distance" type="Label" parent="Phone/ActiveOrderPage/MenuContainer/TopBar/HBoxContainer" unique_id=656801225]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 text = "Distance"
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DistanceValue" type="Label" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=1250320406]
+[node name="DistanceValue" type="Label" parent="Phone/ActiveOrderPage/MenuContainer/TopBar/HBoxContainer" unique_id=1250320406]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 theme_override_font_sizes/font_size = 32
 text = "20 km"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Weather" type="HBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer/TopBar" unique_id=1024299166]
+layout_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer/TopBar/Weather" unique_id=413204348]
+layout_mode = 2
+
+[node name="WeatherName" type="Label" parent="Phone/ActiveOrderPage/MenuContainer/TopBar/Weather/HBoxContainer" unique_id=1463209856]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+text = "Distance"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Phone/ActiveOrderPage/MenuContainer/TopBar/Weather/HBoxContainer" unique_id=1693500096]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_vbpn1")
 
 [node name="TextureRect" type="TextureRect" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=1446562818]
 texture_filter = 1
@@ -187,19 +209,9 @@ offset_top = 51.0
 offset_right = 159.0
 offset_bottom = 96.0
 theme_override_font_sizes/font_size = 32
-text = "Money: 00"
-
-[node name="WeatherLabel" type="Label" parent="." unique_id=924402592]
-layout_mode = 0
-offset_top = 132.0
-offset_right = 375.0
-offset_bottom = 177.0
-theme_override_font_sizes/font_size = 32
-text = "Current Weather: CLEAR"
+text = "Money: 100.0"
 
 [connection signal="close_requested" from="OrdersMap" to="." method="_on_orders_map_close_requested"]
-[connection signal="mouse_entered" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
-[connection signal="mouse_exited" from="Phone/MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]
 [connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton" to="." method="_on_order_button_pressed"]
 [connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton2" to="." method="_on_order_button_pressed"]
 [connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton3" to="." method="_on_order_button_pressed"]

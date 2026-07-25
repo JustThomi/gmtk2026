@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var timer_label: Label = $HUD/TimerLabel
 @onready var money_label: Label = $HUD/MoneyLabel
+@onready var weather_label: Label = $HUD/WeatherLabel
 
 func _ready() -> void:
 	var r = $Restaurants.get_children()
@@ -14,12 +15,7 @@ func _ready() -> void:
 	OrderManager.load_targets(r, h)
 	OrderManager.generate_order()
 	WeatherManager.weather_changed.connect(_on_weather_changed)
+	WeatherManager.set_weather_label(weather_label)
 	
-func _on_weather_changed(weather):
-	match weather:
-		WeatherManager.Weather.CLEAR:
-			environment.volumetric_fog_enabled = false
-
-		WeatherManager.Weather.FOG:
-			environment.volumetric_fog_enabled = true
-			environment.volumetric_fog_density = 0.02
+func _on_weather_changed(weather: WeatherManager.Weather):
+	return 1

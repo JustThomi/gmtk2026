@@ -7,7 +7,9 @@ var time_remaining := 0.0
 var timer_running := false
 var distance: float
 var order_count: int = 0
-var money := 0.0
+var money := 100.0
+var package_health : float = 100.0
+var is_order_picked : bool = false
 
 var restaurant: Node3D
 var destination: Node3D
@@ -23,6 +25,8 @@ signal order_started
 var timer_label: Label = null
 var money_label: Label = null
 
+var package_dict = {}
+
 @onready var player: CharacterBody3D
 
 func load_targets(restaurants, destinations):
@@ -36,7 +40,10 @@ func generate_order():
 	
 	restaurant.enable(player)
 	
+	# package_dict = {"current_target" : restaurant, "package_health" : 100}
+	
 	current_target = restaurant
+	package_health = 100.0
 	start_timer()
 	order_started.emit()
 	player.arrow.show()
@@ -59,6 +66,7 @@ func order_picked_up():
 	restaurant.disable()
 	destination.enable(player)
 	
+	is_order_picked = true;
 	order_picked.emit()
 
 func order_finished():
@@ -66,9 +74,11 @@ func order_finished():
 	
 	timer_running = false
 	destination.disable()
-
+	
+	player.arrow.hide()
+	is_order_picked = false
 	timer_running = true
-	var payment := base_payment * WeatherManager.get_payment_multiplier()
+	var payment :float = base_payment * WeatherManager.get_payment_multiplier()
 	money += payment
 	update_money_label()
 	
@@ -92,6 +102,14 @@ func _process(delta: float) -> void:
 
 		update_timer_label()
 
+func apply_fine(amount: float) -> void:
+	money -= amount
+	
+	if money < 0:
+		money = 0.0
+	
+	update_money_label()
+
 func update_timer_label() -> void:
 	var total_seconds := ceili(time_remaining)
 	var minutes := total_seconds / 60
@@ -100,4 +118,8 @@ func update_timer_label() -> void:
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
 
 func update_money_label() -> void:
-	money_label.text = "%.2f" % [money]
+	money_label.text = "Money: " + "%.2f" % [money]
+	
+func damage_package() -> void:
+	package_health =- 10
+	
