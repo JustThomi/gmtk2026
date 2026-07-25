@@ -12,12 +12,14 @@ extends Control
 @onready var order_completed_page: MarginContainer = $Phone/OrderComplete
 
 @onready var distance_value: Label = $Phone/ActiveOrderPage/MenuContainer/TopBar/HBoxContainer/DistanceValue
-@onready var order_count: Label = $Phone/ActiveOrderPage/MenuContainer/HBoxContainer/CompletedCount
+@onready var order_count: Label = $Phone/ActiveOrderPage/MenuContainer/CompleteContainer/CompletedCount
 
 @onready var weather_label: Label = $Phone/ActiveOrderPage/MenuContainer/TopBar/Weather/HBoxContainer/WeatherName
 @onready var weather_icon: TextureRect = $Phone/ActiveOrderPage/MenuContainer/TopBar/Weather/HBoxContainer/TextureRect
 
-@export var phone_offset:float = 350.0
+@onready var multiplier_count_label: Label = $Phone/ActiveOrderPage/MenuContainer/BonusContainer/MultiplierCount
+
+@export var phone_offset:float = 300.0
 
 var restaurant_image: Texture = preload("res://assets/ui/phone/mickeychickey.png")
 var house_image: Texture = preload("res://assets/ui/phone/house.png")
@@ -48,6 +50,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if OrderManager.current_target != null:
 		distance_value.text = str(int(OrderManager.distance))
+	
+	multiplier_count_label.text = str(int(OrderManager.bonus_money))
 	
 	if Input.is_action_just_pressed("tab"):
 		phone.position.y -= phone_offset
