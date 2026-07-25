@@ -4,6 +4,8 @@ extends CharacterBody3D
 @onready var arrow: Node3D = $Arrrow
 @onready var visual_root: Node3D = $VisualRoot
 @onready var anim = $VisualRoot/RiderMount/Rider/AnimationPlayer
+@onready var anim_tree = $VisualRoot/RiderMount/Rider/AnimationTree
+
 @onready var backpack: Node3D = $VisualRoot/Backpack
 
 @export var wheelie_angle: float = 30.0
@@ -46,9 +48,10 @@ func _physics_process(delta):
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 2
-			
-	if is_spinning:
-		visual_root.rotate_y(-spin_input * spin_speed * delta)
+		
+		if is_spinning:
+			anim_tree.set("parameters/Transition/transition_request", "spin")
+			visual_root.rotate_y(-spin_input * spin_speed * delta)
 		
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
@@ -60,7 +63,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		
 	var target_pitch: float = 0.0
-	var target_y: float = default_pivot_y	
+	var target_y: float = default_pivot_y
 	if Input.is_action_pressed("wheelie") and is_on_floor():
 		target_pitch = deg_to_rad(wheelie_angle)
 		target_y = default_pivot_y + wheelie_lift_height
@@ -91,10 +94,12 @@ func _physics_process(delta):
 		var current_speed := SPEED
 
 		if is_wheelie:
-			anim.play("wheelie")
+			anim_tree.set("parameters/Transition/transition_request", "wheelie")
+			# anim.play("wheelie")
 			current_speed *= 1.5
 		else:
-			anim.play("ride_pose")
+			anim_tree.set("parameters/Transition/transition_request", "ride_pose")
+			# anim.play("ride_pose")
 		
 		velocity.x = movement_direction.x * current_speed
 		velocity.z = movement_direction.z * current_speed
@@ -107,7 +112,8 @@ func _physics_process(delta):
 		if not is_spinning:
 			visual_root.rotation.y = lerp_angle(visual_root.rotation.y, target_rotation, delta * 10.0)
 	else:
-		anim.stop()
+		anim_tree.set("parameters/Transition/transition_request", "idle")
+		# anim.stop()
 		
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, SPEED)
