@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cgpi2gngavtiw"]
+
+[ext_resource type="PackedScene" uid="uid://bxc1pgl00ikau" path="res://assets/city/commercial/building-a.glb" id="1_h7v2t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awwja"]
+size = Vector3(0.9123535, 1.2918701, 0.94262695)
+
+[node name="building-a2" unique_id=1927677758 instance=ExtResource("1_h7v2t")]
+transform = Transform3D(2.76, 0, 0, 0, 2.76, 0, 0, 0, 2.76, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1399300375]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=601832268]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034803092, 0.6187309, 0.02722168)
+shape = SubResource("BoxShape3D_awwja")
