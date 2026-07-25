@@ -8,6 +8,9 @@ extends CharacterBody3D
 @onready var spin_popup: Label3D = $VisualRoot/SpinPopup
 
 @onready var backpack: Node3D = $VisualRoot/Backpack
+@onready var bikes : Array[Node3D] = [$VisualRoot/RedBike, $VisualRoot/MountainBike, $VisualRoot/Unicycle]
+@onready var rider_mount: Node3D = $VisualRoot/RiderMount
+@onready var upgrade_window = $"../HUD/UpgradeWindow"
 
 @export var wheelie_angle: float = 30.0
 @export var wheelie_speed: float = 8.0
@@ -15,15 +18,22 @@ extends CharacterBody3D
 @export var model_rotation_offset := deg_to_rad(-45.0)
 @export var hud: Control
 @export var spin_speed: float = 10.0
+@export var dry_acceleration := 100.0
+@export var rain_acceleration := 18.0
+@export var dry_deceleration := 100.0
+@export var rain_deceleration := 8.0
 
 const SPEED = 20.0
-const JUMP_VELOCITY = 10
+const JUMP_VELOCITY = 15
+const RIDER_Y_OFFSET := -2.0
+
+var unlocked_bikes: Array[bool] = [true, false, false]
 var default_pivot_y: float
 var wheelie_direction := Vector3.ZERO
 var is_wheelie := false
 var last_wall_collision : int = 0
 var cooldown_ms : int = 2000
-
+var current_bike := 0
 var accumulated_spin: float = 0.0
 var was_in_air: bool = false
 var popup_base_y: float = 2.5
@@ -32,6 +42,8 @@ func _ready():
 	default_pivot_y = visual_root.position.y
 	OrderManager.order_picked.connect(_on_order_picked_up)
 	OrderManager.order_completed.connect(_on_order_completed)
+	switch_bike(0)
+	upgrade_window.bike_bought.connect(_on_bike_bought)
 	set_backpack_active(false)
 	if spin_popup:
 		popup_base_y = spin_popup.position.y
@@ -121,8 +133,16 @@ func _physics_process(delta):
 			anim_tree.set("parameters/Transition/transition_request", "ride_pose")
 			# anim.play("ride_pose")
 		
-		velocity.x = movement_direction.x * current_speed
-		velocity.z = movement_direction.z * current_speed
+		var target_velocity := movement_direction * current_speed
+
+		var acceleration := dry_acceleration
+
+		if WeatherManager.current_weather == WeatherManager.Weather.RAIN \
+		or WeatherManager.current_weather == WeatherManager.Weather.STORM:
+			acceleration = rain_acceleration
+
+		velocity.x = move_toward(velocity.x, target_velocity.x, acceleration * delta)
+		velocity.z = move_toward(velocity.z, target_velocity.z, acceleration * delta)
 
 		var target_rotation := atan2(-movement_direction.x, -movement_direction.z)
 		target_rotation += model_rotation_offset
@@ -133,8 +153,13 @@ func _physics_process(delta):
 		anim_tree.set("parameters/Transition/transition_request", "idle")
 		
 		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
+			var deceleration := dry_deceleration
+			if WeatherManager.current_weather == WeatherManager.Weather.RAIN \
+			or WeatherManager.current_weather == WeatherManager.Weather.STORM:
+				deceleration = rain_deceleration
+
+			velocity.x = move_toward(velocity.x, 0.0, deceleration * delta)
+			velocity.z = move_toward(velocity.z, 0.0, deceleration * delta)
 
 	move_and_slide()
 	
@@ -148,6 +173,34 @@ func _physics_process(delta):
 		print("The bike hit a wall" + str(current_time))
 		OrderManager.damage_package()	
 
+func switch_bike(index: int) -> void:
+	if index < 0 or index >= bikes.size():
+		return
+
+	if not unlocked_bikes[index]:
+		return
+
+	current_bike = index
+
+	for bike in bikes:
+		bike.visible = false
+
+	var bike := bikes[index]
+	bike.visible = true
+
+	var seat: Node3D = bike.get_node("Seat")
+
+	rider_mount.global_transform = seat.global_transform
+	rider_mount.position.y += RIDER_Y_OFFSET
+
+func _unhandled_input(event):
+	if event.is_action_pressed("RedBike"):
+		switch_bike(0)
+	elif event.is_action_pressed("MountainBike"):
+		switch_bike(1)
+	elif event.is_action_pressed("Unicycle"):
+		switch_bike(2)
+
 func set_backpack_active(active: bool) -> void:
 	backpack.visible = active
 
@@ -156,7 +209,13 @@ func _on_order_picked_up():
 
 func _on_order_completed():
 	set_backpack_active(false)
-	
+
+func _on_bike_bought(index: int) -> void:
+	if index < 0 or index >= unlocked_bikes.size():
+		return
+
+	unlocked_bikes[index] = true
+
 func show_spin_multiplier(rotations: int) -> void:
 	spin_popup.text = "x" + str(rotations + 1) + " SPIN!"
 	
