@@ -50,8 +50,9 @@ func _ready():
 	set_backpack_active(false)
 	if spin_popup:
 		popup_base_y = spin_popup.position.y
-		spin_popup.modulate.a = 0.0
-		spin_popup.outline_modulate.a = 0.0
+		spin_popup.modulate = Color("757dd9", 0.0)
+		spin_popup.outline_modulate = Color(1.0, 1.0, 1.0, 0.0)
+		spin_popup.outline_size = 24
 
 func _process(_delta):
 	if position.y < -20:
@@ -228,13 +229,16 @@ func show_spin_multiplier(rotations: int) -> void:
 	
 	spin_popup.position.y = popup_base_y
 	spin_popup.scale = Vector3.ZERO
+	
+	# Reset BOTH alphas to fully visible before the animation starts
 	spin_popup.modulate.a = 1.0
+	spin_popup.outline_modulate.a = 1.0 
 	
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(spin_popup, "scale", Vector3(1, 1, 1), 0.3).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
-	tween.tween_property(spin_popup, "position:y", popup_base_y + 1.0, 2.0).set_ease(Tween.EASE_OUT)
-	tween.tween_property(spin_popup, "modulate:a", 0.0, 0.5).set_delay(1.5)
+	tween.tween_property(spin_popup, "modulate:a", 0.0, 0.5).set_delay(2.5)
+	tween.tween_property(spin_popup, "outline_modulate:a", 0.0, 0.5).set_delay(2.5)
 
 func should_be_slippery() -> bool:
 	var bad_weather := (
