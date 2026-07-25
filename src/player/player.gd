@@ -22,11 +22,9 @@ var wheelie_direction := Vector3.ZERO
 var is_wheelie := false
 var last_wall_collision : int = 0
 var cooldown_ms : int = 2000   
-var state_machine
 
 func _ready():
 	default_pivot_y = visual_root.position.y
-	state_machine = anim_tree["parameters/playback"]
 	OrderManager.order_picked.connect(_on_order_picked_up)
 	OrderManager.order_completed.connect(_on_order_completed)
 	set_backpack_active(false)
@@ -52,7 +50,7 @@ func _physics_process(delta):
 		velocity += get_gravity() * delta * 2
 		
 		if is_spinning:
-			state_machine.travel("spin")
+			anim_tree.set("parameters/Transition/transition_request", "spin")
 			visual_root.rotate_y(-spin_input * spin_speed * delta)
 		
 	if Input.is_action_just_pressed("orders"):
@@ -62,7 +60,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		
 	var target_pitch: float = 0.0
-	var target_y: float = default_pivot_y	
+	var target_y: float = default_pivot_y
 	if Input.is_action_pressed("wheelie") and is_on_floor():
 		target_pitch = deg_to_rad(wheelie_angle)
 		target_y = default_pivot_y + wheelie_lift_height
@@ -93,11 +91,11 @@ func _physics_process(delta):
 		var current_speed := SPEED
 
 		if is_wheelie:
-			state_machine.travel("wheelie")
+			anim_tree.set("parameters/Transition/transition_request", "wheelie")
 			# anim.play("wheelie")
 			current_speed *= 1.5
 		else:
-			state_machine.travel("ride_pose")
+			anim_tree.set("parameters/Transition/transition_request", "ride_pose")
 			# anim.play("ride_pose")
 		
 		velocity.x = movement_direction.x * current_speed
@@ -111,7 +109,7 @@ func _physics_process(delta):
 		if not is_spinning:
 			visual_root.rotation.y = lerp_angle(visual_root.rotation.y, target_rotation, delta * 10.0)
 	else:
-		state_machine.travel("idle")
+		anim_tree.set("parameters/Transition/transition_request", "idle")
 		# anim.stop()
 		
 		if is_on_floor():

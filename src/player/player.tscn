@@ -393,30 +393,6 @@ tracks/30/keys = {
 [sub_resource type="Animation" id="Animation_mf2ua"]
 resource_name = "ride_pose"
 length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("characterMedium/Root/Skeleton3D:motion_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.26),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("characterMedium/Root/Skeleton3D:show_rest_only")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.26),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, false]
-}
 
 [sub_resource type="Animation" id="Animation_o822w"]
 resource_name = "idle"
@@ -983,76 +959,51 @@ _data = {
 &"wheelie": SubResource("Animation_5f2sf")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x42xx"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_mf2ua"]
+xfade_time = 0.3
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "spin"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "ride_pose"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "wheelie"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_244u8"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l271a"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5f2sf"]
 animation = &"ride_pose"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mf2ua"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jiejy"]
 animation = &"spin"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8ydov"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o822w"]
 animation = &"wheelie"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ylhto"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cwolq"]
-xfade_time = 0.3
-switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2smqc"]
-xfade_time = 0.3
-switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rl62b"]
-xfade_time = 0.3
-switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wlj80"]
-xfade_time = 0.3
-switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6bm8s"]
-xfade_time = 0.3
-switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hrerp"]
-xfade_time = 0.3
-switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oyld2"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_244u8"]
-xfade_time = 0.3
-switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5f2sf"]
-xfade_time = 0.3
-switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jiejy"]
-xfade_time = 0.3
-switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o822w"]
-xfade_time = 0.3
-switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ktb4s"]
-states/Start/position = Vector2(164.79999, 149.85599)
-states/idle/node = SubResource("AnimationNodeAnimation_x42xx")
-states/idle/position = Vector2(322, 149.67679)
-states/ride_pose/node = SubResource("AnimationNodeAnimation_l271a")
-states/ride_pose/position = Vector2(518.8, 149.86623)
-states/spin/node = SubResource("AnimationNodeAnimation_mf2ua")
-states/spin/position = Vector2(518.992, 42.911995)
-states/wheelie/node = SubResource("AnimationNodeAnimation_8ydov")
-states/wheelie/position = Vector2(332.4, 43.199997)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ylhto"), "idle", "wheelie", SubResource("AnimationNodeStateMachineTransition_cwolq"), "wheelie", "idle", SubResource("AnimationNodeStateMachineTransition_2smqc"), "idle", "ride_pose", SubResource("AnimationNodeStateMachineTransition_rl62b"), "ride_pose", "idle", SubResource("AnimationNodeStateMachineTransition_wlj80"), "ride_pose", "wheelie", SubResource("AnimationNodeStateMachineTransition_6bm8s"), "wheelie", "ride_pose", SubResource("AnimationNodeStateMachineTransition_hrerp"), "ride_pose", "End", SubResource("AnimationNodeStateMachineTransition_oyld2"), "ride_pose", "spin", SubResource("AnimationNodeStateMachineTransition_244u8"), "spin", "ride_pose", SubResource("AnimationNodeStateMachineTransition_5f2sf"), "wheelie", "spin", SubResource("AnimationNodeStateMachineTransition_jiejy"), "spin", "wheelie", SubResource("AnimationNodeStateMachineTransition_o822w")]
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_o1uot"]
+graph_offset = Vector2(-438.93936, -32.21052)
+nodes/output/position = Vector2(416, 192)
+nodes/Transition/node = SubResource("AnimationNodeTransition_mf2ua")
+nodes/Transition/position = Vector2(112, 192)
+nodes/idle/node = SubResource("AnimationNodeAnimation_244u8")
+nodes/idle/position = Vector2(-112, 64)
+nodes/spin/node = SubResource("AnimationNodeAnimation_jiejy")
+nodes/spin/position = Vector2(-304, 192)
+nodes/ride_pose/node = SubResource("AnimationNodeAnimation_5f2sf")
+nodes/ride_pose/position = Vector2(-336, 384)
+nodes/wheelie/node = SubResource("AnimationNodeAnimation_o822w")
+nodes/wheelie/position = Vector2(-160, 480)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"idle", &"Transition", 1, &"spin", &"Transition", 2, &"ride_pose", &"Transition", 3, &"wheelie"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_n32u6"]
 height = 1.0
@@ -1131,8 +1082,11 @@ libraries/ = SubResource("AnimationLibrary_244u8")
 autoplay = &"ride_pose"
 
 [node name="AnimationTree" type="AnimationTree" parent="VisualRoot/RiderMount/Rider" unique_id=889099003]
-tree_root = SubResource("AnimationNodeStateMachine_ktb4s")
+tree_root = SubResource("AnimationNodeBlendTree_o1uot")
 anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "wheelie"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 3
 
 [node name="Area3D" type="Area3D" parent="." unique_id=2124699034]
 
