@@ -91,6 +91,7 @@ func order_finished():
 		payment = (base_payment * bonus_money) * (package_health/100.0)
 	money += payment
 	update_money_label()
+	bonus_money = WeatherManager.get_payment_multiplier()
 	
 	order_completed.emit()
 	await get_tree().create_timer(1.0).timeout
