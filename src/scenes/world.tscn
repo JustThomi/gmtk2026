@@ -35,6 +35,25 @@ glow_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8qt8"]
 albedo_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_305d2"]
+emission_shape = 3
+emission_box_extents = Vector3(100, 40, 100)
+direction = Vector3(0.4, -1, 0)
+spread = 5.0
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, -10, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_px83b"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 1, 0.99215686, 1)
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_wntae"]
+material = SubResource("StandardMaterial3D_px83b")
+size = Vector2(0.02, 0.5)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_1jhxy"]
 size = Vector3(1, 1.2657471, 1)
 
@@ -56,6 +75,14 @@ transform = Transform3D(0.9988786, 0, 0, 0, 0.9988786, 0, 0, 0, 0.9988786, 0, 0,
 use_collision = true
 size = Vector3(100, 0.2, 100)
 material = SubResource("StandardMaterial3D_p8qt8")
+
+[node name="Rain" type="GPUParticles3D" parent="." unique_id=1912364713]
+emitting = false
+amount = 1500
+lifetime = 1.5
+visibility_aabb = AABB(-100, -50, -100, 200, 100, 8)
+process_material = SubResource("ParticleProcessMaterial_305d2")
+draw_pass_1 = SubResource("QuadMesh_wntae")
 
 [node name="CharacterBody3D" parent="." unique_id=1212996814 node_paths=PackedStringArray("hud") instance=ExtResource("1_w561s")]
 transform = Transform3D(0.70710677, -1.0536712e-08, 0.70710677, 2.9802322e-08, 1.0000001, 0, -0.70710677, 3.1610135e-08, 0.70710677, 9.536743e-07, 2.034729, 0)
