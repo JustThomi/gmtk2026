@@ -5,8 +5,9 @@ extends CharacterBody3D
 @onready var visual_root: Node3D = $VisualRoot
 @onready var anim = $VisualRoot/RiderMount/Rider/AnimationPlayer
 @onready var anim_tree = $VisualRoot/RiderMount/Rider/AnimationTree
-
 @onready var backpack: Node3D = $VisualRoot/Backpack
+@onready var bikes : Array[Node3D] = [$VisualRoot/RedBike, $VisualRoot/MountainBike, $VisualRoot/Unicycle]
+@onready var rider_mount: Node3D = $VisualRoot/RiderMount
 
 @export var wheelie_angle: float = 30.0
 @export var wheelie_speed: float = 8.0
@@ -21,16 +22,20 @@ extends CharacterBody3D
 
 const SPEED = 20.0
 const JUMP_VELOCITY = 15
+const RIDER_Y_OFFSET := -2.0
+
 var default_pivot_y: float
 var wheelie_direction := Vector3.ZERO
 var is_wheelie := false
 var last_wall_collision : int = 0
 var cooldown_ms : int = 2000   
+var current_bike := 0
 
 func _ready():
 	default_pivot_y = visual_root.position.y
 	OrderManager.order_picked.connect(_on_order_picked_up)
 	OrderManager.order_completed.connect(_on_order_completed)
+	switch_bike(0)
 	set_backpack_active(false)
 
 func _process(_delta):
@@ -144,6 +149,31 @@ func _physics_process(delta):
 		last_wall_collision = current_time
 		print("The bike hit a wall" + str(current_time))
 		OrderManager.damage_package()	
+
+func switch_bike(index: int) -> void:
+	if index < 0 or index >= bikes.size():
+		return
+
+	current_bike = index
+
+	for bike in bikes:
+		bike.visible = false
+
+	var bike := bikes[index]
+	bike.visible = true
+
+	var seat: Node3D = bike.get_node("Seat")
+
+	rider_mount.global_transform = seat.global_transform
+	rider_mount.position.y += RIDER_Y_OFFSET
+
+func _unhandled_input(event):
+	if event.is_action_pressed("RedBike"):
+		switch_bike(0)
+	elif event.is_action_pressed("MountainBike"):
+		switch_bike(1)
+	elif event.is_action_pressed("Unicycle"):
+		switch_bike(2)
 
 func set_backpack_active(active: bool) -> void:
 	backpack.visible = active
