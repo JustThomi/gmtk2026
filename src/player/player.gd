@@ -14,6 +14,10 @@ extends CharacterBody3D
 @export var model_rotation_offset := deg_to_rad(-45.0)
 @export var hud: Control
 @export var spin_speed: float = 10.0
+@export var dry_acceleration := 100.0
+@export var rain_acceleration := 18.0
+@export var dry_deceleration := 100.0
+@export var rain_deceleration := 8.0
 
 const SPEED = 20.0
 const JUMP_VELOCITY = 15
@@ -101,10 +105,16 @@ func _physics_process(delta):
 			anim_tree.set("parameters/Transition/transition_request", "ride_pose")
 			# anim.play("ride_pose")
 		
-		velocity.x = movement_direction.x * current_speed
-		velocity.z = movement_direction.z * current_speed
+		var target_velocity := movement_direction * current_speed
 
-		
+		var acceleration := dry_acceleration
+
+		if WeatherManager.current_weather == WeatherManager.Weather.RAIN \
+		or WeatherManager.current_weather == WeatherManager.Weather.STORM:
+			acceleration = rain_acceleration
+
+		velocity.x = move_toward(velocity.x, target_velocity.x, acceleration * delta)
+		velocity.z = move_toward(velocity.z, target_velocity.z, acceleration * delta)
 
 		var target_rotation := atan2(-movement_direction.x, -movement_direction.z)
 		target_rotation += model_rotation_offset
@@ -113,11 +123,15 @@ func _physics_process(delta):
 			visual_root.rotation.y = lerp_angle(visual_root.rotation.y, target_rotation, delta * 10.0)
 	else:
 		anim_tree.set("parameters/Transition/transition_request", "idle")
-		# anim.stop()
 		
 		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
+			var deceleration := dry_deceleration
+			if WeatherManager.current_weather == WeatherManager.Weather.RAIN \
+			or WeatherManager.current_weather == WeatherManager.Weather.STORM:
+				deceleration = rain_deceleration
+
+			velocity.x = move_toward(velocity.x, 0.0, deceleration * delta)
+			velocity.z = move_toward(velocity.z, 0.0, deceleration * delta)
 
 	move_and_slide()
 	
