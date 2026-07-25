@@ -2,7 +2,7 @@ extends Control
 
 @onready var phone: MarginContainer = $Phone
 @onready var order_map: Window = $OrdersMap
-@onready var upgrade_window: Window = $UpgradeWindow
+@onready var upgrade_window: MarginContainer = $UpgradeWindow
 
 # TODO: remove this if we implement the map solution
 @onready var orders_page: MarginContainer = $Phone/OrdersPage
@@ -48,10 +48,7 @@ func _ready() -> void:
 	weather_icon.texture = weather_icons[WeatherManager.current_weather]
 	weather_label.text = weather_labels[WeatherManager.current_weather]
 	
-	orders_page.hide()
 	active_order_page.show()
-	
-	order_map.hide()
 
 func _process(_delta: float) -> void:
 	if OrderManager.current_target != null:
@@ -119,14 +116,3 @@ func _on_order_completed():
 	order_completed_page.show()
 	active_order_page.hide()
 	order_count.text = str(OrderManager.order_count)
-
-func _on_order_button_pressed() -> void:
-	# TODO: trigger orders here
-	orders_page.hide()
-	active_order_page.show()
-
-func _on_orders_map_close_requested():
-	order_map.hide()
-
-func _on_upgrade_button_pressed():
-	upgrade_window.show()

@@ -10,128 +10,96 @@ background_color = Color(0.95651656, 0.85045266, 0.51767874, 1)
 ambient_light_color = Color(0.6955032, 0.6955031, 0.6955031, 1)
 glow_enabled = true
 
-[node name="UpgradeWindow" type="Window" unique_id=931631803]
-transparent_bg = true
-oversampling_override = 1.0
-title = "Upgrades"
-initial_position = 2
-size = Vector2i(2560, 1440)
-borderless = true
-transparent = true
+[node name="MarginContainer" type="MarginContainer" unique_id=228152110]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -122.5
+offset_right = 159.0
+offset_bottom = 122.5
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_y60sh")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1922323999]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0.45882353)
+[node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=345494301]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=228152110]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1848205894]
+[node name="Uni" type="VBoxContainer" parent="VBoxContainer" unique_id=1621310335]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=321149260]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/Uni" unique_id=1865337605]
 layout_mode = 2
-theme_override_font_sizes/font_size = 128
-text = "Bikes"
-horizontal_alignment = 1
-vertical_alignment = 1
+size_flags_horizontal = 4
 
-[node name="Bike" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=18866938]
-layout_mode = 2
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/VBoxContainer/Bike" unique_id=17148126]
-layout_mode = 2
-
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Bike/SubViewportContainer" unique_id=524958771]
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/Uni/SubViewportContainer" unique_id=1059527464]
 own_world_3d = true
 handle_input_locally = false
-size = Vector2i(300, 200)
+size = Vector2i(150, 150)
 render_target_update_mode = 4
 
-[node name="mountain_bike" parent="MarginContainer/VBoxContainer/Bike/SubViewportContainer/SubViewport" unique_id=364604433 instance=ExtResource("2_yjahf")]
+[node name="unicycle" parent="VBoxContainer/Uni/SubViewportContainer/SubViewport" unique_id=144032613 instance=ExtResource("3_yjahf")]
 
-[node name="Camera3D" type="Camera3D" parent="MarginContainer/VBoxContainer/Bike/SubViewportContainer/SubViewport" unique_id=1709273504]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.41, 1.085, 0)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="MarginContainer/VBoxContainer/Bike/SubViewportContainer/SubViewport" unique_id=942606012]
-environment = SubResource("Environment_yjahf")
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Bike" unique_id=1584437329]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 1
-theme_override_font_sizes/font_size = 64
-text = "Mountain Bike"
-
-[node name="Cost" type="Label" parent="MarginContainer/VBoxContainer/Bike/Button" unique_id=1233512688]
-layout_mode = 0
-offset_left = 1832.0
-offset_top = 16.0
-offset_right = 2042.0
-offset_bottom = 83.0
-theme_override_font_sizes/font_size = 48
-text = "Cost: 200"
-
-[node name="Bike2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=246714516]
-layout_mode = 2
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/VBoxContainer/Bike2" unique_id=1865337605]
-layout_mode = 2
-
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Bike2/SubViewportContainer" unique_id=1059527464]
-own_world_3d = true
-handle_input_locally = false
-size = Vector2i(300, 200)
-render_target_update_mode = 4
-
-[node name="unicycle" parent="MarginContainer/VBoxContainer/Bike2/SubViewportContainer/SubViewport" unique_id=144032613 instance=ExtResource("3_yjahf")]
-
-[node name="Camera3D" type="Camera3D" parent="MarginContainer/VBoxContainer/Bike2/SubViewportContainer/SubViewport" unique_id=183181037]
+[node name="Camera3D" type="Camera3D" parent="VBoxContainer/Uni/SubViewportContainer/SubViewport" unique_id=183181037]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.177389, 1.085, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="MarginContainer/VBoxContainer/Bike2/SubViewportContainer/SubViewport" unique_id=731616191]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="VBoxContainer/Uni/SubViewportContainer/SubViewport" unique_id=731616191]
 environment = SubResource("Environment_yjahf")
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Bike2" unique_id=723797431]
+[node name="UniButton" type="Button" parent="VBoxContainer/Uni" unique_id=723797431]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 32
 text = "Unicycle
 "
 
-[node name="Cost" type="Label" parent="MarginContainer/VBoxContainer/Bike2/Button" unique_id=24522127]
-layout_mode = 0
-offset_left = 1832.0
-offset_top = 16.0
-offset_right = 2042.0
-offset_bottom = 83.0
-theme_override_font_sizes/font_size = 48
+[node name="Cost" type="Label" parent="VBoxContainer/Uni" unique_id=24522127]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Cost: 150"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=111934995]
+[node name="Mountain" type="VBoxContainer" parent="VBoxContainer" unique_id=1822233490]
+layout_mode = 2
+alignment = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/Mountain" unique_id=17148126]
 layout_mode = 2
 size_flags_horizontal = 4
-focus_mode = 1
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.5137255, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "Back"
-flat = true
 
-[connection signal="close_requested" from="." to="." method="_on_close_requested"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Bike/Button" to="." method="_on_mountain_bike_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Bike2/Button" to="." method="_on_unicycle_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/Mountain/SubViewportContainer" unique_id=524958771]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(150, 150)
+render_target_update_mode = 4
+
+[node name="mountain_bike" parent="VBoxContainer/Mountain/SubViewportContainer/SubViewport" unique_id=364604433 instance=ExtResource("2_yjahf")]
+
+[node name="Camera3D" type="Camera3D" parent="VBoxContainer/Mountain/SubViewportContainer/SubViewport" unique_id=1709273504]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.41, 1.085, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="VBoxContainer/Mountain/SubViewportContainer/SubViewport" unique_id=942606012]
+environment = SubResource("Environment_yjahf")
+
+[node name="MountainButton" type="Button" parent="VBoxContainer/Mountain" unique_id=1584437329]
+layout_mode = 2
+focus_mode = 1
+theme_override_font_sizes/font_size = 32
+text = "Mountain"
+
+[node name="Cost" type="Label" parent="VBoxContainer/Mountain" unique_id=1233512688]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Cost: 200"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Uni/UniButton" to="." method="_on_uni_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Mountain/MountainButton" to="." method="_on_mountain_button_pressed"]

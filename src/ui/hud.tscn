@@ -6,9 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://ds4wxvyjd83g2" path="res://assets/ui/phone/mickeychickey.png" id="3_snmo6"]
 [ext_resource type="PackedScene" uid="uid://c4kfqjg70wip0" path="res://src/ui/watch.tscn" id="3_w067o"]
 [ext_resource type="Texture2D" uid="uid://bjjblsopnn38b" path="res://assets/ui/weather/clear.png" id="5_vbpn1"]
-[ext_resource type="Texture2D" uid="uid://5eihtu0jtb41" path="res://assets/ui/upgrade_button/upgrade_icon.png" id="5_yy3iv"]
-[ext_resource type="Texture2D" uid="uid://co101jitryv6g" path="res://assets/ui/upgrade_button/pressed_upgrade_icon.png" id="6_751uk"]
-[ext_resource type="Texture2D" uid="uid://wuy61fjabqyr" path="res://assets/ui/upgrade_button/hover_upgrade_icon.png" id="7_w067o"]
 [ext_resource type="Texture2D" uid="uid://cnlmro4nmifh1" path="res://assets/ui/watch/cash.png" id="10_w067o"]
 [ext_resource type="FontFile" uid="uid://cfiqyq6u6hy7p" path="res://assets/ui/Monocraft.ttf" id="11_je3ri"]
 
@@ -49,17 +46,13 @@ mouse_filter = 1
 script = ExtResource("1_4rn03")
 
 [node name="UpgradeWindow" parent="." unique_id=931631803 instance=ExtResource("2_r2cn7")]
-visible = false
-
-[node name="OrdersMap" type="Window" parent="." unique_id=100749499]
-oversampling_override = 1.0
-title = "Available Orders"
-initial_position = 1
-size = Vector2i(600, 400)
-visible = false
-
-[node name="Camera3D" type="Camera3D" parent="OrdersMap" unique_id=296804481]
-transform = Transform3D(0.70710677, -0.35355353, 0.61237246, 7.1054274e-15, 0.86602527, 0.50000006, -0.70710665, -0.35355344, 0.6123724, 20, 30, 20)
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -245.0
+offset_bottom = 0.0
+grow_vertical = 0
 
 [node name="Watch" parent="." unique_id=13946085 instance=ExtResource("3_w067o")]
 layout_mode = 1
@@ -116,44 +109,6 @@ text = "Order
 Completed"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="OrdersPage" type="MarginContainer" parent="Phone" unique_id=1915270468]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 10
-
-[node name="MenuContainer" type="VBoxContainer" parent="Phone/OrdersPage" unique_id=337715491]
-layout_mode = 2
-
-[node name="OrderButton" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=1526215691]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
-theme_override_colors/font_hover_color = Color(0.6017273, 0.70538116, 1.069, 1)
-text = "Order"
-icon = ExtResource("3_snmo6")
-flat = true
-
-[node name="OrderButton2" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=1799753123]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
-theme_override_colors/font_hover_color = Color(0.6017273, 0.70538116, 1.069, 1)
-text = "Order"
-icon = ExtResource("3_snmo6")
-flat = true
-
-[node name="OrderButton3" type="Button" parent="Phone/OrdersPage/MenuContainer" unique_id=162682717]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
-theme_override_colors/font_hover_color = Color(0.6017273, 0.70538116, 1.069, 1)
-text = "Order"
-icon = ExtResource("3_snmo6")
-flat = true
 
 [node name="ActiveOrderPage" type="MarginContainer" parent="Phone" unique_id=94629585]
 layout_mode = 2
@@ -293,37 +248,13 @@ theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 theme_override_font_sizes/font_size = 17
 text = "0"
 
-[node name="MenuBar" type="HBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=610479693]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="HBoxContainer" type="VBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer/MenuBar" unique_id=1277026389]
-layout_mode = 2
-alignment = 1
-
-[node name="Upgrade" type="Label" parent="Phone/ActiveOrderPage/MenuContainer/MenuBar/HBoxContainer" unique_id=503985567]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
-text = "Upgrades"
-vertical_alignment = 1
-
-[node name="UpgradeButton" type="TextureButton" parent="Phone/ActiveOrderPage/MenuContainer/MenuBar/HBoxContainer" unique_id=1908408421]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 3
-texture_normal = ExtResource("5_yy3iv")
-texture_pressed = ExtResource("6_751uk")
-texture_hover = ExtResource("7_w067o")
-stretch_mode = 5
-
 [node name="PhoneBorder" type="TextureRect" parent="Phone" unique_id=1475240221]
 texture_filter = 1
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("1_eqvli")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=794363815]
+[node name="Money" type="HBoxContainer" parent="." unique_id=794363815]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 50.0
@@ -331,21 +262,15 @@ offset_right = 383.3333
 offset_bottom = 150.0
 theme_override_constants/separation = 10
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1487312805]
+[node name="TextureRect" type="TextureRect" parent="Money" unique_id=1487312805]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("10_w067o")
 stretch_mode = 5
 
-[node name="MoneyLabel" type="Label" parent="HBoxContainer" unique_id=1803152225]
+[node name="MoneyLabel" type="Label" parent="Money" unique_id=1803152225]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("11_je3ri")
 theme_override_font_sizes/font_size = 48
 text = "100.0"
-
-[connection signal="close_requested" from="OrdersMap" to="." method="_on_orders_map_close_requested"]
-[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton" to="." method="_on_order_button_pressed"]
-[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton2" to="." method="_on_order_button_pressed"]
-[connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton3" to="." method="_on_order_button_pressed"]
-[connection signal="pressed" from="Phone/ActiveOrderPage/MenuContainer/MenuBar/HBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
