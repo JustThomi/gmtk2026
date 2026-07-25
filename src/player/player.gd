@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var backpack: Node3D = $VisualRoot/Backpack
 @onready var bikes : Array[Node3D] = [$VisualRoot/RedBike, $VisualRoot/MountainBike, $VisualRoot/Unicycle]
 @onready var rider_mount: Node3D = $VisualRoot/RiderMount
+@onready var upgrade_window = $"../HUD/UpgradeWindow"
 
 @export var wheelie_angle: float = 30.0
 @export var wheelie_speed: float = 8.0
@@ -24,6 +25,7 @@ const SPEED = 20.0
 const JUMP_VELOCITY = 15
 const RIDER_Y_OFFSET := -2.0
 
+var unlocked_bikes: Array[bool] = [true, false, false]
 var default_pivot_y: float
 var wheelie_direction := Vector3.ZERO
 var is_wheelie := false
@@ -36,6 +38,7 @@ func _ready():
 	OrderManager.order_picked.connect(_on_order_picked_up)
 	OrderManager.order_completed.connect(_on_order_completed)
 	switch_bike(0)
+	upgrade_window.bike_bought.connect(_on_bike_bought)
 	set_backpack_active(false)
 
 func _process(_delta):
@@ -154,6 +157,9 @@ func switch_bike(index: int) -> void:
 	if index < 0 or index >= bikes.size():
 		return
 
+	if not unlocked_bikes[index]:
+		return
+
 	current_bike = index
 
 	for bike in bikes:
@@ -183,3 +189,9 @@ func _on_order_picked_up():
 
 func _on_order_completed():
 	set_backpack_active(false)
+
+func _on_bike_bought(index: int) -> void:
+	if index < 0 or index >= unlocked_bikes.size():
+		return
+
+	unlocked_bikes[index] = true

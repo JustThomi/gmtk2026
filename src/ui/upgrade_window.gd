@@ -8,6 +8,7 @@ extends Window
 @export var money_for_mountain_bike: int = 200
 @export var money_for_unicycle: int = 150 
 
+signal bike_bought(index: int)
 
 func _process(_delta):
 	spin_bikes()
@@ -24,19 +25,19 @@ func _on_close_requested():
 
 
 func _on_mountain_bike_button_pressed():
-	# TODO: change player model here
 	if(OrderManager.money >= money_for_mountain_bike):
 		$MarginContainer/VBoxContainer/Bike/Button.disabled = true
 		OrderManager.money -= money_for_mountain_bike
 		OrderManager.update_money_label()
 		mountain_bike_cost_label.text = "Bought"
+		bike_bought.emit(1)
 		hide()
 
 func _on_unicycle_button_pressed():
-	# TODO: change player model here
 	if(OrderManager.money >= money_for_unicycle):
 		$MarginContainer/VBoxContainer/Bike2/Button.disabled = true
 		OrderManager.money -= money_for_unicycle
 		OrderManager.update_money_label()
 		unicylce_cost_label.text = "Bought"
+		bike_bought.emit(2)
 		hide()
