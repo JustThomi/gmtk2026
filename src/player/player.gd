@@ -24,7 +24,7 @@ extends CharacterBody3D
 @export var rain_deceleration := 8.0
 
 const SPEED = 20.0
-const JUMP_VELOCITY = 15
+const JUMP_VELOCITY = 12
 const RIDER_Y_OFFSET := -2.0
 
 var unlocked_bikes: Array[bool] = [true, false, false]
@@ -37,7 +37,7 @@ var current_bike := 0
 var accumulated_spin: float = 0.0
 var was_in_air: bool = false
 var popup_base_y: float = 2.5
-var has_bonus : bool = false
+var spins_nr : int = 0
 
 func _ready():
 	default_pivot_y = visual_root.position.y
@@ -79,10 +79,10 @@ func _physics_process(delta):
 	elif was_in_air:
 		was_in_air = false
 		var rotations: int = floori(accumulated_spin / TAU)
-		if rotations > 0 and !has_bonus:
+		if rotations > 0 and spins_nr < rotations:
 			# +1 ca altfel faci *1 ca prostu
 			OrderManager.bonus_money *= (rotations + 1)
-			has_bonus = true;
+			spins_nr = rotations;
 			show_spin_multiplier(rotations) # Trigger the visual effect!
 		accumulated_spin = 0.0
 			
@@ -172,7 +172,7 @@ func _physics_process(delta):
 		
 		last_wall_collision = current_time
 		print("The bike hit a wall" + str(current_time))
-		has_bonus = false
+		spins_nr = 0
 		OrderManager.bonus_money = WeatherManager.get_payment_multiplier()
 		OrderManager.damage_package()
 
