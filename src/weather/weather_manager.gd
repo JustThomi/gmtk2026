@@ -27,7 +27,7 @@ func weather_loop() -> void:
 
 
 func change_random_weather():
-	var possible_weathers = [Weather.CLEAR, Weather.CLEAR, Weather.CLEAR, Weather.RAIN, Weather.FOG, Weather.STORM]
+	var possible_weathers = [Weather.CLEAR, Weather.CLEAR, Weather.CLEAR, Weather.FOG, Weather.RAIN, Weather.STORM]
 	
 	current_weather = possible_weathers.pick_random()
 	if current_weather == Weather.STORM and !lightning_running:

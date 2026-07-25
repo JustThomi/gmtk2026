@@ -8,6 +8,11 @@ extends CharacterBody3D
 @onready var spin_popup: Label3D = $VisualRoot/SpinPopup
 
 @onready var backpack: Node3D = $VisualRoot/Backpack
+@onready var bikes : Array[Node3D] = [$VisualRoot/RedBike, $VisualRoot/MountainBike, $VisualRoot/Unicycle]
+@onready var colliders: Array[CollisionShape3D] = [$RedBikeCollider, $MountainBikeCollider, $UnicycleCollider]
+@export var bike_speed_multipliers : Array[float] = [1.0, 1.0,  1.3 ]
+@onready var rider_mount: Node3D = $VisualRoot/RiderMount
+@onready var upgrade_window = $"../HUD/UpgradeWindow"
 
 @export var wheelie_angle: float = 30.0
 @export var wheelie_speed: float = 8.0
@@ -15,23 +20,33 @@ extends CharacterBody3D
 @export var model_rotation_offset := deg_to_rad(-45.0)
 @export var hud: Control
 @export var spin_speed: float = 10.0
+@export var dry_acceleration := 100.0
+@export var rain_acceleration := 18.0
+@export var dry_deceleration := 100.0
+@export var rain_deceleration := 8.0
 
 const SPEED = 20.0
-const JUMP_VELOCITY = 10
+const JUMP_VELOCITY = 12
+const RIDER_Y_OFFSET := -2.0
+
+var unlocked_bikes: Array[bool] = [true, false, false]
 var default_pivot_y: float
 var wheelie_direction := Vector3.ZERO
 var is_wheelie := false
 var last_wall_collision : int = 0
 var cooldown_ms : int = 2000
-
+var current_bike := 0
 var accumulated_spin: float = 0.0
 var was_in_air: bool = false
 var popup_base_y: float = 2.5
+var spins_nr : int = 0
 
 func _ready():
 	default_pivot_y = visual_root.position.y
 	OrderManager.order_picked.connect(_on_order_picked_up)
 	OrderManager.order_completed.connect(_on_order_completed)
+	switch_bike(0)
+	upgrade_window.bike_bought.connect(_on_bike_bought)
 	set_backpack_active(false)
 	if spin_popup:
 		popup_base_y = spin_popup.position.y
@@ -66,13 +81,13 @@ func _physics_process(delta):
 	elif was_in_air:
 		was_in_air = false
 		var rotations: int = floori(accumulated_spin / TAU)
-		if rotations > 0:
+		if rotations > 0 and spins_nr < rotations:
 			# +1 ca altfel faci *1 ca prostu
 			OrderManager.bonus_money *= (rotations + 1)
+			spins_nr = rotations;
 			show_spin_multiplier(rotations) # Trigger the visual effect!
 		accumulated_spin = 0.0
 			
-		
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
 	
@@ -111,7 +126,7 @@ func _physics_process(delta):
 		movement_direction = wheelie_direction
 
 	if movement_direction.length_squared() > 0.0:
-		var current_speed := SPEED
+		var current_speed := SPEED * bike_speed_multipliers[current_bike]
 
 		if is_wheelie:
 			anim_tree.set("parameters/Transition/transition_request", "wheelie")
@@ -121,8 +136,15 @@ func _physics_process(delta):
 			anim_tree.set("parameters/Transition/transition_request", "ride_pose")
 			# anim.play("ride_pose")
 		
-		velocity.x = movement_direction.x * current_speed
-		velocity.z = movement_direction.z * current_speed
+		var target_velocity := movement_direction * current_speed
+
+		var acceleration := dry_acceleration
+
+		if should_be_slippery():
+			acceleration = rain_acceleration
+
+		velocity.x = move_toward(velocity.x, target_velocity.x, acceleration * delta)
+		velocity.z = move_toward(velocity.z, target_velocity.z, acceleration * delta)
 
 		var target_rotation := atan2(-movement_direction.x, -movement_direction.z)
 		target_rotation += model_rotation_offset
@@ -133,12 +155,16 @@ func _physics_process(delta):
 		anim_tree.set("parameters/Transition/transition_request", "idle")
 		
 		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
+			var deceleration := dry_deceleration
+			if should_be_slippery():
+				deceleration = rain_deceleration
+
+			velocity.x = move_toward(velocity.x, 0.0, deceleration * delta)
+			velocity.z = move_toward(velocity.z, 0.0, deceleration * delta)
 
 	move_and_slide()
 	
-	if is_on_wall() and OrderManager.is_order_picked:		
+	if is_on_wall() and OrderManager.is_order_picked:
 		var current_time = Time.get_ticks_msec()
 		
 		if current_time - last_wall_collision < cooldown_ms:
@@ -146,7 +172,41 @@ func _physics_process(delta):
 		
 		last_wall_collision = current_time
 		print("The bike hit a wall" + str(current_time))
-		OrderManager.damage_package()	
+		spins_nr = 0
+		OrderManager.bonus_money = WeatherManager.get_payment_multiplier()
+		OrderManager.damage_package()
+
+func switch_bike(index: int) -> void:
+	if index < 0 or index >= bikes.size():
+		return
+
+	if not unlocked_bikes[index]:
+		return
+
+	current_bike = index
+
+	for bike in bikes:
+		bike.visible = false
+
+	for collider in colliders:
+		collider.disabled = true
+		colliders[index].disabled = false
+
+	var bike := bikes[index]
+	bike.visible = true
+
+	var seat: Node3D = bike.get_node("Seat")
+
+	rider_mount.global_transform = seat.global_transform
+	rider_mount.position.y += RIDER_Y_OFFSET
+
+func _unhandled_input(event):
+	if event.is_action_pressed("RedBike"):
+		switch_bike(0)
+	elif event.is_action_pressed("MountainBike"):
+		switch_bike(1)
+	elif event.is_action_pressed("Unicycle"):
+		switch_bike(2)
 
 func set_backpack_active(active: bool) -> void:
 	backpack.visible = active
@@ -156,7 +216,13 @@ func _on_order_picked_up():
 
 func _on_order_completed():
 	set_backpack_active(false)
-	
+
+func _on_bike_bought(index: int) -> void:
+	if index < 0 or index >= unlocked_bikes.size():
+		return
+
+	unlocked_bikes[index] = true
+
 func show_spin_multiplier(rotations: int) -> void:
 	spin_popup.text = "x" + str(rotations + 1) + " SPIN!"
 	
@@ -169,3 +235,13 @@ func show_spin_multiplier(rotations: int) -> void:
 	tween.tween_property(spin_popup, "scale", Vector3(1, 1, 1), 0.3).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
 	tween.tween_property(spin_popup, "position:y", popup_base_y + 1.0, 2.0).set_ease(Tween.EASE_OUT)
 	tween.tween_property(spin_popup, "modulate:a", 0.0, 0.5).set_delay(1.5)
+
+func should_be_slippery() -> bool:
+	var bad_weather := (
+		WeatherManager.current_weather == WeatherManager.Weather.RAIN
+		or WeatherManager.current_weather == WeatherManager.Weather.STORM
+	)
+
+	var is_mountain_bike := current_bike == 1
+
+	return bad_weather and not is_mountain_bike
