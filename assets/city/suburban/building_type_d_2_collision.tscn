@@ -11,7 +11,8 @@ size = Vector3(1.7388916, 0.5340576, 1)
 [node name="building-type-d2" unique_id=1309504679 instance=ExtResource("1_41whg")]
 transform = Transform3D(2.76, 0, 0, 0, 2.76, 0, 0, 0, 2.76, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="building-type-d" parent_id_path=PackedInt32Array(1618087324) index="0" unique_id=1543277092]
+[node name="StaticBody3D" type="StaticBody3D" parent="building-type-d" parent_id_path=PackedInt32Array(1759831626) index="0" unique_id=1543277092]
+collision_layer = 2
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="building-type-d/StaticBody3D" index="0" unique_id=1218129068]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19237892, 0.81721103, 0)

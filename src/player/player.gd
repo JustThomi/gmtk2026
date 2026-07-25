@@ -41,6 +41,7 @@ var accumulated_spin: float = 0.0
 var was_in_air: bool = false
 var popup_base_y: float = 2.5
 var popup_tween: Tween
+var spins_nr : int = 0
 
 func _ready():
 	default_pivot_y = visual_root.position.y
@@ -165,7 +166,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	if is_on_wall():
+	if is_on_wall() and OrderManager.is_order_picked:
 		var current_time = Time.get_ticks_msec()
 		
 		if current_time - last_wall_collision < cooldown_ms:

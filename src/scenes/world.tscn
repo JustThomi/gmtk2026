@@ -94,7 +94,7 @@ current = true
 size = 30.0
 near = 0.001
 
-[node name="Restaurants" type="Node3D" parent="." unique_id=144947212]
+[node name="Restaurants" type="Node3D" parent="." unique_id=144947212 groups=["Buildings"]]
 
 [node name="Target" parent="Restaurants" unique_id=1112194499 instance=ExtResource("6_c0n45")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.016922, 0, 24.133606)
@@ -104,7 +104,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.59289, 0, -40.062786)
 visible = false
 
-[node name="Homes" type="Node3D" parent="." unique_id=1225066196]
+[node name="Homes" type="Node3D" parent="." unique_id=1225066196 groups=["Buildings"]]
 
 [node name="Target" parent="Homes" unique_id=2033228995 instance=ExtResource("6_c0n45")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.745075, -1.9073486e-06, -17.452238)
@@ -121,7 +121,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.304863, -1.9073486e-06, -4
 visible = false
 type = 1
 
-[node name="Buildings" type="Node3D" parent="." unique_id=1003195088]
+[node name="Buildings" type="Node3D" parent="." unique_id=1003195088 groups=["Buildings"]]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
 [node name="building-type-a2" parent="Buildings" unique_id=2107295570 instance=ExtResource("5_1fyld")]
