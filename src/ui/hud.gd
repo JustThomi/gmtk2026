@@ -1,11 +1,8 @@
 extends Control
 
 @onready var phone: MarginContainer = $Phone
-@onready var order_map: Window = $OrdersMap
-@onready var upgrade_window: MarginContainer = $UpgradeWindow
-
-# TODO: remove this if we implement the map solution
-@onready var orders_page: MarginContainer = $Phone/OrdersPage
+@onready var watch: TextureRect = $Watch
+@onready var money_label: Label = $Money/MoneyLabel
 
 @onready var active_order_page: MarginContainer = $Phone/ActiveOrderPage
 @onready var active_order_image: TextureRect = $Phone/ActiveOrderPage/MenuContainer/TextureRect
@@ -43,6 +40,9 @@ func _ready() -> void:
 	OrderManager.order_completed.connect(_on_order_completed)
 	OrderManager.order_started.connect(_on_order_started)
 	OrderManager.order_picked.connect(_on_order_picked)
+	
+	OrderManager.set_timer_label(watch.timer_label)
+	OrderManager.set_money_label(money_label)
 	
 	WeatherManager.weather_changed.connect(_on_weather_changed)
 	weather_icon.texture = weather_icons[WeatherManager.current_weather]

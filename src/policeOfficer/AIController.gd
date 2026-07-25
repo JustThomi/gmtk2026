@@ -20,7 +20,7 @@ var target_y_rot : float
 
 var player_distance : float
 
-func _process(delta):
+func _process(_delta):
 	if player != null:
 		player_distance = position.distance_to(player.position)
 
@@ -56,13 +56,13 @@ func _physics_process(delta):
 	
 	update_animations()
 
-func set_alert_visible(is_visible : bool):
+func set_alert_visible(is_vis : bool):
 	if alert_sprite != null:
-		alert_sprite.visible = is_visible
+		alert_sprite.visible = is_vis
 
-func set_fine_visible(is_visible : bool):
+func set_fine_visible(is_vis : bool):
 	if fine_sprite != null:
-		fine_sprite.visible = is_visible
+		fine_sprite.visible = is_vis
 
 func update_animations():
 	if anim_player == null or is_playing_emote:

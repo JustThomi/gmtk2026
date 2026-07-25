@@ -1,7 +1,5 @@
 extends Node3D
 
-@onready var timer_label: Label = $HUD/TimerLabel
-@onready var money_label: Label = $HUD/MoneyLabel
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 @onready var environment: Environment = world_environment.environment
 @onready var sun: DirectionalLight3D = $DirectionalLight3D
@@ -12,8 +10,6 @@ func _ready() -> void:
 	var h = $Homes.get_children()
 	
 	OrderManager.player = $CharacterBody3D
-	OrderManager.set_timer_label(timer_label)
-	OrderManager.set_money_label(money_label)
 	OrderManager.start_timer()
 	OrderManager.load_targets(r, h)
 	OrderManager.generate_order()
