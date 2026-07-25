@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1shj0s3h4vl0"
-path="res://.godot/imported/phone_border.png-b86c8b2cbf5b536eb0ce153e0014e0b5.ctex"
+uid="uid://5eihtu0jtb41"
+path="res://.godot/imported/upgrade_icon.png-e5d37eb3f0b39bf3f93a1bc3cb9dddfc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/phone_border.png"
-dest_files=["res://.godot/imported/phone_border.png-b86c8b2cbf5b536eb0ce153e0014e0b5.ctex"]
+source_file="res://assets/ui/upgrade_button/upgrade_icon.png"
+dest_files=["res://.godot/imported/upgrade_icon.png-e5d37eb3f0b39bf3f93a1bc3cb9dddfc.ctex"]
 
 [params]
 

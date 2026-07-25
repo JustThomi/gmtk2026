@@ -2,6 +2,7 @@ extends Control
 
 @onready var phone: MarginContainer = $Phone
 @onready var order_map: Window = $OrdersMap
+@onready var upgrade_window: Window = $UpgradeWindow
 
 # TODO: remove this if we implement the map solution
 @onready var orders_page: MarginContainer = $Phone/OrdersPage
@@ -18,8 +19,8 @@ extends Control
 
 @export var phone_offset:float = 350.0
 
-var restaurant_image: Texture = preload("res://assets/ui/mickeychickey.png")
-var house_image: Texture = preload("res://assets/ui/house.png")
+var restaurant_image: Texture = preload("res://assets/ui/phone/mickeychickey.png")
+var house_image: Texture = preload("res://assets/ui/phone/house.png")
 
 var weather_icons := [
 	load("res://assets/ui/weather/clear.png"),
@@ -78,3 +79,6 @@ func _on_order_button_pressed() -> void:
 
 func _on_orders_map_close_requested():
 	order_map.hide()
+
+func _on_upgrade_button_pressed():
+	upgrade_window.show()

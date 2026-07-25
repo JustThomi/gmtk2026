@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds4wxvyjd83g2"
-path="res://.godot/imported/mickeychickey.png-b99a55dac50b4b6f069d610651509b03.ctex"
+uid="uid://dxe6wh5ddr8o3"
+path="res://.godot/imported/house.png-bd4d2cf84c20d0bb0910eeaa8d62ce4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/mickeychickey.png"
-dest_files=["res://.godot/imported/mickeychickey.png-b99a55dac50b4b6f069d610651509b03.ctex"]
+source_file="res://assets/ui/phone/house.png"
+dest_files=["res://.godot/imported/house.png-bd4d2cf84c20d0bb0910eeaa8d62ce4a.ctex"]
 
 [params]
 

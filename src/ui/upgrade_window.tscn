@@ -71,6 +71,7 @@ environment = SubResource("Environment_yjahf")
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Bike" unique_id=1584437329]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 1
 theme_override_font_sizes/font_size = 64
 text = "Mountain Bike"
 
@@ -97,6 +98,7 @@ environment = SubResource("Environment_yjahf")
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Bike2" unique_id=723797431]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 1
 theme_override_font_sizes/font_size = 64
 text = "Unicycle
 "
