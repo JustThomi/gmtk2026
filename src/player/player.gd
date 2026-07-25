@@ -20,6 +20,7 @@ extends CharacterBody3D
 @export var model_rotation_offset := deg_to_rad(-45.0)
 @export var hud: Control
 @export var spin_speed: float = 10.0
+@export var big_crash_speed: float = 15.0
 @export var dry_acceleration := 100.0
 @export var rain_acceleration := 18.0
 @export var dry_deceleration := 100.0
@@ -39,12 +40,13 @@ var current_bike := 0
 var accumulated_spin: float = 0.0
 var was_in_air: bool = false
 var popup_base_y: float = 2.5
-var spins_nr : int = 0
+var popup_tween: Tween
 
 func _ready():
 	default_pivot_y = visual_root.position.y
 	OrderManager.order_picked.connect(_on_order_picked_up)
 	OrderManager.order_completed.connect(_on_order_completed)
+	OrderManager.combo_penalty.connect(_on_combo_penalty)
 	switch_bike(0)
 	upgrade_window.bike_bought.connect(_on_bike_bought)
 	set_backpack_active(false)
@@ -82,11 +84,9 @@ func _physics_process(delta):
 	elif was_in_air:
 		was_in_air = false
 		var rotations: int = floori(accumulated_spin / TAU)
-		if rotations > 0 and spins_nr < rotations:
-			# +1 ca altfel faci *1 ca prostu
-			OrderManager.bonus_money *= (rotations + 1)
-			spins_nr = rotations;
-			show_spin_multiplier(rotations) # Trigger the visual effect!
+		if rotations > 0:
+			OrderManager.add_tricks(rotations)
+			show_spin_multiplier(rotations, OrderManager.combo_multiplier)
 		accumulated_spin = 0.0
 			
 	if Input.is_action_just_pressed("escape"):
@@ -165,17 +165,28 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	if is_on_wall() and OrderManager.is_order_picked:
+	if is_on_wall():
 		var current_time = Time.get_ticks_msec()
 		
 		if current_time - last_wall_collision < cooldown_ms:
 			return
 		
 		last_wall_collision = current_time
-		print("The bike hit a wall" + str(current_time))
-		spins_nr = 0
-		OrderManager.bonus_money = WeatherManager.get_payment_multiplier()
-		OrderManager.damage_package()
+		if _is_touching_police():
+			OrderManager.register_police_bust()
+			accumulated_spin = 0.0
+			return
+		var crash_speed := Vector3(velocity.x, 0.0, velocity.z).length()
+		OrderManager.register_crash(crash_speed >= big_crash_speed)
+		if OrderManager.is_order_picked:
+			OrderManager.damage_package()
+		accumulated_spin = 0.0
+
+func _is_touching_police() -> bool:
+	for i in get_slide_collision_count():
+		if get_slide_collision(i).get_collider() is AIController:
+			return true
+	return false
 
 func switch_bike(index: int) -> void:
 	if index < 0 or index >= bikes.size():
@@ -224,21 +235,48 @@ func _on_bike_bought(index: int) -> void:
 
 	unlocked_bikes[index] = true
 
-func show_spin_multiplier(rotations: int) -> void:
-	spin_popup.text = "x" + str(rotations + 1) + " SPIN!"
-	
+func show_spin_multiplier(rotations: int, total_mult: float) -> void:
+	var tier_word := "NICE!"
+	var tier_color := Color("9be7ff")
+	var pop_scale := 1.0
+	if total_mult >= 7.0:
+		tier_word = "INSANE!"
+		tier_color = Color("ff4d6d")
+		pop_scale = 1.6
+	elif total_mult >= 5.0:
+		tier_word = "SICK!"
+		tier_color = Color("ff884d")
+		pop_scale = 1.4
+	elif total_mult >= 3.5:
+		tier_word = "GNARLY!"
+		tier_color = Color("ffcf4d")
+		pop_scale = 1.25
+	elif total_mult >= 2.0:
+		tier_word = "RAD!"
+		tier_color = Color("7dff9b")
+		pop_scale = 1.1
+
+	pop_scale = minf(pop_scale + (rotations - 1) * 0.08, 2.0)
+	_play_popup("%s  x%.1f" % [tier_word, total_mult], tier_color, pop_scale)
+
+func _on_combo_penalty(message: String, color: Color) -> void:
+	_play_popup(message, color, 1.2)
+
+func _play_popup(text: String, color: Color, pop_scale: float) -> void:
+	if popup_tween and popup_tween.is_valid():
+		popup_tween.kill()
+
+	spin_popup.text = text
 	spin_popup.position.y = popup_base_y
 	spin_popup.scale = Vector3.ZERO
-	
-	# Reset BOTH alphas to fully visible before the animation starts
-	spin_popup.modulate.a = 1.0
-	spin_popup.outline_modulate.a = 1.0 
-	
-	var tween = get_tree().create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(spin_popup, "scale", Vector3(1, 1, 1), 0.3).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
-	tween.tween_property(spin_popup, "modulate:a", 0.0, 0.5).set_delay(2.5)
-	tween.tween_property(spin_popup, "outline_modulate:a", 0.0, 0.5).set_delay(2.5)
+	spin_popup.modulate = Color(color, 1.0)
+	spin_popup.outline_modulate = Color(1.0, 1.0, 1.0, 1.0)
+
+	popup_tween = get_tree().create_tween()
+	popup_tween.set_parallel(true)
+	popup_tween.tween_property(spin_popup, "scale", Vector3.ONE * pop_scale, 0.3).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
+	popup_tween.tween_property(spin_popup, "modulate:a", 0.0, 0.5).set_delay(2.5)
+	popup_tween.tween_property(spin_popup, "outline_modulate:a", 0.0, 0.5).set_delay(2.5)
 
 func should_be_slippery() -> bool:
 	var bad_weather := (

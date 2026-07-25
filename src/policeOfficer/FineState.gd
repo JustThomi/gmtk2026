@@ -8,6 +8,7 @@ func enter():
 	super.enter()
 	
 	OrderManager.apply_fine(fine_amount)
+	OrderManager.register_police_bust()
 	
 	controller.is_stopped = true
 	controller.is_running = false
