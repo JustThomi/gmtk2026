@@ -9,6 +9,7 @@ extends CharacterBody3D
 
 @onready var backpack: Node3D = $VisualRoot/Backpack
 @onready var bikes : Array[Node3D] = [$VisualRoot/RedBike, $VisualRoot/MountainBike, $VisualRoot/Unicycle]
+@onready var colliders: Array[CollisionShape3D] = [$RedBikeCollider, $MountainBikeCollider, $UnicycleCollider]
 @onready var rider_mount: Node3D = $VisualRoot/RiderMount
 @onready var upgrade_window = $"../HUD/UpgradeWindow"
 
@@ -182,6 +183,10 @@ func switch_bike(index: int) -> void:
 
 	for bike in bikes:
 		bike.visible = false
+
+	for collider in colliders:
+		collider.disabled = true
+		colliders[index].disabled = false
 
 	var bike := bikes[index]
 	bike.visible = true
