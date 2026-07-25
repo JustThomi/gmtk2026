@@ -16,7 +16,7 @@ extends CharacterBody3D
 @export var spin_speed: float = 10.0
 
 const SPEED = 20.0
-const JUMP_VELOCITY = 15
+const JUMP_VELOCITY = 10
 var default_pivot_y: float
 var wheelie_direction := Vector3.ZERO
 var is_wheelie := false

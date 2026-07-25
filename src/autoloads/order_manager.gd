@@ -78,7 +78,7 @@ func order_finished():
 	player.arrow.hide()
 	is_order_picked = false
 	timer_running = true
-	var payment :float = base_payment * WeatherManager.get_payment_multiplier()
+	var payment :float = (base_payment * WeatherManager.get_payment_multiplier()) * (package_health/100.0)
 	money += payment
 	update_money_label()
 	
@@ -112,7 +112,7 @@ func apply_fine(amount: float) -> void:
 
 func update_timer_label() -> void:
 	var total_seconds := ceili(time_remaining)
-	var minutes := total_seconds / 60
+	var minutes := total_seconds / 60.0
 	var seconds := total_seconds % 60
 
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
@@ -121,5 +121,6 @@ func update_money_label() -> void:
 	money_label.text = "Money: " + "%.2f" % [money]
 	
 func damage_package() -> void:
-	package_health =- 10
+	package_health -= 10
+	print("Current package health: " + str(package_health))
 	
