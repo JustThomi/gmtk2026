@@ -38,8 +38,11 @@ albedo_color = Color(0.2509804, 0.5019608, 0.3372549, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_klqub"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hsw4x"]
+size = Vector3(1.2823143, 1.0298462, 1.2109718)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_305d2"]
-size = Vector3(1.4755554, 0.05078125, 0.58377075)
+size = Vector3(1.3759117, 0.08569336, 0.75001526)
 
 [sub_resource type="Environment" id="Environment_lyw0m"]
 background_mode = 1
@@ -279,13 +282,13 @@ script = ExtResource("12_klqub")
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Drumuri/building-type-f6" unique_id=359622398]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Drumuri/building-type-f6/StaticBody3D" unique_id=1835849746]
-transform = Transform3D(1.0000006, 0, 3.0100346e-06, 0, 1, 0, -3.0100346e-06, 0, 1.0000006, 0.117248535, 0.60302734, 0.045597076)
-shape = SubResource("BoxShape3D_305d2")
+transform = Transform3D(1.0000006, 0, 3.0100346e-06, 0, 1, 0, -3.0100346e-06, 0, 1.0000006, 0.07557869, 0.5150451, -0.035399437)
+shape = SubResource("BoxShape3D_hsw4x")
 
 [node name="Area3D" type="Area3D" parent="NavigationRegion3D/Drumuri/building-type-f6" unique_id=724024861]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Drumuri/building-type-f6/Area3D" unique_id=1875443432]
-transform = Transform3D(1.0000006, 0, 3.0100346e-06, 0, 1, 0, -3.0100346e-06, 0, 1.0000006, 0.07189846, 0.04635992, -1.1154461)
+transform = Transform3D(1.0000006, 0, 3.0100346e-06, 0, 1, 0, -3.0100346e-06, 0, 1.0000006, 0.077726364, 0.04635992, -1.0323219)
 shape = SubResource("BoxShape3D_305d2")
 
 [node name="Case" type="Node3D" parent="NavigationRegion3D" unique_id=2011721422]
