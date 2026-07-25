@@ -16,7 +16,7 @@ extends Control
 @onready var weather_label: Label = $Phone/ActiveOrderPage/MenuContainer/TopBar/Weather/HBoxContainer/WeatherName
 @onready var weather_icon: TextureRect = $Phone/ActiveOrderPage/MenuContainer/TopBar/Weather/HBoxContainer/TextureRect
 
-@export var phone_offset:float = 200.0
+@export var phone_offset:float = 350.0
 
 var restaurant_image: Texture = preload("res://assets/ui/mickeychickey.png")
 var house_image: Texture = preload("res://assets/ui/house.png")
