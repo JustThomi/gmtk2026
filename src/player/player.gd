@@ -164,7 +164,8 @@ func _physics_process(delta):
 			velocity.z = move_toward(velocity.z, 0.0, deceleration * delta)
 
 	move_and_slide()
-	
+	if get_slide_collision_count() > 0:
+		print("Hit something")
 	if is_on_wall() and OrderManager.is_order_picked:
 		var current_time = Time.get_ticks_msec()
 		
