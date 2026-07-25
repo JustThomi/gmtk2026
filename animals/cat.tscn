@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://2tqmu2othwpf"]
+
+[ext_resource type="PackedScene" uid="uid://djcbyrfqwda55" path="res://assets/animals/GLB format/animal-cat.glb" id="1_hcucf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1jhxy"]
+
+[node name="Cat" type="CharacterBody3D" unique_id=681364942]
+
+[node name="animal-cat2" parent="." unique_id=1411642434 instance=ExtResource("1_hcucf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1985478960]
+transform = Transform3D(1, 0, 0, 0, 1.3069236, 0, 0, 0, 1, 0, 0.71217835, 0)
+shape = SubResource("BoxShape3D_1jhxy")
