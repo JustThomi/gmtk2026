@@ -15,6 +15,27 @@ color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 grow_begin = 4.0
 thickness = 75
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_combo_bg"]
+bg_color = Color(0.85, 0.85, 0.85, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_combo_fill"]
+bg_color = Color(0.49019608, 0.85882354, 0.60784316, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_fill"]
+bg_color = Color(0.42745098, 1, 0.56078434, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="HUD" type="Control" unique_id=198605114]
 layout_mode = 3
 anchors_preset = 15
@@ -197,7 +218,48 @@ text = "Multiplier:"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 theme_override_font_sizes/font_size = 17
-text = "0"
+text = "x1.0"
+
+[node name="TierLabel" type="Label" parent="Phone/ActiveOrderPage/MenuContainer/BonusContainer" unique_id=700000010]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.49019608, 0.85882354, 0.60784316, 1)
+theme_override_font_sizes/font_size = 17
+text = ""
+
+[node name="ComboBar" type="ProgressBar" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=700000011]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.0
+show_percentage = false
+theme_override_styles/background = SubResource("StyleBoxFlat_combo_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_combo_fill")
+
+[node name="HealthContainer" type="HBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=700000012]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Package" type="Label" parent="Phone/ActiveOrderPage/MenuContainer/HealthContainer" unique_id=700000013]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_font_sizes/font_size = 17
+text = "Package:"
+
+[node name="HealthValue" type="Label" parent="Phone/ActiveOrderPage/MenuContainer/HealthContainer" unique_id=700000014]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_font_sizes/font_size = 17
+text = "100%"
+
+[node name="HealthBar" type="ProgressBar" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=700000015]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+theme_override_styles/background = SubResource("StyleBoxFlat_combo_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_health_fill")
 
 [node name="TextureRect" type="TextureRect" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=1446562818]
 texture_filter = 1
