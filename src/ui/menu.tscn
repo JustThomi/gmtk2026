@@ -4,6 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://4s84e81h7um6" path="res://assets/bikes/bmx.glb" id="1_m51dm"]
 [ext_resource type="PackedScene" uid="uid://bx6dfsa28k2kk" path="res://src/player/bikeRider.tscn" id="2_fqjwh"]
 [ext_resource type="PackedScene" uid="uid://dbbiqdjlwgqvh" path="res://src/scenes/world.tscn" id="2_w3pxu"]
+[ext_resource type="Texture2D" uid="uid://tkmfvwkkya6h" path="res://assets/ui/control_prompts/keyboard_wasd.png" id="3_o476h"]
+[ext_resource type="Texture2D" uid="uid://fijssfpy25gp" path="res://assets/ui/control_prompts/keyboard_space.png" id="4_7rifs"]
+[ext_resource type="Texture2D" uid="uid://cptxca2rawofb" path="res://assets/ui/control_prompts/keyboard_q.png" id="5_gofeh"]
+[ext_resource type="Texture2D" uid="uid://fvlcvsqb5aae" path="res://assets/ui/control_prompts/keyboard_e.png" id="6_o476h"]
+[ext_resource type="Texture2D" uid="uid://cdmt26t6qmqv3" path="res://assets/ui/control_prompts/keyboard_tab.png" id="7_o476h"]
 
 [sub_resource type="Environment" id="Environment_8k0mn"]
 background_mode = 1
@@ -1019,7 +1024,145 @@ grow_vertical = 2
 script = ExtResource("1_fqjwh")
 game_scene = ExtResource("2_w3pxu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=44120250]
+[node name="Controlls" type="Control" parent="." unique_id=1984826339]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Controlls" unique_id=1425754733]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14901961, 0.14901961, 0.14901961, 0.43529412)
+
+[node name="BackButton" type="Button" parent="Controlls" unique_id=1481577449]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -296.0
+offset_right = 78.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+theme_override_colors/font_hover_color = Color(1, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Back"
+flat = true
+
+[node name="AllHints" type="HBoxContainer" parent="Controlls" unique_id=1157962644]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Move" type="VBoxContainer" parent="Controlls/AllHints" unique_id=2105099866]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controlls/AllHints/Move" unique_id=405091158]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="TextureRect" parent="Controlls/AllHints/Move" unique_id=1463901456]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_o476h")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Jump" type="VBoxContainer" parent="Controlls/AllHints" unique_id=820781517]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controlls/AllHints/Jump" unique_id=1520200961]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="TextureRect" parent="Controlls/AllHints/Jump" unique_id=222436119]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("4_7rifs")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Spin" type="VBoxContainer" parent="Controlls/AllHints" unique_id=1759665761]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controlls/AllHints/Spin" unique_id=470786399]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Spin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Controlls/AllHints/Spin" unique_id=940198895]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Hint" type="TextureRect" parent="Controlls/AllHints/Spin/HBoxContainer" unique_id=1988401463]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("5_gofeh")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Hint2" type="TextureRect" parent="Controlls/AllHints/Spin/HBoxContainer" unique_id=1908025667]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_o476h")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Phone" type="VBoxContainer" parent="Controlls/AllHints" unique_id=235105509]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Controlls/AllHints/Phone" unique_id=41355448]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Phone"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="TextureRect" parent="Controlls/AllHints/Phone" unique_id=1983107393]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("7_o476h")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Main" type="VBoxContainer" parent="." unique_id=44120250]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -1030,23 +1173,23 @@ offset_right = 1103.0
 offset_bottom = 237.5
 grow_vertical = 2
 
-[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer" unique_id=95146354]
+[node name="VSplitContainer" type="VSplitContainer" parent="Main" unique_id=95146354]
 layout_mode = 2
 theme_override_constants/separation = 100
 split_offsets = PackedInt32Array(96)
 dragging_enabled = false
 split_offset = 96
 
-[node name="Title" type="Label" parent="VBoxContainer/VSplitContainer" unique_id=326247320]
+[node name="Title" type="Label" parent="Main/VSplitContainer" unique_id=326247320]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
 theme_override_font_sizes/font_size = 128
 text = "Crazy Food Guy"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VSplitContainer" unique_id=636036870]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/VSplitContainer" unique_id=636036870]
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="VBoxContainer/VSplitContainer/VBoxContainer" unique_id=609585922]
+[node name="PlayButton" type="Button" parent="Main/VSplitContainer/VBoxContainer" unique_id=609585922]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
@@ -1056,7 +1199,7 @@ theme_override_font_sizes/font_size = 64
 text = "Play"
 flat = true
 
-[node name="Controlls" type="Button" parent="VBoxContainer/VSplitContainer/VBoxContainer" unique_id=299707071]
+[node name="Controlls" type="Button" parent="Main/VSplitContainer/VBoxContainer" unique_id=299707071]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
@@ -1066,7 +1209,7 @@ theme_override_font_sizes/font_size = 64
 text = "Controlls"
 flat = true
 
-[node name="ExitButton" type="Button" parent="VBoxContainer/VSplitContainer/VBoxContainer" unique_id=2006205340]
+[node name="ExitButton" type="Button" parent="Main/VSplitContainer/VBoxContainer" unique_id=2006205340]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
@@ -1169,9 +1312,10 @@ modulate = Color(0.5515619, 0.4498027, 0.8416077, 1)
 text = "x2"
 font_size = 128
 
-[connection signal="pressed" from="VBoxContainer/VSplitContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/VSplitContainer/VBoxContainer/Controlls" to="." method="_on_controlls_pressed"]
-[connection signal="pressed" from="VBoxContainer/VSplitContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Controlls/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Main/VSplitContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Main/VSplitContainer/VBoxContainer/Controlls" to="." method="_on_controlls_pressed"]
+[connection signal="pressed" from="Main/VSplitContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 
 [editable path="Background/VisualRoot/RiderMount/Rider"]
 [editable path="Background/VisualRoot/RiderMount/Rider/characterMedium"]
