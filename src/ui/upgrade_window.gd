@@ -23,7 +23,6 @@ func spin_bikes():
 func _on_close_requested():
 	hide()
 
-
 func _on_mountain_bike_button_pressed():
 	if(OrderManager.money >= money_for_mountain_bike):
 		$MarginContainer/VBoxContainer/Bike/Button.disabled = true
@@ -41,3 +40,6 @@ func _on_unicycle_button_pressed():
 		unicylce_cost_label.text = "Bought"
 		bike_bought.emit(2)
 		hide()
+
+func _on_back_button_pressed():
+	hide()
