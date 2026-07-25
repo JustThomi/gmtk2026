@@ -28,7 +28,7 @@
 
 [sub_resource type="Environment" id="Environment_p8qt8"]
 background_mode = 1
-background_color = Color(0.95651656, 0.85045266, 0.51767874, 1)
+background_color = Color(1, 0.9490196, 0.7490196, 1)
 ambient_light_color = Color(0.6955032, 0.6955031, 0.6955031, 1)
 glow_enabled = true
 
