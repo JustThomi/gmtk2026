@@ -47,7 +47,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_4rn03")
-phone_offset = null
 
 [node name="UpgradeWindow" parent="." unique_id=931631803 instance=ExtResource("2_r2cn7")]
 visible = false
@@ -79,9 +78,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 50.0
-offset_top = -198.0
+offset_top = -298.0
 offset_right = 325.0
-offset_bottom = 314.0
+offset_bottom = 214.0
 grow_vertical = 0
 
 [node name="PhoneWallpaper" type="MarginContainer" parent="Phone" unique_id=228828725]
@@ -237,17 +236,14 @@ text = "x1.0"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.49019608, 0.85882354, 0.60784316, 1)
 theme_override_font_sizes/font_size = 17
-text = ""
 
 [node name="ComboBar" type="ProgressBar" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=700000011]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.0
-show_percentage = false
 theme_override_styles/background = SubResource("StyleBoxFlat_combo_bg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_combo_fill")
+max_value = 1.0
+show_percentage = false
 
 [node name="HealthContainer" type="HBoxContainer" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=700000012]
 layout_mode = 2
@@ -269,10 +265,10 @@ text = "100%"
 [node name="HealthBar" type="ProgressBar" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=700000015]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
-value = 100.0
-show_percentage = false
 theme_override_styles/background = SubResource("StyleBoxFlat_combo_bg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_health_fill")
+value = 100.0
+show_percentage = false
 
 [node name="TextureRect" type="TextureRect" parent="Phone/ActiveOrderPage/MenuContainer" unique_id=1446562818]
 texture_filter = 1

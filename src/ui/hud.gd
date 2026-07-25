@@ -25,7 +25,7 @@ extends Control
 @onready var health_value: Label = $Phone/ActiveOrderPage/MenuContainer/HealthContainer/HealthValue
 @onready var health_fill_style: StyleBoxFlat = health_bar.get_theme_stylebox("fill") as StyleBoxFlat
 
-@export var phone_offset:float = 300.0
+@export var phone_offset:float = 200.0
 
 var restaurant_image: Texture = preload("res://assets/ui/phone/mickeychickey.png")
 var house_image: Texture = preload("res://assets/ui/phone/house.png")
