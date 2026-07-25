@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bb7n38txtahgg" path="res://src/player/player.gd" id="1_fynmd"]
 [ext_resource type="PackedScene" uid="uid://4s84e81h7um6" path="res://assets/bikes/bmx.glb" id="2_d6n0t"]
+[ext_resource type="PackedScene" uid="uid://c5oekvq5uinmm" path="res://assets/food/GLB format/pizza-box.glb" id="2_o822w"]
 [ext_resource type="PackedScene" uid="uid://p4buds0a0sve" path="res://assets/bikes/mountain_bike.glb" id="3_5f2sf"]
 [ext_resource type="PackedScene" uid="uid://bx6dfsa28k2kk" path="res://src/player/bikeRider.tscn" id="3_mf2ua"]
+[ext_resource type="PackedScene" uid="uid://542obri4hybk" path="res://assets/food/GLB format/pizza.glb" id="3_x42xx"]
 [ext_resource type="PackedScene" uid="uid://b4q0mnqcfpn8b" path="res://assets/bikes/unicycle.glb" id="4_jiejy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3agn1"]
@@ -14,12 +16,6 @@ size = Vector3(0.2526245, 1.204956, 3.566162)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wntae"]
 size = Vector3(0.4199829, 1.1928711, 1.232666)
-
-[sub_resource type="BoxMesh" id="BoxMesh_1jhxy"]
-size = Vector3(0.83984375, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktb4s"]
-albedo_color = Color(1, 1, 0.17254902, 1)
 
 [sub_resource type="Skin" id="Skin_1jhxy"]
 
@@ -1042,12 +1038,12 @@ transform = Transform3D(1, 0, 0, 0, 0.9999, -0.01414373, 0, 0.01414373, 0.9999, 
 
 [node name="Backpack" type="Node3D" parent="VisualRoot" unique_id=936077307]
 transform = Transform3D(1, 0, 0, 0, 0.9957229, -0.092389986, 0, 0.092389986, 0.9957229, -0.034801126, -0.07845595, -0.15719935)
-visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualRoot/Backpack" unique_id=69610383]
-transform = Transform3D(1.0000005, 0, 0, 0, 0.88312405, 0.20295252, 0, -0.22550121, 0.7948168, 0.058499336, 2.2644389, 0.9232431)
-mesh = SubResource("BoxMesh_1jhxy")
-surface_material_override/0 = SubResource("StandardMaterial3D_ktb4s")
+[node name="pizza-box2" parent="VisualRoot/Backpack" unique_id=1454668338 instance=ExtResource("2_o822w")]
+transform = Transform3D(1.908029e-15, 4.371139e-08, 1, 0.96052194, 0.27820432, -1.2160697e-08, -0.27820432, 0.96052194, -4.198574e-08, 0.035556436, 2.3475106, 0.7730992)
+
+[node name="pizza" parent="VisualRoot/Backpack/pizza-box2" unique_id=260348746 instance=ExtResource("3_x42xx")]
+transform = Transform3D(-3.6823284e-08, 0.15566021, -0.9878107, 4.371139e-08, 0.9878107, 0.15566021, 1, -3.7446632e-08, -4.3178577e-08, 0.040382147, 0.049735904, -0.0007553122)
 
 [node name="RedBike" parent="VisualRoot" unique_id=1136754064 instance=ExtResource("2_d6n0t")]
 visible = false
