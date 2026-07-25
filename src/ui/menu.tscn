@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://0r35ayixqhtj" path="res://src/ui/menu.gd" id="1_fqjwh"]
 [ext_resource type="PackedScene" uid="uid://4s84e81h7um6" path="res://assets/bikes/bmx.glb" id="1_m51dm"]
 [ext_resource type="PackedScene" uid="uid://bx6dfsa28k2kk" path="res://src/player/bikeRider.tscn" id="2_fqjwh"]
-[ext_resource type="PackedScene" uid="uid://b7bgib1hmm21w" path="res://src/maps/map_1.tscn" id="2_w3pxu"]
+[ext_resource type="PackedScene" uid="uid://dbbiqdjlwgqvh" path="res://src/scenes/world.tscn" id="2_o476h"]
 [ext_resource type="Texture2D" uid="uid://tkmfvwkkya6h" path="res://assets/ui/control_prompts/keyboard_wasd.png" id="3_o476h"]
 [ext_resource type="Texture2D" uid="uid://fijssfpy25gp" path="res://assets/ui/control_prompts/keyboard_space.png" id="4_7rifs"]
 [ext_resource type="Texture2D" uid="uid://cptxca2rawofb" path="res://assets/ui/control_prompts/keyboard_q.png" id="5_gofeh"]
@@ -1022,7 +1022,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fqjwh")
-game_scene = ExtResource("2_w3pxu")
+game_scene = ExtResource("2_o476h")
 
 [node name="Controlls" type="Control" parent="." unique_id=1984826339]
 layout_mode = 1
