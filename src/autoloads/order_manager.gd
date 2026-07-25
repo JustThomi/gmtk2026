@@ -3,6 +3,7 @@ extends Node
 @export var order_time := 30
 @export var base_payment := 5.5
 @export var package_destroyed_value := -5.5
+@export var failed_order_deduction := -5.5
 
 var bonus_money : float
 var time_remaining := 0.0
@@ -33,22 +34,25 @@ var package_dict = {}
 
 func _ready():
 	bonus_money = WeatherManager.get_payment_multiplier()
+	randomize()
 
 func load_targets(restaurants, destinations):
 	all_restaurants = restaurants
 	all_destinations = destinations
 
-func generate_order():
-	randomize()
-	restaurant = all_restaurants[randi_range(0, len(all_restaurants) - 1)]
-	destination = all_destinations[randi_range(0, len(all_destinations) - 1)]
-	
+func generate_order() -> void:
+	clear_current_order()
+
+	if all_restaurants.is_empty() or all_destinations.is_empty():
+		return
+
+	restaurant = all_restaurants.pick_random()
+	destination = all_destinations.pick_random()
+
 	restaurant.enable(player)
-	
-	# package_dict = {"current_target" : restaurant, "package_health" : 100}
-	
 	current_target = restaurant
 	package_health = 100.0
+
 	start_timer()
 	order_started.emit()
 	player.arrow.show()
@@ -108,7 +112,9 @@ func _process(delta: float) -> void:
 			time_remaining = 0.0
 			timer_running = false
 			update_timer_label()
-			get_tree().reload_current_scene()
+			money -= failed_order_deduction
+			update_money_label()
+			generate_order()
 			return
 
 		update_timer_label()
@@ -136,4 +142,14 @@ func update_money_label() -> void:
 func damage_package() -> void:
 	package_health -= 10
 	print("Current package health: " + str(package_health))
-	
+
+func clear_current_order() -> void:
+	if is_instance_valid(restaurant):
+		restaurant.disable()
+
+	if is_instance_valid(destination):
+		destination.disable()
+
+	restaurant = null
+	destination = null
+	current_target = null
