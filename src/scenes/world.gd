@@ -2,6 +2,8 @@ extends Node3D
 
 @onready var timer_label: Label = $HUD/TimerLabel
 @onready var money_label: Label = $HUD/MoneyLabel
+@onready var world_environment: WorldEnvironment = $WorldEnvironment
+@onready var environment: Environment = world_environment.environment
 
 func _ready() -> void:
 	var r = $Restaurants.get_children()
