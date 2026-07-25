@@ -27,6 +27,7 @@ var cooldown_ms : int = 2000
 var accumulated_spin: float = 0.0
 var was_in_air: bool = false
 var popup_base_y: float = 2.5
+var has_bonus : bool = false
 
 func _ready():
 	default_pivot_y = visual_root.position.y
@@ -66,13 +67,13 @@ func _physics_process(delta):
 	elif was_in_air:
 		was_in_air = false
 		var rotations: int = floori(accumulated_spin / TAU)
-		if rotations > 0:
+		if rotations > 0 and !has_bonus:
 			# +1 ca altfel faci *1 ca prostu
 			OrderManager.bonus_money *= (rotations + 1)
+			has_bonus = true;
 			show_spin_multiplier(rotations) # Trigger the visual effect!
 		accumulated_spin = 0.0
 			
-		
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
 	
@@ -138,7 +139,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	if is_on_wall() and OrderManager.is_order_picked:		
+	if is_on_wall() and OrderManager.is_order_picked:
 		var current_time = Time.get_ticks_msec()
 		
 		if current_time - last_wall_collision < cooldown_ms:
@@ -146,7 +147,9 @@ func _physics_process(delta):
 		
 		last_wall_collision = current_time
 		print("The bike hit a wall" + str(current_time))
-		OrderManager.damage_package()	
+		has_bonus = false
+		OrderManager.bonus_money = WeatherManager.get_payment_multiplier()
+		OrderManager.damage_package()
 
 func set_backpack_active(active: bool) -> void:
 	backpack.visible = active
