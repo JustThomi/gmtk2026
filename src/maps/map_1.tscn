@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cky8cg1ymmbib" path="res://assets/city/roads/road-end-round.glb" id="10_6q61r"]
 [ext_resource type="PackedScene" uid="uid://26snw2hm8prx" path="res://assets/city/roads/road-crossing.glb" id="11_0wqp6"]
 [ext_resource type="PackedScene" uid="uid://dtqldnrltsg3x" path="res://assets/city/roads/road-curve.glb" id="11_l2l7e"]
+[ext_resource type="Script" uid="uid://djrrsb5vptvgn" path="res://src/building/building.gd" id="12_klqub"]
 [ext_resource type="PackedScene" uid="uid://c7kylcmeg6bg1" path="res://assets/city/roads/road-end.glb" id="12_ylb36"]
 [ext_resource type="PackedScene" uid="uid://bgxwx5n32p7ci" path="res://assets/city/roads/sign-highway-wide.glb" id="13_obr7j"]
 [ext_resource type="PackedScene" uid="uid://cjiry3pyycrcv" path="res://assets/city/suburban/building_type_a_2_collision.tscn" id="14_0qoco"]
@@ -36,6 +37,12 @@ albedo_color = Color(0.2509804, 0.5019608, 0.3372549, 1)
 albedo_color = Color(0.2509804, 0.5019608, 0.3372549, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_klqub"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hsw4x"]
+size = Vector3(1.2823143, 1.0298462, 1.2109718)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_305d2"]
+size = Vector3(1.3759117, 0.08569336, 0.75001526)
 
 [sub_resource type="Environment" id="Environment_lyw0m"]
 background_mode = 1
@@ -270,6 +277,19 @@ transform = Transform3D(2.6531298, 0, 0.7605934, 0, 2.76, 0, -0.7605934, 0, 2.65
 
 [node name="building-type-f6" parent="NavigationRegion3D/Drumuri" unique_id=1911692260 instance=ExtResource("14_ojflo")]
 transform = Transform3D(2.6531298, 0, 0.7605934, 0, 2.76, 0, -0.7605934, 0, 2.6531298, -25.259851, 0, 34.690475)
+script = ExtResource("12_klqub")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Drumuri/building-type-f6" unique_id=359622398]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Drumuri/building-type-f6/StaticBody3D" unique_id=1835849746]
+transform = Transform3D(1.0000006, 0, 3.0100346e-06, 0, 1, 0, -3.0100346e-06, 0, 1.0000006, 0.07557869, 0.5150451, -0.035399437)
+shape = SubResource("BoxShape3D_hsw4x")
+
+[node name="Area3D" type="Area3D" parent="NavigationRegion3D/Drumuri/building-type-f6" unique_id=724024861]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Drumuri/building-type-f6/Area3D" unique_id=1875443432]
+transform = Transform3D(1.0000006, 0, 3.0100346e-06, 0, 1, 0, -3.0100346e-06, 0, 1.0000006, 0.077726364, 0.04635992, -1.0323219)
+shape = SubResource("BoxShape3D_305d2")
 
 [node name="Case" type="Node3D" parent="NavigationRegion3D" unique_id=2011721422]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -868,7 +888,7 @@ transform = Transform3D(-0.81838876, 0, 2.6358755, 0, 2.76, 0, -2.6358755, 0, -0
 transform = Transform3D(-0.82080233, 0, 2.6351247, 0, 2.76, 0, -2.6351247, 0, -0.82080233, -69.8806, 0, -44.046913)
 
 [node name="CharacterBody3D" parent="." unique_id=1212996814 instance=ExtResource("19_vuhy1")]
-transform = Transform3D(0.70710677, -1.0536712e-08, 0.70710677, 2.9802322e-08, 1.0000001, 0, -0.70710677, 3.1610135e-08, 0.70710677, -156.16048, 1.3347435, 185.30551)
+transform = Transform3D(0.70710677, -1.0536712e-08, 0.70710677, 2.9802322e-08, 1.0000001, 0, -0.70710677, 3.1610135e-08, 0.70710677, -138.17981, 1.3347435, 171.89032)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=337450839]
 transform = Transform3D(1.0000001, 2.9802322e-08, 2.9802322e-08, -2.9802319e-08, 0.7071067, 0.70710677, 0, -0.7071068, 0.7071068, 0, 50, 50)
@@ -920,3 +940,6 @@ type = 1
 transform = Transform3D(0.026742207, 0, 0.9996424, 0, 1, 0, -0.9996424, 0, 0.026742207, -13.211685, -1.9073486e-06, -41.34651)
 visible = false
 type = 1
+
+[connection signal="body_entered" from="NavigationRegion3D/Drumuri/building-type-f6/Area3D" to="NavigationRegion3D/Drumuri/building-type-f6" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="NavigationRegion3D/Drumuri/building-type-f6/Area3D" to="NavigationRegion3D/Drumuri/building-type-f6" method="_on_area_3d_body_exited"]
