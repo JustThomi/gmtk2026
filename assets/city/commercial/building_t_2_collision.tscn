@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://clt3kkletk8ll"]
+
+[ext_resource type="PackedScene" uid="uid://bxfk2i4ogaij0" path="res://assets/city/industrial/building-t.glb" id="1_hjyxf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awwja"]
+size = Vector3(1.6497192, 1.3657227, 1.276001)
+
+[node name="building-t2" unique_id=2053073512 instance=ExtResource("1_hjyxf")]
+transform = Transform3D(2.76, 0, 0, 0, 2.76, 0, 0, 0, 2.76, 0, 0, 0)
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="." index="1" unique_id=1507463092]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShapeCast3D" index="0" unique_id=744879672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018707277, 0.18286133, 0.060363773)
+shape = SubResource("BoxShape3D_awwja")
