@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var visual_root: Node3D = $VisualRoot
 @onready var anim = $VisualRoot/RiderMount/Rider/AnimationPlayer
 @onready var anim_tree = $VisualRoot/RiderMount/Rider/AnimationTree
+@onready var spin_popup: Label3D = $VisualRoot/SpinPopup
 
 @onready var backpack: Node3D = $VisualRoot/Backpack
 
@@ -21,13 +22,21 @@ var default_pivot_y: float
 var wheelie_direction := Vector3.ZERO
 var is_wheelie := false
 var last_wall_collision : int = 0
-var cooldown_ms : int = 2000   
+var cooldown_ms : int = 2000
+
+var accumulated_spin: float = 0.0
+var was_in_air: bool = false
+var popup_base_y: float = 2.5
 
 func _ready():
 	default_pivot_y = visual_root.position.y
 	OrderManager.order_picked.connect(_on_order_picked_up)
 	OrderManager.order_completed.connect(_on_order_completed)
 	set_backpack_active(false)
+	if spin_popup:
+		popup_base_y = spin_popup.position.y
+		spin_popup.modulate.a = 0.0
+		spin_popup.outline_modulate.a = 0.0
 
 func _process(_delta):
 	if position.y < -20:
@@ -42,16 +51,27 @@ func _physics_process(delta):
 	var is_spinning = not is_on_floor() and spin_input != 0
 	
 	if is_spinning:
+		accumulated_spin += abs(-spin_input * spin_speed * delta)
 		input_dir = Vector2.ZERO
 		
 	var input_direction := transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
 	
 	if not is_on_floor():
+		was_in_air = true
 		velocity += get_gravity() * delta * 2
 		
 		if is_spinning:
 			anim_tree.set("parameters/Transition/transition_request", "spin")
 			visual_root.rotate_y(-spin_input * spin_speed * delta)
+	elif was_in_air:
+		was_in_air = false
+		var rotations: int = floori(accumulated_spin / TAU)
+		if rotations > 0:
+			# +1 ca altfel faci *1 ca prostu
+			OrderManager.bonus_money *= (rotations + 1)
+			show_spin_multiplier(rotations) # Trigger the visual effect!
+		accumulated_spin = 0.0
+			
 		
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
@@ -104,8 +124,6 @@ func _physics_process(delta):
 		velocity.x = movement_direction.x * current_speed
 		velocity.z = movement_direction.z * current_speed
 
-		
-
 		var target_rotation := atan2(-movement_direction.x, -movement_direction.z)
 		target_rotation += model_rotation_offset
 
@@ -113,7 +131,6 @@ func _physics_process(delta):
 			visual_root.rotation.y = lerp_angle(visual_root.rotation.y, target_rotation, delta * 10.0)
 	else:
 		anim_tree.set("parameters/Transition/transition_request", "idle")
-		# anim.stop()
 		
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -139,3 +156,16 @@ func _on_order_picked_up():
 
 func _on_order_completed():
 	set_backpack_active(false)
+	
+func show_spin_multiplier(rotations: int) -> void:
+	spin_popup.text = "x" + str(rotations + 1) + " SPIN!"
+	
+	spin_popup.position.y = popup_base_y
+	spin_popup.scale = Vector3.ZERO
+	spin_popup.modulate.a = 1.0
+	
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(spin_popup, "scale", Vector3(1, 1, 1), 0.3).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
+	tween.tween_property(spin_popup, "position:y", popup_base_y + 1.0, 2.0).set_ease(Tween.EASE_OUT)
+	tween.tween_property(spin_popup, "modulate:a", 0.0, 0.5).set_delay(1.5)

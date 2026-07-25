@@ -2,7 +2,9 @@ extends Node
 
 @export var order_time := 30
 @export var base_payment := 5.5
+@export var package_destroyed_value := -5.5
 
+var bonus_money : float
 var time_remaining := 0.0
 var timer_running := false
 var distance: float
@@ -28,6 +30,9 @@ var money_label: Label = null
 var package_dict = {}
 
 @onready var player: CharacterBody3D
+
+func _ready():
+	bonus_money = WeatherManager.get_payment_multiplier()
 
 func load_targets(restaurants, destinations):
 	all_restaurants = restaurants
@@ -78,7 +83,12 @@ func order_finished():
 	player.arrow.hide()
 	is_order_picked = false
 	timer_running = true
-	var payment :float = (base_payment * WeatherManager.get_payment_multiplier()) * (package_health/100.0)
+	
+	var payment : float
+	if package_health <= 0:
+		payment = package_destroyed_value
+	else:
+		payment = (base_payment * bonus_money) * (package_health/100.0)
 	money += payment
 	update_money_label()
 	
@@ -118,6 +128,8 @@ func update_timer_label() -> void:
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
 
 func update_money_label() -> void:
+	if not money:
+		print("Game over - dispatch signal for end screen??")
 	money_label.text = "Money: " + "%.2f" % [money]
 	
 func damage_package() -> void:
