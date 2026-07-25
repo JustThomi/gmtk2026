@@ -9,6 +9,8 @@ extends CharacterBody3D
 
 @onready var backpack: Node3D = $VisualRoot/Backpack
 @onready var bikes : Array[Node3D] = [$VisualRoot/RedBike, $VisualRoot/MountainBike, $VisualRoot/Unicycle]
+@onready var colliders: Array[CollisionShape3D] = [$RedBikeCollider, $MountainBikeCollider, $UnicycleCollider]
+@export var bike_speed_multipliers : Array[float] = [1.0, 1.0,  1.3 ]
 @onready var rider_mount: Node3D = $VisualRoot/RiderMount
 @onready var upgrade_window = $"../HUD/UpgradeWindow"
 
@@ -124,7 +126,7 @@ func _physics_process(delta):
 		movement_direction = wheelie_direction
 
 	if movement_direction.length_squared() > 0.0:
-		var current_speed := SPEED
+		var current_speed := SPEED * bike_speed_multipliers[current_bike]
 
 		if is_wheelie:
 			anim_tree.set("parameters/Transition/transition_request", "wheelie")
@@ -138,8 +140,7 @@ func _physics_process(delta):
 
 		var acceleration := dry_acceleration
 
-		if WeatherManager.current_weather == WeatherManager.Weather.RAIN \
-		or WeatherManager.current_weather == WeatherManager.Weather.STORM:
+		if should_be_slippery():
 			acceleration = rain_acceleration
 
 		velocity.x = move_toward(velocity.x, target_velocity.x, acceleration * delta)
@@ -155,8 +156,7 @@ func _physics_process(delta):
 		
 		if is_on_floor():
 			var deceleration := dry_deceleration
-			if WeatherManager.current_weather == WeatherManager.Weather.RAIN \
-			or WeatherManager.current_weather == WeatherManager.Weather.STORM:
+			if should_be_slippery():
 				deceleration = rain_deceleration
 
 			velocity.x = move_toward(velocity.x, 0.0, deceleration * delta)
@@ -187,6 +187,10 @@ func switch_bike(index: int) -> void:
 
 	for bike in bikes:
 		bike.visible = false
+
+	for collider in colliders:
+		collider.disabled = true
+		colliders[index].disabled = false
 
 	var bike := bikes[index]
 	bike.visible = true
@@ -231,3 +235,13 @@ func show_spin_multiplier(rotations: int) -> void:
 	tween.tween_property(spin_popup, "scale", Vector3(1, 1, 1), 0.3).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
 	tween.tween_property(spin_popup, "position:y", popup_base_y + 1.0, 2.0).set_ease(Tween.EASE_OUT)
 	tween.tween_property(spin_popup, "modulate:a", 0.0, 0.5).set_delay(1.5)
+
+func should_be_slippery() -> bool:
+	var bad_weather := (
+		WeatherManager.current_weather == WeatherManager.Weather.RAIN
+		or WeatherManager.current_weather == WeatherManager.Weather.STORM
+	)
+
+	var is_mountain_bike := current_bike == 1
+
+	return bad_weather and not is_mountain_bike
