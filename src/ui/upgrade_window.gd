@@ -2,6 +2,11 @@ extends Window
 
 @onready var mountain_bike_model: Node3D = $MarginContainer/VBoxContainer/Bike/SubViewportContainer/SubViewport/mountain_bike
 @onready var unicycle_model: Node3D = $MarginContainer/VBoxContainer/Bike2/SubViewportContainer/SubViewport/unicycle
+@onready var mountain_bike_cost_label = $MarginContainer/VBoxContainer/Bike/Button/Cost
+@onready var unicylce_cost_label = $MarginContainer/VBoxContainer/Bike2/Button/Cost
+
+@export var money_for_mountain_bike: int = 200
+@export var money_for_unicycle: int = 150 
 
 
 func _process(_delta):
@@ -20,10 +25,18 @@ func _on_close_requested():
 
 func _on_mountain_bike_button_pressed():
 	# TODO: change player model here
-	$MarginContainer/VBoxContainer/Bike/Button.disabled = true
-	hide()
+	if(OrderManager.money >= money_for_mountain_bike):
+		$MarginContainer/VBoxContainer/Bike/Button.disabled = true
+		OrderManager.money -= money_for_mountain_bike
+		OrderManager.update_money_label()
+		mountain_bike_cost_label.text = "Bought"
+		hide()
 
 func _on_unicycle_button_pressed():
 	# TODO: change player model here
-	$MarginContainer/VBoxContainer/Bike2/Button.disabled = true
-	hide()
+	if(OrderManager.money >= money_for_unicycle):
+		$MarginContainer/VBoxContainer/Bike2/Button.disabled = true
+		OrderManager.money -= money_for_unicycle
+		OrderManager.update_money_label()
+		unicylce_cost_label.text = "Bought"
+		hide()

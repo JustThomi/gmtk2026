@@ -75,6 +75,15 @@ focus_mode = 1
 theme_override_font_sizes/font_size = 64
 text = "Mountain Bike"
 
+[node name="Cost" type="Label" parent="MarginContainer/VBoxContainer/Bike/Button" unique_id=1233512688]
+layout_mode = 0
+offset_left = 1832.0
+offset_top = 16.0
+offset_right = 2042.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 48
+text = "Cost: 200"
+
 [node name="Bike2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=246714516]
 layout_mode = 2
 
@@ -102,6 +111,15 @@ focus_mode = 1
 theme_override_font_sizes/font_size = 64
 text = "Unicycle
 "
+
+[node name="Cost" type="Label" parent="MarginContainer/VBoxContainer/Bike2/Button" unique_id=24522127]
+layout_mode = 0
+offset_left = 1832.0
+offset_top = 16.0
+offset_right = 2042.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 48
+text = "Cost: 150"
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Bike/Button" to="." method="_on_mountain_bike_button_pressed"]
