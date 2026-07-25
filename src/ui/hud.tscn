@@ -4,11 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://c1shj0s3h4vl0" path="res://assets/ui/phone/phone_border.png" id="1_eqvli"]
 [ext_resource type="PackedScene" uid="uid://djftjtwcj8x1" path="res://src/ui/upgrade_window.tscn" id="2_r2cn7"]
 [ext_resource type="Texture2D" uid="uid://ds4wxvyjd83g2" path="res://assets/ui/phone/mickeychickey.png" id="3_snmo6"]
-[ext_resource type="Script" uid="uid://bqulitan2eqev" path="res://src/game_logic/timer_label.gd" id="4_i4jpw"]
+[ext_resource type="PackedScene" uid="uid://c4kfqjg70wip0" path="res://src/ui/watch.tscn" id="3_w067o"]
 [ext_resource type="Texture2D" uid="uid://bjjblsopnn38b" path="res://assets/ui/weather/clear.png" id="5_vbpn1"]
 [ext_resource type="Texture2D" uid="uid://5eihtu0jtb41" path="res://assets/ui/upgrade_button/upgrade_icon.png" id="5_yy3iv"]
 [ext_resource type="Texture2D" uid="uid://co101jitryv6g" path="res://assets/ui/upgrade_button/pressed_upgrade_icon.png" id="6_751uk"]
 [ext_resource type="Texture2D" uid="uid://wuy61fjabqyr" path="res://assets/ui/upgrade_button/hover_upgrade_icon.png" id="7_w067o"]
+[ext_resource type="Texture2D" uid="uid://cnlmro4nmifh1" path="res://assets/ui/watch/cash.png" id="10_w067o"]
+[ext_resource type="FontFile" uid="uid://cfiqyq6u6hy7p" path="res://assets/ui/Monocraft.ttf" id="11_je3ri"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_3agn1"]
 color = Color(0.14901961, 0.14901961, 0.14901961, 1)
@@ -38,6 +40,17 @@ visible = false
 
 [node name="Camera3D" type="Camera3D" parent="OrdersMap" unique_id=296804481]
 transform = Transform3D(0.70710677, -0.35355353, 0.61237246, 7.1054274e-15, 0.86602527, 0.50000006, -0.70710665, -0.35355344, 0.6123724, 20, 30, 20)
+
+[node name="Watch" parent="." unique_id=13946085 instance=ExtResource("3_w067o")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -393.18994
+offset_top = 50.0
+offset_right = 0.00048828125
+offset_bottom = 409.0
+grow_horizontal = 0
 
 [node name="Phone" type="MarginContainer" parent="." unique_id=1872206591]
 layout_mode = 1
@@ -252,21 +265,26 @@ layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("1_eqvli")
 
-[node name="TimerLabel" type="Label" parent="." unique_id=202779492]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=794363815]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 32
-text = "Time left: 99"
-script = ExtResource("4_i4jpw")
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 383.3333
+offset_bottom = 150.0
+theme_override_constants/separation = 10
 
-[node name="MoneyLabel" type="Label" parent="." unique_id=1803152225]
-layout_mode = 0
-offset_top = 51.0
-offset_right = 159.0
-offset_bottom = 96.0
-theme_override_font_sizes/font_size = 32
-text = "Money: 100.0"
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1487312805]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_w067o")
+stretch_mode = 5
+
+[node name="MoneyLabel" type="Label" parent="HBoxContainer" unique_id=1803152225]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_je3ri")
+theme_override_font_sizes/font_size = 48
+text = "100.0"
 
 [connection signal="close_requested" from="OrdersMap" to="." method="_on_orders_map_close_requested"]
 [connection signal="pressed" from="Phone/OrdersPage/MenuContainer/OrderButton" to="." method="_on_order_button_pressed"]

@@ -137,7 +137,7 @@ func update_timer_label() -> void:
 func update_money_label() -> void:
 	if not money:
 		print("Game over - dispatch signal for end screen??")
-	money_label.text = "Money: " + "%.2f" % [money]
+	money_label.text = "%.2f" % [money]
 	
 func damage_package() -> void:
 	package_health -= 10
