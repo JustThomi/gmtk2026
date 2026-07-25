@@ -88,6 +88,7 @@ func _start_waiting():
 
 func _on_bump_detector_body_entered(body):
 	if body.is_in_group("Player") and not is_knocked_down:
+		OrderManager.register_pedestrian_hit()
 		knock_over(body)
 
 func knock_over(body):

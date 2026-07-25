@@ -5,7 +5,15 @@ extends Node
 @export var package_destroyed_value := -5.5
 @export var failed_order_deduction := -5.5
 
-var bonus_money : float
+@export var combo_step := 0.5
+@export var combo_max := 10.0
+@export var combo_window := 5.0
+@export var crash_trick_loss := 2
+@export var pedestrian_trick_loss := 1
+
+var combo_count := 0
+var combo_multiplier := 1.0
+var combo_timer := 0.0
 var time_remaining := 0.0
 var timer_running := false
 var distance: float
@@ -24,6 +32,8 @@ var all_restaurants  = []
 signal order_completed
 signal order_picked
 signal order_started
+signal combo_changed(multiplier: float, count: int)
+signal combo_penalty(message: String, color: Color)
 
 var timer_label: Label = null
 var money_label: Label = null
@@ -33,12 +43,12 @@ var package_dict = {}
 @onready var player: CharacterBody3D
 
 func _ready():
-	bonus_money = WeatherManager.get_payment_multiplier()
 	randomize()
 
 func load_targets(restaurants, destinations):
 	all_restaurants = restaurants
 	all_destinations = destinations
+	reset_combo()
 
 func generate_order() -> void:
 	clear_current_order()
@@ -92,18 +102,66 @@ func order_finished():
 	if package_health <= 0:
 		payment = package_destroyed_value
 	else:
-		payment = (base_payment * bonus_money) * (package_health/100.0)
+		payment = base_payment * WeatherManager.get_payment_multiplier() * combo_multiplier * (package_health / 100.0)
 	money += payment
 	update_money_label()
-	bonus_money = WeatherManager.get_payment_multiplier()
+	if combo_count > 0:
+		combo_timer = combo_window
 	
 	order_completed.emit()
 	await get_tree().create_timer(1.0).timeout
 	generate_order()
 
+func add_tricks(n: int) -> void:
+	if n <= 0:
+		return
+	combo_count += n
+	_recalc_multiplier()
+	combo_timer = combo_window
+	combo_changed.emit(combo_multiplier, combo_count)
+
+func register_crash(is_big: bool) -> void:
+	if combo_count <= 0:
+		return
+	if is_big:
+		combo_penalty.emit("WIPEOUT!", Color("ff4d6d"))
+		reset_combo()
+		return
+	combo_count = maxi(0, combo_count - crash_trick_loss)
+	combo_timer = minf(combo_timer, combo_window * 0.5)
+	_recalc_multiplier()
+	combo_penalty.emit("CRASH! -%.1fx" % (crash_trick_loss * combo_step), Color("ff7a4d"))
+	combo_changed.emit(combo_multiplier, combo_count)
+
+func register_pedestrian_hit() -> void:
+	if combo_count > 0:
+		combo_count = maxi(0, combo_count - pedestrian_trick_loss)
+		_recalc_multiplier()
+		combo_changed.emit(combo_multiplier, combo_count)
+	combo_penalty.emit("OUCH!", Color("ffa64d"))
+
+func register_police_bust() -> void:
+	if combo_count > 0:
+		combo_penalty.emit("BUSTED!", Color("ff4d6d"))
+	reset_combo()
+
+func reset_combo() -> void:
+	combo_count = 0
+	combo_multiplier = 1.0
+	combo_timer = 0.0
+	combo_changed.emit(combo_multiplier, combo_count)
+
+func _recalc_multiplier() -> void:
+	combo_multiplier = clampf(1.0 + combo_count * combo_step, 1.0, combo_max)
+
 func _process(delta: float) -> void:
 	if current_target != null:
 		distance = player.global_position.distance_to(current_target.global_position)
+	
+	if combo_count > 0:
+		combo_timer -= delta
+		if combo_timer <= 0.0:
+			reset_combo()
 	
 	if timer_running:
 		time_remaining -= delta
