@@ -4,6 +4,8 @@ extends Node
 @export var base_payment := 5.5
 @export var package_destroyed_value := -5.5
 @export var failed_order_deduction := -5.5
+@export var points_on_order_complete := 100
+@export var points_deducted_on_crash := -30
 
 @export var combo_step := 0.5
 @export var combo_max := 10.0
@@ -18,9 +20,10 @@ var time_remaining := 0.0
 var timer_running := false
 var distance: float
 var order_count: int = 0
-var money := 100.0
+var money := 150.0
 var package_health : float = 100.0
 var is_order_picked : bool = false
+var points := 0;
 
 var restaurant: Node3D
 var destination: Node3D
@@ -100,11 +103,15 @@ func order_finished():
 	timer_running = true
 	
 	var payment : float
+	var points_to_get : int
 	if package_health <= 0:
 		payment = package_destroyed_value
+		points_to_get = package_destroyed_value
 	else:
 		payment = base_payment * WeatherManager.get_payment_multiplier() * combo_multiplier * (package_health / 100.0)
+		points_to_get = points_on_order_complete + WeatherManager.get_payment_multiplier() * combo_multiplier * (package_health / 100)
 	money += payment
+	points += points_to_get
 	update_money_label()
 	if combo_count > 0:
 		combo_timer = combo_window
@@ -133,6 +140,7 @@ func register_crash(is_big: bool) -> void:
 	_recalc_multiplier()
 	combo_penalty.emit("CRASH! -%.1fx" % (crash_trick_loss * combo_step), Color("ff7a4d"))
 	combo_changed.emit(combo_multiplier, combo_count)
+	points += points_deducted_on_crash
 
 func register_pedestrian_hit() -> void:
 	if combo_count > 0:
@@ -196,6 +204,12 @@ func apply_fine(amount: float) -> void:
 	
 	update_money_label()
 
+func apply_point_deduction(ammount: int) -> void:
+	points -= ammount
+	
+	if points < 0:
+		points = 0
+
 func update_timer_label() -> void:
 	if  timer_label == null:
 		return
@@ -230,7 +244,9 @@ func clear_current_order() -> void:
 func lose_game() -> void:
 	timer_label = null
 	money_label = null
+	LeaderboardManager.add_current_score()
 	get_tree().change_scene_to_file("res://src/ui/end_scene.tscn")
 
-func reset_money() -> void:
+func reset_game() -> void:
 	money = 100
+	points = 0
