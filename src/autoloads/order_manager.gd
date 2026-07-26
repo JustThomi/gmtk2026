@@ -156,27 +156,37 @@ func _recalc_multiplier() -> void:
 	combo_multiplier = clampf(1.0 + combo_count * combo_step, 1.0, combo_max)
 
 func _process(delta: float) -> void:
-	if current_target != null:
-		distance = player.global_position.distance_to(current_target.global_position)
+	var current_scene := get_tree().current_scene
+
+	if current_scene == null:
+		return
+		
+	if current_scene.name == "Map1":
 	
-	if combo_count > 0:
-		combo_timer -= delta
-		if combo_timer <= 0.0:
-			reset_combo()
-	
-	if timer_running:
-		time_remaining -= delta
-	
-		if time_remaining <= 0.0:
-			time_remaining = 0.0
-			timer_running = false
+		if current_target != null:
+			distance = player.global_position.distance_to(current_target.global_position)
+		
+		if combo_count > 0:
+			combo_timer -= delta
+			if combo_timer <= 0.0:
+				reset_combo()
+		
+		if timer_running:
+			time_remaining -= delta
+
+			if time_remaining <= 0.0:
+				time_remaining = 0.0
+				timer_running = false
+				update_timer_label()
+				money += failed_order_deduction
+				update_money_label()
+				generate_order()
+				return
+		
 			update_timer_label()
-			money += failed_order_deduction
-			update_money_label()
-			generate_order()
-			return
-	
-		update_timer_label()
+		
+		if money <= 0:
+			lose_game()
 
 func apply_fine(amount: float) -> void:
 	money -= amount
@@ -187,6 +197,9 @@ func apply_fine(amount: float) -> void:
 	update_money_label()
 
 func update_timer_label() -> void:
+	if  timer_label == null:
+		return
+		
 	var total_seconds := ceili(time_remaining)
 	var minutes := total_seconds / 60.0
 	var seconds := total_seconds % 60
@@ -194,8 +207,9 @@ func update_timer_label() -> void:
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
 
 func update_money_label() -> void:
-	if not money:
-		print("Game over - dispatch signal for end screen??")
+	if money_label == null:
+		return
+		
 	money_label.text = "%.2f" % [money]
 	
 func damage_package() -> void:
@@ -205,10 +219,18 @@ func damage_package() -> void:
 func clear_current_order() -> void:
 	if is_instance_valid(restaurant):
 		restaurant.disable()
-	
+
 	if is_instance_valid(destination):
 		destination.disable()
-	
+
 	restaurant = null
 	destination = null
 	current_target = null
+
+func lose_game() -> void:
+	timer_label = null
+	money_label = null
+	get_tree().change_scene_to_file("res://src/ui/end_scene.tscn")
+
+func reset_money() -> void:
+	money = 100

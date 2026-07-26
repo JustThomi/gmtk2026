@@ -76,8 +76,6 @@ func _cast_ray_for_buildings(
 
 			_register_building_meshes(building_root)
 
-		# Ignore this collider and continue toward the player,
-		# allowing multiple blocking buildings to be detected.
 		excluded_rids.append(collider.get_rid())
 
 func _find_building_root(node: Node) -> Node:
@@ -125,7 +123,6 @@ func _update_fades(delta: float) -> void:
 
 		var should_fade := currently_blocking.has(building)
 
-		# Keep the building faded briefly after the last ray hit.
 		if not should_fade and last_blocked_time.has(building):
 			var time_since_blocked: float = (
 				current_time - float(last_blocked_time[building])
