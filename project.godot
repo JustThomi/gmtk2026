@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 OrderManager="*uid://jxqepfedds8y"
 WeatherManager="*uid://55ll4kunhxvc"
+LeaderboardManager="*uid://mcbyp6lnu3fy"
 
 [display]
 

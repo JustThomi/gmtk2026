@@ -244,6 +244,7 @@ func clear_current_order() -> void:
 func lose_game() -> void:
 	timer_label = null
 	money_label = null
+	LeaderboardManager.add_current_score()
 	get_tree().change_scene_to_file("res://src/ui/end_scene.tscn")
 
 func reset_game() -> void:
