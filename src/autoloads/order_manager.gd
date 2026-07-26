@@ -1,6 +1,6 @@
 extends Node
 
-@export var order_time := 30
+@export var order_time := 50
 @export var base_payment := 5.5
 @export var package_destroyed_value := -5.5
 @export var failed_order_deduction := -5.5
@@ -26,7 +26,7 @@ var time_remaining := 0.0
 var timer_running := false
 var distance: float
 var order_count: int = 0
-var money := 150.0
+var money := 100.0
 var package_health : float = 100.0
 var is_order_picked : bool = false
 var points := 0;
