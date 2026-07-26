@@ -2,12 +2,14 @@ extends State
 
 @export var fine_amount : float = 10.0
 @export var fine_cooldown : float = 3.0
+@export var point_deduction_amount = 25;
 
 
 func enter():
 	super.enter()
 	
 	OrderManager.apply_fine(fine_amount)
+	OrderManager.apply_point_deduction(point_deduction_amount)
 	OrderManager.register_police_bust()
 	
 	controller.is_stopped = true
