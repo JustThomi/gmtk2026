@@ -6,8 +6,8 @@ extends Node3D
 @onready var rain: GPUParticles3D = $Rain
 
 func _ready() -> void:
-	var r = $Restaurants.get_children()
-	var h = $Homes.get_children()
+	var r = $NavigationRegion3D2/Bussys.get_children()
+	var h = $NavigationRegion3D2/Case.get_children()
 	
 	OrderManager.player = $CharacterBody3D
 	OrderManager.start_timer()
