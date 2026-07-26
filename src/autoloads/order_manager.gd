@@ -18,7 +18,7 @@ var time_remaining := 0.0
 var timer_running := false
 var distance: float
 var order_count: int = 0
-var money := 149.0
+var money := 100.0
 var package_health : float = 100.0
 var is_order_picked : bool = false
 

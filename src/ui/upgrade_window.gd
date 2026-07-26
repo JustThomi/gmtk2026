@@ -10,6 +10,8 @@ extends MarginContainer
 @onready var unicycle_filter: ColorRect = $VBoxContainer/Uni/SubViewport/Filter
 @onready var unicycle_money_logo: TextureRect = $VBoxContainer/Uni/CostContainer/TextureRect
 
+@onready var bmx_bike_model: Node3D = $VBoxContainer/BMX/SubViewport/bmx
+
 @export var money_for_mountain_bike: int = 200
 @export var money_for_unicycle: int = 150 
 
@@ -29,6 +31,7 @@ func update_button_filter():
 func spin_bikes():
 	mountain_bike_model.rotation_degrees.y += 1
 	unicycle_model.rotation_degrees.y += 1
+	bmx_bike_model.rotation_degrees.y += 1
 
 func _on_mountain_button_pressed():
 	if mountain_bike_cost_label.text == "Bought":
