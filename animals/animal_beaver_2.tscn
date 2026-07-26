@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cgqmv1fcaqu6k"]
+
+[ext_resource type="PackedScene" uid="uid://wsgdb8lpa45h" path="res://assets/animals/GLB format/animal-beaver.glb" id="1_wwdod"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awwja"]
+size = Vector3(1.1716309, 1.1798096, 1.1853027)
+
+[node name="animal-beaver2" unique_id=303915987 instance=ExtResource("1_wwdod")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=422272739]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1097428621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816571, 0)
+shape = SubResource("BoxShape3D_awwja")

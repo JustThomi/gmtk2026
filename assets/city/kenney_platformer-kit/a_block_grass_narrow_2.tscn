@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://tkrl13flbh2"]
+
+[ext_resource type="PackedScene" uid="uid://dy73wve5cr4f0" path="res://assets/city/kenney_platformer-kit/GLB format/block-grass-narrow.glb" id="1_l36q5"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3c16j"]
+height = 0.9638672
+radius = 0.3857422
+
+[node name="block-grass-narrow2" unique_id=916869519 instance=ExtResource("1_l36q5")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-narrow" parent_id_path=PackedInt32Array(1677701938) index="0" unique_id=263851098]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-narrow/StaticBody3D" index="0" unique_id=131142815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52221465, 0)
+shape = SubResource("CylinderShape3D_3c16j")
