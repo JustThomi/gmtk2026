@@ -59,8 +59,19 @@ func generate_order() -> void:
 	if all_restaurants.is_empty() or all_destinations.is_empty():
 		return
 
-	restaurant = all_restaurants.pick_random()
-	destination = all_destinations.pick_random()
+	var restaurant_building: Node3D = all_restaurants.pick_random()
+	var destination_building: Node3D = all_destinations.pick_random()
+
+	restaurant = restaurant_building.get_node_or_null("Target")
+	destination = destination_building.get_node_or_null("Target")
+
+	if restaurant == null:
+		push_error("Restaurant has no Target child: " + restaurant_building.name)
+		return
+
+	if destination == null:
+		push_error("Destination has no Target child: " + destination_building.name)
+		return
 
 	restaurant.enable(player)
 	current_target = restaurant
