@@ -51,3 +51,6 @@ func _on_uni_button_pressed():
 		unicycle_cost_label.text = "Bought"
 		unicycle_money_logo.hide()
 		bike_bought.emit(2)
+
+func _on_bmx_button_pressed():
+	OrderManager.player.switch_bike(0)
