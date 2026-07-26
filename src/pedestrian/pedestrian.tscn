@@ -11,8 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cgp0h3f01t6sb" path="res://src/pedestrian/variations/male_model_3.tscn" id="9_7t5va"]
 [ext_resource type="PackedScene" uid="uid://kl4fhjtbihg8" path="res://src/pedestrian/variations/male_model_4.tscn" id="10_2jvpv"]
 [ext_resource type="PackedScene" uid="uid://c3y12k6xi4jan" path="res://src/pedestrian/variations/male_model_5.tscn" id="11_da4q8"]
-[ext_resource type="PackedScene" uid="uid://2tqmu2othwpf" path="res://animals/cat.tscn" id="12_sypx1"]
-[ext_resource type="PackedScene" uid="uid://cgqmv1fcaqu6k" path="res://animals/animal_beaver_2.tscn" id="13_r418h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nwhj6"]
 radius = 0.5649414
@@ -24,7 +22,7 @@ radius = 2.187264
 [node name="Pedestrian" type="CharacterBody3D" unique_id=1733494223]
 collision_layer = 2
 script = ExtResource("1_kxcfg")
-possible_models = Array[PackedScene]([ExtResource("2_4gqv7"), ExtResource("3_wgve6"), ExtResource("4_sypx1"), ExtResource("5_r418h"), ExtResource("6_tfk1b"), ExtResource("7_8mmwu"), ExtResource("8_dfvua"), ExtResource("9_7t5va"), ExtResource("10_2jvpv"), ExtResource("11_da4q8"), ExtResource("12_sypx1"), ExtResource("13_r418h"), null, null, null])
+possible_models = Array[PackedScene]([ExtResource("2_4gqv7"), ExtResource("3_wgve6"), ExtResource("4_sypx1"), ExtResource("5_r418h"), ExtResource("6_tfk1b"), ExtResource("7_8mmwu"), ExtResource("8_dfvua"), ExtResource("9_7t5va"), ExtResource("10_2jvpv"), ExtResource("11_da4q8")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=325850022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1061153, 0)

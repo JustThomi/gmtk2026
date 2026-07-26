@@ -1811,7 +1811,7 @@ environment = SubResource("Environment_lyw0m")
 
 [node name="Restaurants" type="Node3D" parent="." unique_id=1974127755 groups=["Buildings"]]
 
-[node name="Target" parent="Restaurants" unique_id=1754940670 instance=ExtResource("25_klqub")]
+[node name="Target" parent="Restaurants" unique_id=1748624974 instance=ExtResource("25_klqub")]
 transform = Transform3D(-0.032218527, 0, 0.99948084, 0, 1, 0, -0.99948084, 0, -0.032218527, -1.496, 0, 61.146)
 visible = false
 
@@ -1826,7 +1826,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.924545, 12.107417, -376.
 visible = false
 type = 1
 
-[node name="Target2" parent="Homes" unique_id=516998000 instance=ExtResource("25_klqub")]
+[node name="Target2" parent="Homes" unique_id=1723980360 instance=ExtResource("25_klqub")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.735363, -1.8087338, 24.006205)
 visible = false
 type = 1
