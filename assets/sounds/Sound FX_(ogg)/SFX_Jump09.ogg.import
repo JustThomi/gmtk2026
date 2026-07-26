@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://df83rvi7r28lg"
+path="res://.godot/imported/SFX_Jump09.ogg-d31ae78083aeba58459527a493a2d66c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Sound FX_(ogg)/SFX_Jump09.ogg"
+dest_files=["res://.godot/imported/SFX_Jump09.ogg-d31ae78083aeba58459527a493a2d66c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

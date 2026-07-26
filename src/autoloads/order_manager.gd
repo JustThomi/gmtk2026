@@ -10,7 +10,13 @@ extends Node
 @export var combo_window := 5.0
 @export var crash_trick_loss := 2
 @export var pedestrian_trick_loss := 1
+@export var money_sounds : Array[AudioStream] = []
+@export var crash_sounds : Array[AudioStream] = []
+@export var wipeout_sounds : Array[AudioStream] = []
+@export var busted_sounds : Array[AudioStream] = []
 
+var sfx_audio_player : AudioStreamPlayer
+var money_audio_player : AudioStreamPlayer
 var combo_count := 0
 var combo_multiplier := 1.0
 var combo_timer := 0.0
@@ -44,6 +50,11 @@ var package_dict = {}
 
 func _ready():
 	randomize()
+	money_audio_player = AudioStreamPlayer.new()
+	add_child(money_audio_player)
+	
+	sfx_audio_player = AudioStreamPlayer.new()
+	add_child(sfx_audio_player)
 
 func load_targets(restaurants, destinations):
 	all_restaurants = restaurants
@@ -103,6 +114,10 @@ func order_finished():
 		payment = package_destroyed_value
 	else:
 		payment = base_payment * WeatherManager.get_payment_multiplier() * combo_multiplier * (package_health / 100.0)
+	
+	if payment > 0:
+		play_money_sound()
+	
 	money += payment
 	update_money_label()
 	if combo_count > 0:
@@ -125,6 +140,7 @@ func register_crash(is_big: bool) -> void:
 		return
 	if is_big:
 		combo_penalty.emit("WIPEOUT!", Color("ff4d6d"))
+		play_sfx(wipeout_sounds, 0.85, 1.05)
 		reset_combo()
 		return
 	combo_count = maxi(0, combo_count - crash_trick_loss)
@@ -132,6 +148,7 @@ func register_crash(is_big: bool) -> void:
 	_recalc_multiplier()
 	combo_penalty.emit("CRASH! -%.1fx" % (crash_trick_loss * combo_step), Color("ff7a4d"))
 	combo_changed.emit(combo_multiplier, combo_count)
+	play_sfx(crash_sounds, 0.9, 1.1)
 
 func register_pedestrian_hit() -> void:
 	if combo_count > 0:
@@ -141,6 +158,7 @@ func register_pedestrian_hit() -> void:
 	combo_penalty.emit("OUCH!", Color("ffa64d"))
 
 func register_police_bust() -> void:
+	play_sfx(busted_sounds, 0.95, 1.05)
 	if combo_count > 0:
 		combo_penalty.emit("BUSTED!", Color("ff4d6d"))
 	reset_combo()
@@ -200,6 +218,18 @@ func update_money_label() -> void:
 func damage_package() -> void:
 	package_health -= 10
 	print("Current package health: " + str(package_health))
+
+func play_sfx(sound_list: Array[AudioStream], pitch_min := 0.9, pitch_max := 1.1):
+	if sound_list.size() > 0 and sfx_audio_player:
+		sfx_audio_player.stream = sound_list.pick_random()
+		sfx_audio_player.pitch_scale =randf_range(pitch_min, pitch_max)
+		sfx_audio_player.play()
+
+func play_money_sound():
+	if money_sounds.size() > 0 and money_audio_player:
+		money_audio_player.stream = money_sounds[randi() % money_sounds.size()]
+		money_audio_player.pitch_scale = randf_range(0.95, 1.05)
+		money_audio_player.play()
 
 func clear_current_order() -> void:
 	if is_instance_valid(restaurant):

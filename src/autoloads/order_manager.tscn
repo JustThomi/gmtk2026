@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bu6jxvkwyxcrx"]
+
+[ext_resource type="Script" uid="uid://jxqepfedds8y" path="res://src/autoloads/order_manager.gd" id="1_5oycb"]
+[ext_resource type="AudioStream" uid="uid://cwwyml6jj44s3" path="res://assets/sounds/Sound FX_(ogg)/SFX_Coin01.ogg" id="2_c5owj"]
+[ext_resource type="AudioStream" uid="uid://dc4cmujeiqxx4" path="res://assets/sounds/Sound FX_(ogg)/SFX_Coin02.ogg" id="3_1fdta"]
+[ext_resource type="AudioStream" uid="uid://cgv3yvdjw8tx6" path="res://assets/sounds/Sound FX_(ogg)/SFX_Coin03.ogg" id="4_oinqu"]
+[ext_resource type="AudioStream" uid="uid://4idh08ueu3x8" path="res://assets/sounds/Sound FX_(ogg)/SFX_Hurt02.ogg" id="5_ee5br"]
+[ext_resource type="AudioStream" uid="uid://1qbjna4cia58" path="res://assets/sounds/Sound FX_(ogg)/SFX_Hurt05.ogg" id="6_fy3ig"]
+[ext_resource type="AudioStream" uid="uid://cooe48281fmul" path="res://assets/sounds/Sound FX_(ogg)/SFX_Hurt09.ogg" id="7_kcydl"]
+[ext_resource type="AudioStream" uid="uid://csnhbi0swmshy" path="res://assets/sounds/Sound FX_(ogg)/SFX_Lose01.ogg" id="8_v3nem"]
+[ext_resource type="AudioStream" uid="uid://bs7swvxhhfpyi" path="res://assets/sounds/Sound FX_(ogg)/SFX_Lose02.ogg" id="9_mwsa1"]
+[ext_resource type="AudioStream" uid="uid://dyuxx6f270nfl" path="res://assets/sounds/Sound FX_(ogg)/SFX_Lose03.ogg" id="10_bsxhm"]
+[ext_resource type="AudioStream" uid="uid://c1dbbt5x6lbsh" path="res://assets/sounds/Sound FX_(ogg)/SFX_Lose08.ogg" id="11_7f2ed"]
+[ext_resource type="AudioStream" uid="uid://d3y6x2dvrubel" path="res://assets/sounds/Sound FX_(ogg)/SFX_Lose09.ogg" id="12_g2xt4"]
+[ext_resource type="AudioStream" uid="uid://ln5of0n01vw6" path="res://assets/sounds/Sound FX_(ogg)/SFX_Lose10.ogg" id="13_w1yl2"]
+
+[node name="OrderManager" type="AudioStreamPlayer" unique_id=1752844151]
+bus = &"SFX"
+script = ExtResource("1_5oycb")
+money_sounds = Array[AudioStream]([ExtResource("2_c5owj"), ExtResource("3_1fdta"), ExtResource("4_oinqu")])
+crash_sounds = Array[AudioStream]([ExtResource("5_ee5br"), ExtResource("6_fy3ig"), ExtResource("7_kcydl")])
+wipeout_sounds = Array[AudioStream]([ExtResource("8_v3nem"), ExtResource("9_mwsa1"), ExtResource("10_bsxhm")])
+busted_sounds = Array[AudioStream]([ExtResource("11_7f2ed"), ExtResource("12_g2xt4"), ExtResource("13_w1yl2")])

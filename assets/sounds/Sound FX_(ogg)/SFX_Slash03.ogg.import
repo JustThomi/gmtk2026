@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://coqaaqhoimrw3"
+path="res://.godot/imported/SFX_Slash03.ogg-15251c29afde0904a8ad6398804595b7.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Sound FX_(ogg)/SFX_Slash03.ogg"
+dest_files=["res://.godot/imported/SFX_Slash03.ogg-15251c29afde0904a8ad6398804595b7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

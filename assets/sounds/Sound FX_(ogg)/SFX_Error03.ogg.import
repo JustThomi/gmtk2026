@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cpyoclmela8ym"
+path="res://.godot/imported/SFX_Error03.ogg-3d9448eb8abed4a4fe208d2a610e4a2c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Sound FX_(ogg)/SFX_Error03.ogg"
+dest_files=["res://.godot/imported/SFX_Error03.ogg-3d9448eb8abed4a4fe208d2a610e4a2c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

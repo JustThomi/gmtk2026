@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b1fxflll8fg18"
+path="res://.godot/imported/Galacti-Chron-Internal Reflection.mp3-49a581a90b730319c76b8c552ff69fd6.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Galacti-Chrons Weird Music Pack/Galacti-Chron-Internal Reflection.mp3"
+dest_files=["res://.godot/imported/Galacti-Chron-Internal Reflection.mp3-49a581a90b730319c76b8c552ff69fd6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

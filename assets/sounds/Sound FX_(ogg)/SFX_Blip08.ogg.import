@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c37nhcf3m43me"
+path="res://.godot/imported/SFX_Blip08.ogg-e594395254517e99755d3134f08c496d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Sound FX_(ogg)/SFX_Blip08.ogg"
+dest_files=["res://.godot/imported/SFX_Blip08.ogg-e594395254517e99755d3134f08c496d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,11 +1,15 @@
 extends Node3D
 
+@export var map_songs : Array[AudioStream] = []
+
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 @onready var environment: Environment = world_environment.environment
 @onready var sun: DirectionalLight3D = $DirectionalLight3D
 @onready var rain: GPUParticles3D = $Rain
 
 func _ready() -> void:
+	MusicManager.play_music(map_songs)
+	
 	var r = $Restaurants.get_children()
 	var h = $Homes.get_children()
 	

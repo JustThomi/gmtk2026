@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ca80atqbx6qat"
+path="res://.godot/imported/Galacti-Chron-The Gears of Progress.mp3-12f73ebf1432ab1f89595b3d87044bd5.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Galacti-Chrons Weird Music Pack/Galacti-Chron-The Gears of Progress.mp3"
+dest_files=["res://.godot/imported/Galacti-Chron-The Gears of Progress.mp3-12f73ebf1432ab1f89595b3d87044bd5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

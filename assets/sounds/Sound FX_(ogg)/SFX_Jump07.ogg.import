@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://csof8fslnjwqs"
+path="res://.godot/imported/SFX_Jump07.ogg-15ac92d788b93d7baac60c524f3e432c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Sound FX_(ogg)/SFX_Jump07.ogg"
+dest_files=["res://.godot/imported/SFX_Jump07.ogg-15ac92d788b93d7baac60c524f3e432c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

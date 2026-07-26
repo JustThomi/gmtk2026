@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://kreky06f1dx4"
+path="res://.godot/imported/SFX_Hurt04.ogg-b67080b5d509030f1c918ec495213735.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Sound FX_(ogg)/SFX_Hurt04.ogg"
+dest_files=["res://.godot/imported/SFX_Hurt04.ogg-b67080b5d509030f1c918ec495213735.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

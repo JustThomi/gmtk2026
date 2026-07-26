@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dpxhgapfldyd1"
+path="res://.godot/imported/SFX_Boom08.ogg-29fcf4f466c75243b805a14b5c10d126.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Sound FX_(ogg)/SFX_Boom08.ogg"
+dest_files=["res://.godot/imported/SFX_Boom08.ogg-29fcf4f466c75243b805a14b5c10d126.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

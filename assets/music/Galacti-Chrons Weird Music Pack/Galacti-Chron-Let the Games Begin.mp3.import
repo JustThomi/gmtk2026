@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cc0sb4focmvxl"
+path="res://.godot/imported/Galacti-Chron-Let the Games Begin.mp3-b921befec4b7902ac278d489cd09cbfa.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Galacti-Chrons Weird Music Pack/Galacti-Chron-Let the Games Begin.mp3"
+dest_files=["res://.godot/imported/Galacti-Chron-Let the Games Begin.mp3-b921befec4b7902ac278d489cd09cbfa.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

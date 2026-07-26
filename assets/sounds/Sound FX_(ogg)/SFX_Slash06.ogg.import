@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d20olv6d8w5hm"
+path="res://.godot/imported/SFX_Slash06.ogg-d9d8308e8db8e4a141b40bef3b218391.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Sound FX_(ogg)/SFX_Slash06.ogg"
+dest_files=["res://.godot/imported/SFX_Slash06.ogg-d9d8308e8db8e4a141b40bef3b218391.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

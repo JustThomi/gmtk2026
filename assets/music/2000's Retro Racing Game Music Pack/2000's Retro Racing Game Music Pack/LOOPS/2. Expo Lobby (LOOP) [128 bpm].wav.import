@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bfba0sgoo264u"
+path="res://.godot/imported/2. Expo Lobby (LOOP) [128 bpm].wav-b593a31e489309d89edb4dba8653e20a.sample"
+
+[deps]
+
+source_file="res://assets/music/2000's Retro Racing Game Music Pack/2000's Retro Racing Game Music Pack/LOOPS/2. Expo Lobby (LOOP) [128 bpm].wav"
+dest_files=["res://.godot/imported/2. Expo Lobby (LOOP) [128 bpm].wav-b593a31e489309d89edb4dba8653e20a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

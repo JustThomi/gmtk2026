@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b3chmbk62xuv0"
+path="res://.godot/imported/SFX_Coin05.ogg-f92d0de91d0bff5f57a36301e9f90076.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Sound FX_(ogg)/SFX_Coin05.ogg"
+dest_files=["res://.godot/imported/SFX_Coin05.ogg-f92d0de91d0bff5f57a36301e9f90076.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

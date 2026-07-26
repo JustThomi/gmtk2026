@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cowxtvkrim20o"
+path="res://.godot/imported/SFX_Hit05.ogg-ca2a8a7fd7df0b588b53c20c0ba0bd3c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Sound FX_(ogg)/SFX_Hit05.ogg"
+dest_files=["res://.godot/imported/SFX_Hit05.ogg-ca2a8a7fd7df0b588b53c20c0ba0bd3c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

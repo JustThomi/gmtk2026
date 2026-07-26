@@ -13,7 +13,9 @@ extends CharacterBody3D
 @export var bike_speed_multipliers : Array[float] = [1.0, 1.0,  1.3 ]
 @onready var rider_mount: Node3D = $VisualRoot/RiderMount
 @onready var upgrade_window = $"../HUD/UpgradeWindow"
+@onready var trick_audio : AudioStreamPlayer = $TrickAudioPlayer
 
+@export var trick_sounds : Array[AudioStream] = []
 @export var wheelie_angle: float = 30.0
 @export var wheelie_speed: float = 8.0
 @export var wheelie_lift_height = 0.75
@@ -88,6 +90,7 @@ func _physics_process(delta):
 		if rotations > 0:
 			OrderManager.add_tricks(rotations)
 			show_spin_multiplier(rotations, OrderManager.combo_multiplier)
+			play_trick_sound()
 		accumulated_spin = 0.0
 			
 	if Input.is_action_just_pressed("escape"):
@@ -179,6 +182,7 @@ func _physics_process(delta):
 			return
 		var crash_speed := Vector3(velocity.x, 0.0, velocity.z).length()
 		OrderManager.register_crash(crash_speed >= big_crash_speed)
+		
 		if OrderManager.is_order_picked:
 			OrderManager.damage_package()
 		accumulated_spin = 0.0
@@ -278,6 +282,12 @@ func _play_popup(text: String, color: Color, pop_scale: float) -> void:
 	popup_tween.tween_property(spin_popup, "scale", Vector3.ONE * pop_scale, 0.3).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
 	popup_tween.tween_property(spin_popup, "modulate:a", 0.0, 0.5).set_delay(2.5)
 	popup_tween.tween_property(spin_popup, "outline_modulate:a", 0.0, 0.5).set_delay(2.5)
+
+func play_trick_sound():
+	if trick_sounds.size() > 0:
+		trick_audio.stream = trick_sounds[randi() % trick_sounds.size()]
+		trick_audio.pitch_scale = randf_range(0.9, 1.1)
+		trick_audio.play()
 
 func should_be_slippery() -> bool:
 	var bad_weather := (

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c2w5g5uwxp5hl"
+path="res://.godot/imported/7. Snow Factory (LOOP) [128 bpm].wav-a82839bcb6b528f8af3957cfe895b850.sample"
+
+[deps]
+
+source_file="res://assets/music/2000's Retro Racing Game Music Pack/2000's Retro Racing Game Music Pack/LOOPS/7. Snow Factory (LOOP) [128 bpm].wav"
+dest_files=["res://.godot/imported/7. Snow Factory (LOOP) [128 bpm].wav-a82839bcb6b528f8af3957cfe895b850.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

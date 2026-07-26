@@ -5,7 +5,9 @@ extends  CharacterBody3D
 @export var max_wander_range : float = 20.0
 @export var min_wait : float = 1.0
 @export var max_wait : float = 5.0
+@export var hit_sounds : Array[AudioStream] = []
 
+@onready var hit_audio : AudioStreamPlayer3D = $HitAudio
 @onready var agent : NavigationAgent3D = $"NavigationAgent3D"
 @onready var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -91,9 +93,17 @@ func _on_bump_detector_body_entered(body):
 		OrderManager.register_pedestrian_hit()
 		knock_over(body)
 
+func play_hit_sound():
+	if hit_sounds.size() > 0:
+		hit_audio.stream = hit_sounds[randi() % hit_sounds.size()]
+		hit_audio.pitch_scale = randf_range(0.8, 1.3)
+		hit_audio.play()
+
 func knock_over(body):
 	is_knocked_down = true
 	is_waiting = false
+	
+	play_hit_sound()
 	
 	var push_dir = (global_position - body.global_position).normalized()
 	push_dir.y = 0

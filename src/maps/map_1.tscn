@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://b7bgib1hmm21w"]
 
 [ext_resource type="Script" uid="uid://ca2tl36b5og75" path="res://src/maps/map_1.gd" id="1_h3sx2"]
+[ext_resource type="AudioStream" uid="uid://cl7u81yli7x6k" path="res://assets/music/Galacti-Chrons Weird Music Pack/Galacti-Chron-City on Speed.mp3" id="2_7grmi"]
 [ext_resource type="NavigationMesh" uid="uid://dtp27sup5xdrv" path="res://src/maps/map_1_nav_mesh.tres" id="3_0qoco"]
+[ext_resource type="AudioStream" uid="uid://cc0sb4focmvxl" path="res://assets/music/Galacti-Chrons Weird Music Pack/Galacti-Chron-Let the Games Begin.mp3" id="3_cgrw0"]
+[ext_resource type="AudioStream" uid="uid://ca80atqbx6qat" path="res://assets/music/Galacti-Chrons Weird Music Pack/Galacti-Chron-The Gears of Progress.mp3" id="4_taf3q"]
 [ext_resource type="PackedScene" uid="uid://dhc81ltm6xapd" path="res://assets/city/roads/road-crossroad.glb" id="5_agi8x"]
+[ext_resource type="AudioStream" uid="uid://bdwdxmkx3ew84" path="res://assets/music/Galacti-Chrons Weird Music Pack/Galacti-Chron-The Groove.mp3" id="5_rqdvr"]
 [ext_resource type="PackedScene" uid="uid://dxdmu1ej0jcrm" path="res://assets/city/roads/road-straight.glb" id="6_0wqp6"]
+[ext_resource type="AudioStream" uid="uid://ivj56g6b6jai" path="res://assets/music/Galacti-Chrons Weird Music Pack/Galacti-Chron-Undercover Operative.mp3" id="6_5ioyy"]
+[ext_resource type="AudioStream" uid="uid://dd316f14dfxoj" path="res://assets/music/Galacti-Chrons Weird Music Pack/Galacti-Chron-Winning the Race.mp3" id="7_j7g2v"]
 [ext_resource type="PackedScene" uid="uid://dd0o4xmqrdd6k" path="res://assets/city/roads/road-crossroad-path.glb" id="8_ylb36"]
 [ext_resource type="PackedScene" uid="uid://m8ttivm7baw6" path="res://assets/city/roads/road-curve-intersection.glb" id="9_obr7j"]
 [ext_resource type="PackedScene" uid="uid://cky8cg1ymmbib" path="res://assets/city/roads/road-end-round.glb" id="10_6q61r"]
@@ -53,6 +59,7 @@ size = Vector2(0.02, 0.5)
 
 [node name="Map1" type="Node3D" unique_id=441762909]
 script = ExtResource("1_h3sx2")
+map_songs = Array[AudioStream]([ExtResource("2_7grmi"), ExtResource("3_cgrw0"), ExtResource("4_taf3q"), ExtResource("5_rqdvr"), ExtResource("6_5ioyy"), ExtResource("7_j7g2v")])
 
 [node name="HUD" parent="." unique_id=198605114 instance=ExtResource("24_lyw0m")]
 
