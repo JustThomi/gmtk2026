@@ -28,7 +28,7 @@ height = 1.0
 [node name="Greeter" parent="." unique_id=855782697 instance=ExtResource("2_vj4u8")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1.9407966, 0, 0)
 
-[node name="Skeleton3D" parent="Greeter/character-female-f" parent_id_path=PackedInt32Array(855782697, 1015031080) index="0" unique_id=585116817]
+[node name="Skeleton3D" parent="Greeter/character-female-f" parent_id_path=PackedInt32Array(855782697, 418188561) index="0" unique_id=1386931832]
 bones/4/rotation = Quaternion(0, 0, -0.38268346, 0.9238795)
 bones/5/rotation = Quaternion(0, 0, 0.3826835, 0.92387956)
 
