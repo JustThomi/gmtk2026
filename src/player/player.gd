@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-# @onready var model: Node3D = $Model
 @onready var arrow: Node3D = $Arrrow
 @onready var visual_root: Node3D = $VisualRoot
 @onready var anim = $VisualRoot/RiderMount/Rider/AnimationPlayer
@@ -47,12 +46,16 @@ var spins_nr : int = 0
 
 func _ready():
 	default_pivot_y = visual_root.position.y
+	
 	OrderManager.order_picked.connect(_on_order_picked_up)
 	OrderManager.order_completed.connect(_on_order_completed)
 	OrderManager.combo_penalty.connect(_on_combo_penalty)
-	switch_bike(0)
 	upgrade_window.bike_bought.connect(_on_bike_bought)
+	
+	switch_bike(0)
+	
 	set_backpack_active(false)
+	
 	if spin_popup:
 		popup_base_y = spin_popup.position.y
 		spin_popup.modulate = Color("757dd9", 0.0)
@@ -95,9 +98,6 @@ func _physics_process(delta):
 			
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
-	
-	#if Input.is_action_just_pressed("orders"):
-		#hud.order_map.visible = not hud.order_map.visible
 
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -217,13 +217,13 @@ func switch_bike(index: int) -> void:
 	rider_mount.global_transform = seat.global_transform
 	rider_mount.position.y += RIDER_Y_OFFSET
 
-func _unhandled_input(event):
-	if event.is_action_pressed("RedBike"):
-		switch_bike(0)
-	elif event.is_action_pressed("MountainBike"):
-		switch_bike(1)
-	elif event.is_action_pressed("Unicycle"):
-		switch_bike(2)
+#func _unhandled_input(event):
+	#if event.is_action_pressed("RedBike"):
+		#switch_bike(0)
+	#elif event.is_action_pressed("MountainBike"):
+		#switch_bike(1)
+	#elif event.is_action_pressed("Unicycle"):
+		#switch_bike(2)
 
 func set_backpack_active(active: bool) -> void:
 	backpack.visible = active

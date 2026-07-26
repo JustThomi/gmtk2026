@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b4ryjh5ir0vce"
+path="res://.godot/imported/platform_long.obj-d12ddc0a815e3b669360cf04c787afed.mesh"
+
+[deps]
+
+files=["res://.godot/imported/platform_long.obj-d12ddc0a815e3b669360cf04c787afed.mesh"]
+
+source_file="res://assets/city/kenney_space-kit/OBJ format/platform_long.obj"
+dest_files=["res://.godot/imported/platform_long.obj-d12ddc0a815e3b669360cf04c787afed.mesh", "res://.godot/imported/platform_long.obj-d12ddc0a815e3b669360cf04c787afed.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
