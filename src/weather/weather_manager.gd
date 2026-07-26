@@ -11,8 +11,8 @@ var lightning_running := false
 
 signal lightning
 
-@export var min_change_time := 20
-@export var max_change_time := 60
+@export var min_change_time := 2
+@export var max_change_time := 2
 
 func _ready():
 	randomize()
@@ -27,7 +27,7 @@ func weather_loop() -> void:
 
 
 func change_random_weather():
-	var possible_weathers = [Weather.CLEAR, Weather.CLEAR, Weather.CLEAR, Weather.FOG, Weather.RAIN, Weather.STORM]
+	var possible_weathers = [Weather.STORM]
 	
 	current_weather = possible_weathers.pick_random()
 	if current_weather == Weather.STORM and !lightning_running:
