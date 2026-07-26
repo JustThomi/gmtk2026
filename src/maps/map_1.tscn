@@ -947,7 +947,6 @@ environment = SubResource("Environment_lyw0m")
 
 [node name="Restaurants" type="Node3D" parent="." unique_id=1974127755 groups=["Buildings"]]
 
-
 [node name="Target" parent="Restaurants" unique_id=1112194499 instance=ExtResource("25_klqub")]
 transform = Transform3D(-0.032218527, 0, 0.99948084, 0, 1, 0, -0.99948084, 0, -0.032218527, -1.496, 0, 61.146)
 visible = false
