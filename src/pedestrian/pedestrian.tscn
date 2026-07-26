@@ -22,7 +22,7 @@ radius = 2.187264
 [node name="Pedestrian" type="CharacterBody3D" unique_id=1733494223]
 collision_layer = 2
 script = ExtResource("1_kxcfg")
-possible_models = Array[PackedScene]([ExtResource("2_4gqv7"), ExtResource("3_wgve6"), ExtResource("4_sypx1"), ExtResource("5_r418h"), ExtResource("6_tfk1b"), ExtResource("7_8mmwu"), ExtResource("8_dfvua"), ExtResource("9_7t5va"), ExtResource("10_2jvpv"), ExtResource("11_da4q8"), null, null, null])
+possible_models = Array[PackedScene]([ExtResource("2_4gqv7"), ExtResource("3_wgve6"), ExtResource("4_sypx1"), ExtResource("5_r418h"), ExtResource("6_tfk1b"), ExtResource("7_8mmwu"), ExtResource("8_dfvua"), ExtResource("9_7t5va"), ExtResource("10_2jvpv"), ExtResource("11_da4q8")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=325850022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1061153, 0)
