@@ -217,6 +217,7 @@ func _process(delta: float) -> void:
 				update_timer_label()
 				money += failed_order_deduction
 				update_money_label()
+				order_completed.emit()
 				generate_order()
 				return
 		
