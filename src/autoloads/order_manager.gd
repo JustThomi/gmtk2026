@@ -125,8 +125,9 @@ func order_finished():
 	timer_running = true
 	
 	var payment : float
-	var points_to_get : int
+	var points_to_get : float
 	if package_health <= 0:
+		combo_penalty.emit("PACKAGE DESTROYED!", Color("ff4d6d"))
 		payment = package_destroyed_value
 		points_to_get = package_destroyed_value
 	else:
@@ -212,11 +213,13 @@ func _process(delta: float) -> void:
 			time_remaining -= delta
 
 			if time_remaining <= 0.0:
+				combo_penalty.emit("ORDER FAILED!", Color("ff4d6d"))
 				time_remaining = 0.0
 				timer_running = false
 				update_timer_label()
 				money += failed_order_deduction
 				update_money_label()
+				order_completed.emit()
 				generate_order()
 				return
 		

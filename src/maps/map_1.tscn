@@ -1798,7 +1798,6 @@ police_scene = ExtResource("23_hsw4x")
 
 [node name="CharacterBody3D" parent="." unique_id=1212996814 instance=ExtResource("19_vuhy1")]
 transform = Transform3D(0.70710677, -1.0536712e-08, 0.70710677, 2.9802322e-08, 1.0000001, 0, -0.70710677, 3.1610135e-08, 0.70710677, -28.753613, 1.3347435, 57.449806)
-collision_layer = 1
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=337450839]
 transform = Transform3D(1.0000001, 2.9802322e-08, 2.9802322e-08, -2.9802319e-08, 0.7071067, 0.70710677, 0, -0.7071068, 0.7071068, 0, 50, 50)

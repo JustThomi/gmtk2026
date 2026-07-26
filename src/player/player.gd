@@ -95,9 +95,6 @@ func _physics_process(delta):
 			show_spin_multiplier(rotations, OrderManager.combo_multiplier)
 			play_trick_sound()
 		accumulated_spin = 0.0
-			
-	if Input.is_action_just_pressed("escape"):
-		get_tree().quit()
 
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
