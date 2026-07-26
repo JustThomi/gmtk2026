@@ -18,7 +18,7 @@ var time_remaining := 0.0
 var timer_running := false
 var distance: float
 var order_count: int = 0
-var money := 100.0
+var money := 149.0
 var package_health : float = 100.0
 var is_order_picked : bool = false
 
@@ -73,6 +73,7 @@ func set_timer_label(label: Label) -> void:
 	
 func set_money_label(label: Label) -> void:
 	money_label = label
+	update_money_label()
 
 func start_timer() -> void:
 	time_remaining = order_time
@@ -165,7 +166,7 @@ func _process(delta: float) -> void:
 	
 	if timer_running:
 		time_remaining -= delta
-
+	
 		if time_remaining <= 0.0:
 			time_remaining = 0.0
 			timer_running = false
@@ -174,7 +175,7 @@ func _process(delta: float) -> void:
 			update_money_label()
 			generate_order()
 			return
-
+	
 		update_timer_label()
 
 func apply_fine(amount: float) -> void:
@@ -204,10 +205,10 @@ func damage_package() -> void:
 func clear_current_order() -> void:
 	if is_instance_valid(restaurant):
 		restaurant.disable()
-
+	
 	if is_instance_valid(destination):
 		destination.disable()
-
+	
 	restaurant = null
 	destination = null
 	current_target = null

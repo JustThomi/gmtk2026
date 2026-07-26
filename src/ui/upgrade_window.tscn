@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://djftjtwcj8x1"]
 
 [ext_resource type="Script" uid="uid://d0whxwxc5c1bm" path="res://src/ui/upgrade_window.gd" id="1_y60sh"]
+[ext_resource type="Texture2D" uid="uid://cnlmro4nmifh1" path="res://assets/ui/watch/cash.png" id="2_o3jwv"]
 [ext_resource type="PackedScene" uid="uid://p4buds0a0sve" path="res://assets/bikes/mountain_bike.glb" id="2_yjahf"]
+[ext_resource type="FontFile" uid="uid://cfiqyq6u6hy7p" path="res://assets/ui/Monocraft.ttf" id="3_0jvss"]
 [ext_resource type="PackedScene" uid="uid://b4q0mnqcfpn8b" path="res://assets/bikes/unicycle.glb" id="3_yjahf"]
 
 [sub_resource type="Environment" id="Environment_yjahf"]
@@ -9,6 +11,12 @@ background_mode = 1
 background_color = Color(0.95651656, 0.85045266, 0.51767874, 1)
 ambient_light_color = Color(0.6955032, 0.6955031, 0.6955031, 1)
 glow_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vniqe"]
+viewport_path = NodePath("VBoxContainer/Uni/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3agn1"]
+viewport_path = NodePath("VBoxContainer/Mountain/SubViewport")
 
 [node name="MarginContainer" type="MarginContainer" unique_id=228152110]
 anchors_preset = 8
@@ -33,73 +41,102 @@ alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/Uni" unique_id=1865337605]
+[node name="CostContainer" type="HBoxContainer" parent="VBoxContainer/Uni" unique_id=231352358]
 layout_mode = 2
-size_flags_horizontal = 4
+alignment = 1
 
-[node name="SubViewport" type="SubViewport" parent="VBoxContainer/Uni/SubViewportContainer" unique_id=1059527464]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Uni/CostContainer" unique_id=1611111542]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_o3jwv")
+stretch_mode = 5
+
+[node name="Cost" type="Label" parent="VBoxContainer/Uni/CostContainer" unique_id=1870497090]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0jvss")
+theme_override_font_sizes/font_size = 24
+text = "150"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/Uni" unique_id=1059527464]
 own_world_3d = true
 handle_input_locally = false
 size = Vector2i(150, 150)
 render_target_update_mode = 4
 
-[node name="unicycle" parent="VBoxContainer/Uni/SubViewportContainer/SubViewport" unique_id=144032613 instance=ExtResource("3_yjahf")]
+[node name="unicycle" parent="VBoxContainer/Uni/SubViewport" unique_id=144032613 instance=ExtResource("3_yjahf")]
 
-[node name="Camera3D" type="Camera3D" parent="VBoxContainer/Uni/SubViewportContainer/SubViewport" unique_id=183181037]
+[node name="Camera3D" type="Camera3D" parent="VBoxContainer/Uni/SubViewport" unique_id=183181037]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.177389, 1.085, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="VBoxContainer/Uni/SubViewportContainer/SubViewport" unique_id=731616191]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="VBoxContainer/Uni/SubViewport" unique_id=731616191]
 environment = SubResource("Environment_yjahf")
 
-[node name="UniButton" type="Button" parent="VBoxContainer/Uni" unique_id=723797431]
+[node name="Filter" type="ColorRect" parent="VBoxContainer/Uni/SubViewport" unique_id=1100521451]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4745098)
+
+[node name="UniButton" type="TextureButton" parent="VBoxContainer/Uni" unique_id=665364934]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
-theme_override_font_sizes/font_size = 32
-text = "Unicycle
-"
-
-[node name="Cost" type="Label" parent="VBoxContainer/Uni" unique_id=24522127]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Cost: 150"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture_normal = SubResource("ViewportTexture_vniqe")
 
 [node name="Mountain" type="VBoxContainer" parent="VBoxContainer" unique_id=1822233490]
 layout_mode = 2
 alignment = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/Mountain" unique_id=17148126]
+[node name="CostContainer" type="HBoxContainer" parent="VBoxContainer/Mountain" unique_id=1706816694]
 layout_mode = 2
-size_flags_horizontal = 4
+alignment = 1
 
-[node name="SubViewport" type="SubViewport" parent="VBoxContainer/Mountain/SubViewportContainer" unique_id=524958771]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Mountain/CostContainer" unique_id=416894180]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_o3jwv")
+stretch_mode = 5
+
+[node name="Cost" type="Label" parent="VBoxContainer/Mountain/CostContainer" unique_id=97536221]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0jvss")
+theme_override_font_sizes/font_size = 24
+text = "200"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/Mountain" unique_id=524958771]
 own_world_3d = true
 handle_input_locally = false
 size = Vector2i(150, 150)
 render_target_update_mode = 4
 
-[node name="mountain_bike" parent="VBoxContainer/Mountain/SubViewportContainer/SubViewport" unique_id=364604433 instance=ExtResource("2_yjahf")]
+[node name="mountain_bike" parent="VBoxContainer/Mountain/SubViewport" unique_id=364604433 instance=ExtResource("2_yjahf")]
 
-[node name="Camera3D" type="Camera3D" parent="VBoxContainer/Mountain/SubViewportContainer/SubViewport" unique_id=1709273504]
+[node name="Camera3D" type="Camera3D" parent="VBoxContainer/Mountain/SubViewport" unique_id=1709273504]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.41, 1.085, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="VBoxContainer/Mountain/SubViewportContainer/SubViewport" unique_id=942606012]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="VBoxContainer/Mountain/SubViewport" unique_id=942606012]
 environment = SubResource("Environment_yjahf")
 
-[node name="MountainButton" type="Button" parent="VBoxContainer/Mountain" unique_id=1584437329]
+[node name="Filter" type="ColorRect" parent="VBoxContainer/Mountain/SubViewport" unique_id=1401627187]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4745098)
+
+[node name="MountainButton" type="TextureButton" parent="VBoxContainer/Mountain" unique_id=29512917]
 layout_mode = 2
 focus_mode = 1
-theme_override_font_sizes/font_size = 32
-text = "Mountain"
-
-[node name="Cost" type="Label" parent="VBoxContainer/Mountain" unique_id=1233512688]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Cost: 200"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture_normal = SubResource("ViewportTexture_3agn1")
 
 [connection signal="pressed" from="VBoxContainer/Uni/UniButton" to="." method="_on_uni_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Mountain/MountainButton" to="." method="_on_mountain_button_pressed"]
